@@ -43,12 +43,11 @@ npm start
 
 ---
 
-📞 Support
+## 📞 Support
 
-https://img.shields.io/badge/JOIN%20CHANNEL-25D366?style=for-the-badge&logo=whatsapp&logoColor=white https://img.shields.io/badge/YOUTUBE%20TUTORIAL-FF0000?style=for-the-badge&logo=youtube&logoColor=white
+[![JOIN CHANNEL](https://img.shields.io/badge/JOIN%20CHANNEL-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://whatsapp.com/channel/0029VbCl2UX3rZZilMSvxN1e) [![YOUTUBE TUTORIAL](https://img.shields.io/badge/YOUTUBE%20TUTORIAL-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@GuruTech)
 
 ---
-
 Made with ❤️ by GuruTech Lab 🇰🇪
 
 </div>
