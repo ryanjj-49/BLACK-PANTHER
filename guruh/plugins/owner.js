@@ -38,15 +38,36 @@ function ghRequest(method, apiPath, body = null) {
             });
         });
         req.on('error', reject);
+        // 30-second timeout so it never hangs forever
+        req.setTimeout(30000, () => { req.destroy(new Error('GitHub API request timed out')); });
         if (body) req.write(JSON.stringify(body));
         req.end();
     });
 }
 
-function readStoredSha() {
-    try { return fs.readFileSync(SHA_FILE, 'utf8').trim(); }
-    catch { return null; }
+// Read the local git HEAD SHA so we know exactly what's installed
+function getLocalGitSha() {
+    try {
+        return execSync('git rev-parse HEAD', {
+            cwd: process.cwd(), encoding: 'utf8', timeout: 5000,
+        }).trim();
+    } catch { return null; }
 }
+
+function readStoredSha() {
+    try {
+        const stored = fs.readFileSync(SHA_FILE, 'utf8').trim();
+        if (stored) return stored;
+    } catch { /* file missing */ }
+    // Seed from the actual local git HEAD on first run
+    const gitSha = getLocalGitSha();
+    if (gitSha) {
+        storesha(gitSha);
+        return gitSha;
+    }
+    return null;
+}
+
 function storesha(sha) {
     fs.mkdirSync(path.dirname(SHA_FILE), { recursive: true });
     fs.writeFileSync(SHA_FILE, sha, 'utf8');
@@ -288,19 +309,38 @@ addCmd({
         let commitLog = [];
         try {
             if (storedSha) {
+                // Incremental update — only files changed since last known SHA
                 const compare = await ghRequest('GET',
                     `/repos/${GH_REPO}/compare/${storedSha}...${latestCommit.sha}`);
+
+                if (compare?.message && compare.message.includes('Not Found')) {
+                    // storedSha no longer exists on remote — fall back to full tree
+                    throw new Error('storedSha not found on remote');
+                }
+
                 changedFiles = (compare?.files || []).map(f => ({
                     path:   f.filename,
-                    status: f.status,   // added / modified / removed
+                    status: f.status,
                 }));
                 commitLog = (compare?.commits || [])
                     .slice(-10)
                     .reverse()
                     .map(c => `  • ${c.commit?.message?.split('\n')[0]?.slice(0, 60) || '—'}`)
                     .join('\n');
+            } else {
+                throw new Error('no stored SHA — performing full update');
             }
-        } catch { /* non-critical */ }
+        } catch {
+            // Full update: fetch every file in the latest commit tree
+            try {
+                const treeData = await ghRequest('GET',
+                    `/repos/${GH_REPO}/git/trees/${latestCommit.sha}?recursive=1`);
+                changedFiles = (treeData?.tree || [])
+                    .filter(f => f.type === 'blob')
+                    .map(f => ({ path: f.path, status: 'modified' }));
+                commitLog = '';
+            } catch { /* non-critical */ }
+        }
 
         const totalFiles   = changedFiles.length;
         const pkgChanged   = changedFiles.some(f => f.path === 'package.json');
