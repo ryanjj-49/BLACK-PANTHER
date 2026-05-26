@@ -1,733 +1,155 @@
 'use strict';
 // ╔══════════════════════════════════════════════════════════════╗
 //  🐾  BLACK PANTHER MD  —  play.js
-//  🎵  .play · .ytmp3 · .ytmp4 · .ytsearch · .spotify · .tts · .shorten
+//  🎵  .play · .ytmp3 · .ytmp3doc
+//  API: apis.davidcyril.name.ng
 // ╚══════════════════════════════════════════════════════════════╝
 
-const { addCmd } = require('../../guru/handlers/loader');
-const axios      = require('axios');
-const yts        = require('yt-search');
-const config     = require('../../guru/config/settings');
+const { addCmd }     = require('../../guru/handlers/loader');
+const axios          = require('axios');
+const yts            = require('yt-search');
+const config         = require('../../guru/config/settings');
 const { channelCtx } = require('../../guru/utils/gmdFunctions2');
-const { sendButtons } = require('../../guru/utils/gmdFunctions2');
 
-// ── HTTP helper ────────────────────────────────────────────────
-async function getJson(url, opts = {}) {
+const API_BASE    = 'https://apis.davidcyril.name.ng';
+const API_TIMEOUT = 25000;
+
+// ── Fetch audio info from davidcyril API ─────────────────────
+async function fetchAudio(query) {
+    const url = `${API_BASE}/play?query=${encodeURIComponent(query)}`;
+    console.log(`[play] Fetching: ${url}`);
     const res = await axios.get(url, {
-        timeout: 30000,
-        headers: { 'User-Agent': 'Mozilla/5.0 (BlackPantherMD/2.0)' },
-        ...opts,
+        timeout: API_TIMEOUT,
+        headers: { 'User-Agent': 'BlackPantherMD/2.0' },
     });
-    return res.data;
-}
-
-function fmtSecs(secs) {
-    if (!secs || isNaN(secs)) return '?';
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m}:${String(s).padStart(2, '0')}`;
-}
-
-// ══════════════════════════════════════════════════════════════
-//  PARSE DOWNLOAD URL FROM ANY API RESPONSE
-// ══════════════════════════════════════════════════════════════
-function parseDownloadUrl(data) {
-    if (!data) return null;
-    // apiskeith.top style
-    if (data.status === true && data.result && typeof data.result === 'string')
-        return data.result;
-    if (data.download_url)          return data.download_url;
-    if (data.result?.download_url)  return data.result.download_url;
-    if (data.result?.url)           return data.result.url;
-    if (data.url)                   return data.url;
-    if (data.link)                  return data.link;
-    if (data.data?.url)             return data.data.url;
-    if (data.audio)                 return data.audio;
-    return null;
+    const d = res.data;
+    if (d.status === true && d.result?.download_url) {
+        return {
+            download_url: d.result.download_url,
+            title:        d.result.title,
+            duration:     d.result.duration,
+            thumbnail:    d.result.thumbnail,
+            video_url:    d.result.video_url,
+        };
+    }
+    throw new Error(d.message || 'API returned no download URL');
 }
 
 // ══════════════════════════════════════════════════════════════
-//  QUERY API — waterfall through endpoint list
+//  🎵  PLAY  —  sends audio + document directly, no buttons
 // ══════════════════════════════════════════════════════════════
-async function queryAPI(videoUrl, endpoints, timeout = 20000) {
-    // Run all endpoints in parallel — first valid result wins (no waiting for slow ones)
-    return new Promise((resolve) => {
-        let settled = false;
-        let pending = endpoints.length;
-        if (!pending) return resolve(null);
-
-        for (const endpoint of endpoints) {
-            axios.get(endpoint, { timeout })
-                .then(res => {
-                    const url = parseDownloadUrl(res.data);
-                    if (url?.startsWith('http') && !settled) {
-                        settled = true;
-                        console.log(`✅ Fast-hit: ${endpoint}`);
-                        resolve(url);
-                    }
-                })
-                .catch(() => {})
-                .finally(() => {
-                    pending--;
-                    if (pending === 0 && !settled) resolve(null);
-                });
-        }
-    });
-}
-
-// ══════════════════════════════════════════════════════════════
-//  YOUTUBE SEARCH  — yt-search (primary) + API fallbacks
-// ══════════════════════════════════════════════════════════════
-async function ytSearch(query) {
-    // 1. yt-search npm package (no API key needed)
-    try {
-        const res  = await yts(query);
-        const item = res?.videos?.[0];
-        if (item) {
-            return {
-                title:    item.title || query,
-                url:      item.url,
-                channel:  item.author?.name || '',
-                duration: item.timestamp || fmtSecs(item.seconds),
-                views:    (item.views || 0).toLocaleString(),
-                thumb:    item.thumbnail || item.image || '',
-            };
-        }
-    } catch {}
-
-    // 2. Invidious fallback
-    try {
-        const data = await getJson(
-            `https://inv.nadeko.net/api/v1/search?q=${encodeURIComponent(query)}&type=video&page=1`
-        );
-        const item = data?.[0];
-        if (item) {
-            return {
-                title:    item.title || query,
-                url:      `https://youtu.be/${item.videoId}`,
-                channel:  item.author || '',
-                duration: fmtSecs(item.lengthSeconds),
-                views:    (item.viewCount || 0).toLocaleString(),
-                thumb:    `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`,
-            };
-        }
-    } catch {}
-
-    // 3. Pipedapi fallback
-    try {
-        const data = await getJson(
-            `https://pipedapi.kavin.rocks/search?q=${encodeURIComponent(query)}&filter=videos`
-        );
-        const item = data?.items?.[0];
-        if (item) {
-            const id = (item.url || '').replace('/watch?v=', '').split('&')[0];
-            return {
-                title:    item.title || query,
-                url:      `https://youtu.be/${id}`,
-                channel:  item.uploaderName || '',
-                duration: fmtSecs(item.duration),
-                views:    (item.views || 0).toLocaleString(),
-                thumb:    item.thumbnail || '',
-            };
-        }
-    } catch {}
-
-    return null;
-}
-
-// ══════════════════════════════════════════════════════════════
-//  YOUTUBE AUDIO DOWNLOAD
-//  Primary: apiskeith.top  |  Fallbacks from ULTRA-GURU repo
-// ══════════════════════════════════════════════════════════════
-async function ytAudio(videoUrl) {
-    const enc = encodeURIComponent(videoUrl);
-    const endpoints = [
-        `https://apiskeith.top/download/audio?url=${enc}`,
-        `https://wadownloader.amitdas.site/api/yt?url=${enc}`,
-        `https://silva-md-bot.onrender.com/api/download?url=${enc}`,
-        `https://api-xeon.tech/api/download/ytmp3?url=${enc}`,
-        `https://api.vreden.my.id/api/ytmp3?url=${enc}`,
-        `https://api.ryzendesu.vip/api/downloader/ytmp3?url=${enc}`,
-        `https://yt-api.p.rapidapi.com/dl?id=${enc}`,
-        `https://ytdl.freelancerpriyesh.workers.dev/?url=${enc}&type=audio`,
-        `https://y2down.cc/api/audio?url=${enc}`,
-        `https://loader.to/api/button/?url=${enc}&f=mp3`,
-    ];
-    return queryAPI(videoUrl, endpoints, 20000);
-}
-
-// ══════════════════════════════════════════════════════════════
-//  YOUTUBE VIDEO DOWNLOAD
-//  Primary: apiskeith.top  |  Fallbacks from ULTRA-GURU repo
-// ══════════════════════════════════════════════════════════════
-async function ytVideo(videoUrl) {
-    const enc = encodeURIComponent(videoUrl);
-    const endpoints = [
-        `https://apiskeith.top/download/video?url=${enc}`,
-        `https://wadownloader.amitdas.site/api/yt?url=${enc}&type=video`,
-        `https://silva-md-bot.onrender.com/api/download?url=${enc}`,
-        `https://api-xeon.tech/api/download/ytmp4?url=${enc}`,
-        `https://api.vreden.my.id/api/ytmp4?url=${enc}`,
-        `https://ytdl.freelancerpriyesh.workers.dev/?url=${enc}&type=video`,
-        `https://y2down.cc/api/video?url=${enc}`,
-    ];
-    return queryAPI(videoUrl, endpoints, 20000);
-}
-
-// ═══════════════════════════════════════════════════════════════
-//  🎵  PLAY
-// ═══════════════════════════════════════════════════════════════
 addCmd({
-    name: 'play',
-    aliases: ['music', 'song', 'ytplay'],
-    desc: 'Search and play a YouTube song as audio',
-    usage: 'play <song name or YouTube URL>',
+    name:     'play',
+    aliases:  ['ytmp3', 'ytaudio', 'yta', 'music', 'song'],
+    desc:     'Download and send a song as audio + document',
+    usage:    'play <song name or YouTube URL>',
     category: 'music',
     handler: async (ctx) => {
         if (!ctx.text)
-            return ctx.reply(`❌ Provide a song name or YouTube URL.\n\nExample: \`${config.BOT_PREFIX}play Shape of You\``);
+            return ctx.reply(
+                `❌ *Provide a song name or YouTube link.*
 
-        await ctx.react('🎵');
-
-        try {
-            let videoUrl = ctx.text;
-            let title    = ctx.text;
-            let channel  = '';
-            let duration = '?';
-            let thumb    = '';
-
-            const isUrl = /youtu(be\.com|\.be)/i.test(ctx.text);
-
-            if (!isUrl) {
-                await ctx.react('🔍');
-                const result = await ytSearch(ctx.text);
-                if (!result) {
-                    const fallback = await searchFallback(ctx.text);
-                    if (!fallback) {
-                        return ctx.reply(
-                            `❌ No results found for: *${ctx.text}*\n\n` +
-                            `💡 Try a longer song title or paste a YouTube URL directly.`
-                        );
-                    }
-                    videoUrl = fallback.url || videoUrl;
-                    title = fallback.title || title;
-                    channel = fallback.channel || channel;
-                    duration = fallback.duration || duration;
-                    thumb = fallback.thumb || thumb;
-                } else {
-                    videoUrl = result.url;
-                    title    = result.title;
-                    channel  = result.channel;
-                    duration = result.duration;
-                    thumb    = result.thumb;
-                }
-            }
-
-            await ctx.react('⏳');
-
-            const audioUrl = await ytAudio(videoUrl);
-
-            if (!audioUrl) {
-                return ctx.reply(
-                    `🎵 *${title}*\n` +
-                    (channel ? `👤 ${channel}\n` : '') +
-                    `⏱️ ${duration}\n\n` +
-                    `🔗 ${videoUrl}\n\n` +
-                    `⚠️ _Download servers are busy. Open the link to listen._\n\n` +
-                    `_${config.BOT_NAME}_`
-                );
-            }
-
-            // ── Send result card with format-choice buttons ────────
-            const cardText =
-                `🎵 *${title}*\n` +
-                `${'─'.repeat(32)}\n` +
-                (channel  ? `👤 *Channel  :* ${channel}\n`  : '') +
-                `⏱️ *Duration :* ${duration}\n\n` +
-                `⬇️ *Tap a button below to receive your media:*\n` +
-                `  🎵 Audio  — MP3 voice track\n` +
-                `  🎬 Video  — MP4 with visuals\n` +
-                `  📁 File   — MP3 as a document\n\n` +
-                `_${config.BOT_NAME}_`;
-
-            const cardButtons = [
-                { id: `${config.BOT_PREFIX}ytmp3 ${videoUrl}`,  text: '🎵 Audio (MP3)' },
-                { id: `${config.BOT_PREFIX}ytmp4 ${videoUrl}`,  text: '🎬 Video (MP4)' },
-                { id: `${config.BOT_PREFIX}ytfile ${videoUrl}`, text: '📁 File (Document)' },
-            ];
-
-            await sendButtons(ctx.sock, ctx.from, {
-                title:   `🎵 ${title.slice(0, 60)}`,
-                text:    cardText,
-                footer:  config.BOT_NAME,
-                ...(thumb ? { image: { url: thumb } } : {}),
-                buttons: cardButtons,
-            }, { quoted: ctx.m }).catch(async () => {
-                const caption =
-                    `🎵 *${title}*\n` +
-                    (channel  ? `👤 *Channel:* ${channel}\n`  : '') +
-                    `⏱️ *Duration:* ${duration}\n\n` +
-                    `⬇️ Choose format:\n` +
-                    `  • ${config.BOT_PREFIX}ytmp3 ${videoUrl}\n` +
-                    `  • ${config.BOT_PREFIX}ytmp4 ${videoUrl}\n` +
-                    `  • ${config.BOT_PREFIX}ytfile ${videoUrl}\n\n` +
-                    `_${config.BOT_NAME}_`;
-                await ctx.send(thumb
-                    ? { image: { url: thumb }, caption }
-                    : { text: caption }
-                ).catch(() => {});
-            });
-
-            await ctx.react('✅');
-        } catch (err) {
-            console.error('[PLAY]', err.message);
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: `❌ Playback failed: ${err.message}\n\nTry a different song or paste the YouTube URL directly.`, contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
-
-// ═══════════════════════════════════════════════════════════════
-//  🔍  YTSEARCH
-// ═══════════════════════════════════════════════════════════════
-addCmd({
-    name: 'ytsearch',
-    aliases: ['yts', 'ytsrc'],
-    desc: 'Search YouTube and show top results',
-    usage: 'ytsearch <query>',
-    category: 'music',
-    handler: async (ctx) => {
-        if (!ctx.text)
-            return ctx.reply(`❌ Provide a search term.\n\nExample: \`${config.BOT_PREFIX}ytsearch Afrobeats 2025\``);
+` +
+                `Example: \`${config.BOT_PREFIX}play mambichwa\``
+            );
 
         await ctx.react('🔍');
 
         try {
-            let items = [];
+            let videoUrl, videoTitle, videoDuration, videoThumb;
 
-            try {
-                const data = await getJson(
-                    `https://pipedapi.kavin.rocks/search?q=${encodeURIComponent(ctx.text)}&filter=videos`
-                );
-                items = (data?.items || []).slice(0, 6).map(item => ({
-                    title:    item.title,
-                    url:      `https://youtu.be/${(item.url || '').replace('/watch?v=', '').split('&')[0]}`,
-                    channel:  item.uploaderName || '',
-                    duration: fmtSecs(item.duration),
-                    views:    (item.views || 0).toLocaleString(),
-                }));
-            } catch {}
+            const isUrl = /youtu(be.com|.be)/i.test(ctx.text);
 
-            if (!items.length) {
-                try {
-                    const data = await getJson(
-                        `https://inv.nadeko.net/api/v1/search?q=${encodeURIComponent(ctx.text)}&type=video`
-                    );
-                    items = (data || []).slice(0, 6).map(item => ({
-                        title:    item.title,
-                        url:      `https://youtu.be/${item.videoId}`,
-                        channel:  item.author || '',
-                        duration: fmtSecs(item.lengthSeconds),
-                        views:    (item.viewCount || 0).toLocaleString(),
-                    }));
-                } catch {}
+            if (isUrl) {
+                const videoId = ctx.text.includes('youtube.com/watch')
+                    ? ctx.text.split('v=')[1]?.split('&')[0]
+                    : ctx.text.split('/').pop()?.split('?')[0];
+
+                const info = await yts({ videoId }).catch(() => null);
+                videoUrl      = ctx.text;
+                videoTitle    = info?.title || info?.name || ctx.text;
+                videoDuration = info?.timestamp || info?.duration || '?';
+                videoThumb    = info?.thumbnail || info?.image || '';
+            } else {
+                const search = await yts(ctx.text).catch(() => null);
+                if (!search?.videos?.length) {
+                    await ctx.react('❌');
+                    return ctx.sock.sendMessage(ctx.from, {
+                        text: `❌ No results found for *${ctx.text}*. Try a different song name.`,
+                        contextInfo: channelCtx(),
+                    }, { quoted: ctx.m });
+                }
+                const top     = search.videos[0];
+                videoUrl      = top.url;
+                videoTitle    = top.title || ctx.text;
+                videoDuration = top.timestamp || top.duration || '?';
+                videoThumb    = top.thumbnail || top.image || '';
             }
 
-            if (!items.length)
-                return ctx.sock.sendMessage(ctx.from, { text: '❌ No results found. Try a different search term.', contextInfo: channelCtx() }, { quoted: ctx.m });
+            await ctx.react('⬇️');
 
-            const top3 = items.slice(0, 3);
-            const rest = items.slice(3);
-            let infoText = `🔍 *YouTube Results for:* _${ctx.text}_\n${'─'.repeat(30)}\n\n`;
-            items.forEach((item, i) => {
-                infoText += `*${i + 1}.* ${item.title}\n`;
-                infoText += `   ⏱️ ${item.duration}  👁️ ${item.views}\n`;
-                if (item.channel) infoText += `   👤 ${item.channel}\n`;
-                infoText += `   🔗 ${item.url}\n\n`;
-            });
-            infoText += `💡 _Use ${config.BOT_PREFIX}play <title> to download_\n_${config.BOT_NAME}_`;
-
-            await sendButtons(ctx.sock, ctx.from, {
-                title:  `🔍 YouTube: ${ctx.text.slice(0, 40)}`,
-                text:   infoText,
-                footer: config.BOT_NAME,
-                buttons: top3.map(item => ({
-                    name: 'cta_url',
-                    buttonParamsJson: JSON.stringify({ display_text: item.title.slice(0, 20), url: item.url }),
-                })),
-            }, { quoted: ctx.m }).catch(() => ctx.reply(infoText));
-            await ctx.react('✅');
-        } catch (err) {
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: '❌ Search failed. Try again shortly.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
-
-// ═══════════════════════════════════════════════════════════════
-//  ⬇️  YTMP3
-// ═══════════════════════════════════════════════════════════════
-addCmd({
-    name: 'ytmp3',
-    aliases: ['yta', 'ytaudio'],
-    desc: 'Download YouTube audio (MP3) by URL',
-    usage: 'ytmp3 <YouTube URL>',
-    category: 'music',
-    handler: async (ctx) => {
-        if (!ctx.text)
-            return ctx.reply(`❌ Provide a YouTube URL.\n\nExample: \`${config.BOT_PREFIX}ytmp3 https://youtu.be/xxxxx\`\n\n💡 _Use ${config.BOT_PREFIX}play to search by name._`);
-        if (!/youtu/i.test(ctx.text))
-            return ctx.sock.sendMessage(ctx.from, { text: `❌ Please provide a valid YouTube URL.\n\n💡 _Use ${config.BOT_PREFIX}play <song name> to search._`, contextInfo: channelCtx() }, { quoted: ctx.m });
-
-        await ctx.react('⏳');
-        try {
-            const audioUrl = await ytAudio(ctx.text);
-            if (!audioUrl) return ctx.sock.sendMessage(ctx.from, { text: `🎵 *YouTube Audio*\n\n🔗 ${ctx.text}\n\n⚠️ _Download unavailable right now. Try ${config.BOT_PREFIX}play instead._`, contextInfo: channelCtx() }, { quoted: ctx.m });
-            await ctx.send({ audio: { url: audioUrl }, mimetype: 'audio/mpeg', fileName: 'audio.mp3', ptt: false });
-            await ctx.react('✅');
-        } catch (err) {
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: '❌ Download failed. Try a direct YouTube URL.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
-
-// ═══════════════════════════════════════════════════════════════
-//  📁  YTFILE  — send audio as a downloadable document
-// ═══════════════════════════════════════════════════════════════
-addCmd({
-    name: 'ytfile',
-    aliases: ['ytdoc', 'ytdocument'],
-    desc: 'Download YouTube audio and send as a document file',
-    usage: 'ytfile <YouTube URL>',
-    category: 'music',
-    handler: async (ctx) => {
-        if (!ctx.text)
-            return ctx.reply(`❌ Provide a YouTube URL.\n\nExample: \`${config.BOT_PREFIX}ytfile https://youtu.be/xxxxx\``);
-        if (!/youtu/i.test(ctx.text))
-            return ctx.sock.sendMessage(ctx.from, { text: '❌ Please provide a valid YouTube URL.', contextInfo: channelCtx() }, { quoted: ctx.m });
-
-        await ctx.react('⏳');
-        try {
-            const audioUrl = await ytAudio(ctx.text);
-            if (!audioUrl)
+            let apiResult;
+            try {
+                apiResult = await fetchAudio(videoTitle);
+            } catch (err) {
+                console.log(`[play] API error: ${err.message}`);
+                await ctx.react('❌');
                 return ctx.sock.sendMessage(ctx.from, {
-                    text: `📁 *YouTube File Download*\n\n🔗 ${ctx.text}\n\n⚠️ _Download unavailable right now. Try ${config.BOT_PREFIX}ytmp3 instead._`,
+                    text: `❌ Could not fetch audio for *${videoTitle}*.
+Please try again later.`,
                     contextInfo: channelCtx(),
                 }, { quoted: ctx.m });
-
-            await ctx.send({
-                document: { url: audioUrl },
-                mimetype: 'audio/mpeg',
-                fileName: 'audio.mp3',
-                caption:  `📁 *Audio File*\n_${config.BOT_NAME}_`,
-            });
-            await ctx.react('✅');
-        } catch (err) {
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: '❌ File download failed. Try again or use a direct YouTube URL.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
-
-// ═══════════════════════════════════════════════════════════════
-//  🎬  YTMP4
-// ═══════════════════════════════════════════════════════════════
-addCmd({
-    name: 'ytmp4',
-    aliases: ['ytv', 'ytvideo'],
-    desc: 'Download YouTube video (MP4)',
-    usage: 'ytmp4 <YouTube URL>',
-    category: 'music',
-    handler: async (ctx) => {
-        if (!ctx.text) return ctx.reply(`❌ Provide a YouTube URL.\n\nExample: \`${config.BOT_PREFIX}ytmp4 https://youtu.be/xxxxx\``);
-        if (!/youtu/i.test(ctx.text)) return ctx.sock.sendMessage(ctx.from, { text: '❌ Please provide a valid YouTube URL.', contextInfo: channelCtx() }, { quoted: ctx.m });
-
-        await ctx.react('⏳');
-        try {
-            const videoUrl = await ytVideo(ctx.text);
-            if (!videoUrl) return ctx.sock.sendMessage(ctx.from, { text: `🎬 *YouTube Video*\n\n🔗 ${ctx.text}\n\n⚠️ _Video unavailable. The video may be geo-restricted or too large._`, contextInfo: channelCtx() }, { quoted: ctx.m });
-            await ctx.send({ video: { url: videoUrl }, caption: `🎬 *YouTube Video*\n\n_${config.BOT_NAME}_`, mimetype: 'video/mp4' });
-            await ctx.react('✅');
-        } catch (err) {
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: '❌ Download failed. The video may be too large or geo-restricted.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
-
-// ═══════════════════════════════════════════════════════════════
-//  🎧  SPOTIFY (Deezer)
-// ═══════════════════════════════════════════════════════════════
-addCmd({
-    name: 'spotify',
-    aliases: ['deezer', 'musicsearch', 'findsong'],
-    desc: 'Search for a song with full track info',
-    usage: 'spotify <song name>',
-    category: 'music',
-    handler: async (ctx) => {
-        if (!ctx.text)
-            return ctx.reply(`❌ Provide a song name.\n\nExample: \`${config.BOT_PREFIX}spotify Blinding Lights\``);
-
-        await ctx.react('🎧');
-        try {
-            const data   = await getJson(`https://api.deezer.com/search?q=${encodeURIComponent(ctx.text)}&limit=5`);
-            const tracks = data?.data;
-            if (!tracks?.length) return ctx.sock.sendMessage(ctx.from, { text: '❌ No tracks found. Try a different song name.', contextInfo: channelCtx() }, { quoted: ctx.m });
-
-            const t        = tracks[0];
-            const duration = `${Math.floor(t.duration / 60)}:${String(t.duration % 60).padStart(2, '0')}`;
-
-            let reply =
-                `🎵 *${t.title}*\n${'─'.repeat(30)}\n` +
-                `👤 *Artist  :* ${t.artist?.name}\n` +
-                `💿 *Album   :* ${t.album?.title}\n` +
-                `⏱️ *Duration:* ${duration}\n\n`;
-
-            if (tracks.length > 1) {
-                reply += `🔎 *More results:*\n`;
-                tracks.slice(1).forEach((r, i) => { reply += `  ${i + 2}. ${r.title} — ${r.artist?.name}\n`; });
-                reply += '\n';
             }
-            reply += `_Use ${config.BOT_PREFIX}play ${t.title} to download_`;
 
-            await sendButtons(ctx.sock, ctx.from, {
-                title:  `🎵 ${t.title.slice(0, 50)}`,
-                text:   reply,
-                footer: config.BOT_NAME,
-                ...(t.album?.cover_medium ? { image: { url: t.album.cover_medium } } : {}),
-                buttons: [
-                    { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '🎵 Listen on Deezer', url: t.link }) },
-                    { id: `${config.BOT_PREFIX}play ${t.title}`, text: '⬇️ Download Song' },
-                ],
-            }, { quoted: ctx.m }).catch(async () => {
-                if (t.album?.cover_medium) {
-                    await ctx.send({ image: { url: t.album.cover_medium }, caption: reply + `\n🔗 ${t.link}\n\n_${config.BOT_NAME}_` });
-                } else {
-                    await ctx.reply(reply + `\n🔗 ${t.link}\n\n_${config.BOT_NAME}_`);
-                }
-            });
-            await ctx.react('✅');
-        } catch (err) {
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: '❌ Music search failed. Try again.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
+            const title     = apiResult.title     || videoTitle;
+            const duration  = apiResult.duration  || videoDuration;
+            const safeTitle = title.replace(/[^\w\s.-]/gi, '');
 
-// ═══════════════════════════════════════════════════════════════
-//  🔊  TTS
-// ═══════════════════════════════════════════════════════════════
-addCmd({
-    name: 'tts',
-    aliases: ['speak', 'voice', 'texttospeech'],
-    desc: 'Convert text to a voice note',
-    usage: 'tts [lang] <text>  — e.g. tts sw Habari yako',
-    category: 'music',
-    handler: async (ctx) => {
-        if (!ctx.text)
-            return ctx.reply(
-                `❌ Provide text to convert.\n\n` +
-                `*Usage:* \`${config.BOT_PREFIX}tts <text>\`\n` +
-                `*With language:* \`${config.BOT_PREFIX}tts sw Habari yako\`\n\n` +
-                `_Supported: en, sw, fr, es, ar, zh, hi, pt, de, it_`
-            );
-
-        const LANGS = ['en','sw','fr','es','ar','zh','hi','pt','de','it','ru','ja','ko','tr','pl'];
-        let lang = 'en';
-        let text = ctx.text;
-
-        if (LANGS.includes(ctx.args[0]?.toLowerCase())) {
-            lang = ctx.args[0].toLowerCase();
-            text = ctx.args.slice(1).join(' ');
-        }
-
-        if (!text) return ctx.sock.sendMessage(ctx.from, { text: '❌ Provide the text to speak after the language code.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        if (text.length > 200) return ctx.sock.sendMessage(ctx.from, { text: '❌ Text too long. Maximum is 200 characters.', contextInfo: channelCtx() }, { quoted: ctx.m });
-
-        await ctx.react('🔊');
-        try {
-            const ttsUrl =
-                `https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}` +
-                `&client=tw-ob&q=${encodeURIComponent(text)}`;
-
-            const res = await axios.get(ttsUrl, {
+            // Download buffer via URL
+            const audioRes = await axios.get(apiResult.download_url, {
                 responseType: 'arraybuffer',
-                timeout: 20000,
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120',
-                    'Referer': 'https://translate.google.com/',
-                },
+                timeout: 40000,
+                headers: { 'User-Agent': 'BlackPantherMD/2.0' },
             });
+            const buffer = Buffer.from(audioRes.data);
 
-            await ctx.send({ audio: Buffer.from(res.data), mimetype: 'audio/mpeg', ptt: true, fileName: 'tts.mp3' });
-            await ctx.react('✅');
-        } catch (err) {
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: '❌ TTS failed. Try a shorter text or different language.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
-
-// ═══════════════════════════════════════════════════════════════
-//  🔗  SHORTEN
-// ═══════════════════════════════════════════════════════════════
-addCmd({
-    name: 'shorten',
-    aliases: ['short', 'shorturl', 'tinyurl'],
-    desc: 'Shorten a long URL',
-    usage: 'shorten <url>',
-    category: 'tools',
-    handler: async (ctx) => {
-        const url = ctx.text;
-        if (!url || !url.startsWith('http'))
-            return ctx.reply(`❌ Provide a valid URL starting with http.\n\nExample: \`${config.BOT_PREFIX}shorten https://example.com/very/long/path\``);
-
-        await ctx.react('🔗');
-        try {
-            const res = await axios.get(
-                `https://is.gd/create.php?format=simple&url=${encodeURIComponent(url)}`,
-                { timeout: 10000 }
-            );
-            const short = res.data?.trim();
-            if (!short?.startsWith('http')) throw new Error('Bad response');
-
-            await ctx.reply(
-                `🔗 *URL Shortened!*\n\n` +
-                `📎 *Original:* ${url.slice(0, 60)}${url.length > 60 ? '...' : ''}\n\n` +
-                `✨ *Short:* ${short}\n\n_${config.BOT_NAME}_`
-            );
-            await ctx.react('✅');
-        } catch {
-            try {
-                const res2 = await axios.get(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`, { timeout: 10000 });
-                const short2 = res2.data?.trim();
-                if (short2?.startsWith('http')) {
-                    await ctx.sock.sendMessage(ctx.from, { text: `🔗 *URL Shortened!*\n\n✨ *Short:* ${short2}\n\n_${config.BOT_NAME}_`, contextInfo: channelCtx() }, { quoted: ctx.m });
-                    await ctx.react('✅');
-                    return;
-                }
-            } catch {}
-            await ctx.react('❌');
-            await ctx.sock.sendMessage(ctx.from, { text: '❌ Could not shorten URL. Try again later.', contextInfo: channelCtx() }, { quoted: ctx.m });
-        }
-    },
-});
-
-// ═══════════════════════════════════════════════════════════════
-//  🎶  PLAYLIST  — queue multiple songs and send them in order
-// ═══════════════════════════════════════════════════════════════
-
-const activeQueues = new Map();  // jid → true (prevents double-run)
-
-addCmd({
-    name: 'playlist',
-    aliases: ['queue', 'plist'],
-    desc: 'Queue multiple songs and receive them one by one as audio',
-    usage: 'playlist <song1>, <song2>, <song3> ...',
-    category: 'music',
-    handler: async (ctx) => {
-        if (!ctx.text)
-            return ctx.reply(
-                `❌ *No songs provided.*\n\n` +
-                `📋 *Usage:*\n` +
-                `\`${config.BOT_PREFIX}playlist Shape of You, Blinding Lights, Levitating\`\n\n` +
-                `_Separate songs with a comma. Max 10 songs per playlist._`
-            );
-
-        const songs = ctx.text
-            .split(',')
-            .map(s => s.trim())
-            .filter(Boolean)
-            .slice(0, 10);
-
-        if (!songs.length)
-            return ctx.reply(`❌ Could not parse any song names. Separate them with commas.`);
-
-        const jid = ctx.from;
-
-        if (activeQueues.get(jid))
-            return ctx.reply(`⏳ A playlist is already running in this chat. Wait for it to finish or it will auto-stop.`);
-
-        await ctx.react('🎶');
-        await ctx.sock.sendMessage(jid, {
-            text:
-                `🎶 *Playlist Starting!*\n` +
-                `✦ ───────────── ✦\n` +
-                `📋 *${songs.length} song${songs.length > 1 ? 's' : ''} queued*\n\n` +
-                songs.map((s, i) => `  ${i + 1}. ${s}`).join('\n') +
-                `\n\n⏳ _Downloading and sending one by one…_\n_${config.BOT_NAME}_`,
-            contextInfo: channelCtx(),
-        }, { quoted: ctx.m });
-
-        activeQueues.set(jid, true);
-        let sent = 0;
-        let failed = 0;
-
-        for (let i = 0; i < songs.length; i++) {
-            if (!activeQueues.get(jid)) break;  // allow external stop
-
-            const query = songs[i];
-            try {
-                await ctx.sock.sendMessage(jid, {
-                    text: `⏳ *[${i + 1}/${songs.length}]* Fetching: _${query}_`,
+            if (!buffer || buffer.length < 0x2800) {
+                await ctx.react('❌');
+                return ctx.sock.sendMessage(ctx.from, {
+                    text: '❌ Failed to download audio. Please try again.',
                     contextInfo: channelCtx(),
-                }, {});
-
-                const result = await ytSearch(query);
-                if (!result) {
-                    failed++;
-                    await ctx.sock.sendMessage(jid, {
-                        text: `❌ *[${i + 1}/${songs.length}]* Not found: _${query}_`,
-                        contextInfo: channelCtx(),
-                    }, {});
-                    continue;
-                }
-
-                const audioUrl = await ytAudio(result.url);
-                if (!audioUrl) {
-                    failed++;
-                    await ctx.sock.sendMessage(jid, {
-                        text: `⚠️ *[${i + 1}/${songs.length}]* Download unavailable: _${result.title}_`,
-                        contextInfo: channelCtx(),
-                    }, {});
-                    continue;
-                }
-
-                await ctx.sock.sendMessage(jid, {
-                    audio:    { url: audioUrl },
-                    mimetype: 'audio/mpeg',
-                    fileName: `${result.title.slice(0, 60)}.mp3`,
-                    ptt:      false,
-                    contextInfo: channelCtx(),
-                }, {});
-
-                sent++;
-                // small pause between tracks so WA doesn't rate-limit
-                if (i < songs.length - 1) await new Promise(r => setTimeout(r, 2500));
-
-            } catch (err) {
-                failed++;
-                console.error(`[PLAYLIST] Error on "${query}":`, err.message);
-                await ctx.sock.sendMessage(jid, {
-                    text: `❌ *[${i + 1}/${songs.length}]* Error: _${query}_`,
-                    contextInfo: channelCtx(),
-                }, {});
+                }, { quoted: ctx.m });
             }
+
+            // Send as playable audio
+            await ctx.sock.sendMessage(ctx.from, {
+                audio:    buffer,
+                mimetype: 'audio/mpeg',
+                ptt:      false,
+            }, { quoted: ctx.m });
+
+            // Send as downloadable document
+            await ctx.sock.sendMessage(ctx.from, {
+                document: buffer,
+                mimetype: 'audio/mpeg',
+                fileName: `${safeTitle}.mp3`,
+                caption:  `🎵 *${title}*
+⏱️ *Duration:* ${duration}
+
+_${config.BOT_NAME}_`,
+            }, { quoted: ctx.m });
+
+            await ctx.react('✅');
+
+        } catch (err) {
+            console.error('[play] Unexpected error:', err.message);
+            await ctx.react('❌');
+            await ctx.sock.sendMessage(ctx.from, {
+                text: `❌ Something went wrong. Please try again.
+
+Error: ${err.message}`,
+                contextInfo: channelCtx(),
+            }, { quoted: ctx.m });
         }
-
-        activeQueues.delete(jid);
-
-        await ctx.sock.sendMessage(jid, {
-            text:
-                `✅ *Playlist Complete!*\n` +
-                `✦ ───────────── ✦\n` +
-                `🎵 Sent   : ${sent} track${sent !== 1 ? 's' : ''}\n` +
-                (failed ? `❌ Failed  : ${failed} track${failed !== 1 ? 's' : ''}\n` : '') +
-                `\n_${config.BOT_NAME}_`,
-            contextInfo: channelCtx(),
-        }, { quoted: ctx.m });
-
-        await ctx.react(sent > 0 ? '✅' : '❌');
     },
 });
