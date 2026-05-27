@@ -1,11 +1,10 @@
 {
-  "name": "\ud835\udc01\ud835\udc0b\ud835\udc00\ud835\udc02\ud835\udc0a \ud835\udc0f\ud835\udc00\ud835\udc0d\ud835\udc13\ud835\udc07\ud835\udc04\ud835\udc11 \ud835\udc0c\ud835\udc03",
+  "name": "BLACK PANTHER MD",
   "version": "5.0.0",
-  "description": "\ud835\udc01\ud835\udc0b\ud835\udc00\ud835\udc02\ud835\udc0a \ud835\udc0f\ud835\udc00\ud835\udc0d\ud835\udc13\ud835\udc07\ud835\udc04\ud835\udc11 \ud835\udc0c\ud835\udc03 - A Powerful Multi-Device WhatsApp Bot built by \ud835\udc6e\ud835\udc96\ud835\udc93\ud835\udc96\ud835\udc7b\ud835\udc86\ud835\udc84\ud835\udc89 \ud83d\ude0e to Enhance Your WhatsApp Experience",
+  "description": "BLACK PANTHER MD - A Powerful Multi-Device WhatsApp Bot to Enhance Your WhatsApp Experience",
   "logo": "https://files.catbox.moe/y2cw2k.jpg",
   "keywords": [
     "black-panther-md",
-    "\ud835\udeed\ud835\udc45\ud835\udc3a\ud835\udc48\ud835\udc45\ud835\udc48\ud835\udc3b-\ud835\udc47\ud835\udc38\ud835\udc36\ud835\udc3b",
     "whatsapp-bot",
     "gifted-baileys",
     "panther-md"
@@ -20,12 +19,12 @@
     "BOT_NAME": {
       "description": "Name of your bot",
       "required": false,
-      "value": "\ud835\udc01\ud835\udc0b\ud835\udc00\ud835\udc02\ud835\udc0a \ud835\udc0f\ud835\udc00\ud835\udc0d\ud835\udc13\ud835\udc07\ud835\udc04\ud835\udc11 \ud835\udc0c\ud835\udc03"
+      "value": "BLACK PANTHER MD"
     },
     "OWNER_NAME": {
       "description": "Owner name",
       "required": false,
-      "value": "\ud835\udc74\ud835\udc79\ud835\udc6e\ud835\udc7c\ud835\udc79\ud835\udc7c\ud835\udc6f-\ud835\udc7b\ud835\udc6c\ud835\udc6a\ud835\udc6f"
+      "value": "GURU-SL"
     },
     "OWNER_NUMBER": {
       "description": "Your WhatsApp number with country code (e.g., 254712345678)",
@@ -81,16 +80,6 @@
       "description": "PostgreSQL connection URL. Leave blank to use auto-provisioned Heroku Postgres, or supply your own (Neon, Supabase, etc.). Falls back to SQLite if empty.",
       "required": false,
       "value": ""
-    },
-    "NPM_CONFIG_LEGACY_PEER_DEPS": {
-      "description": "Tells npm to use legacy peer dependency resolution \u2014 required to resolve sharp/baileys version conflict.",
-      "required": false,
-      "value": "true"
-    },
-    "NODE_OPTIONS": {
-      "description": "Node.js runtime flags. Limits memory to 512MB and enables GC.",
-      "required": false,
-      "value": "--max-old-space-size=512 --expose-gc"
     }
   },
   "addons": [
@@ -108,14 +97,6 @@
     "web": {
       "quantity": 1,
       "size": "basic"
-    }
-  },
-  "environments": {
-    "test": {
-      "addons": [],
-      "env": {
-        "DATABASE_URL": ""
-      }
     }
   }
 }
