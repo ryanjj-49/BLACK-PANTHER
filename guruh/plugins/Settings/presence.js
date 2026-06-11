@@ -50,7 +50,7 @@ export default async (context) => {
       if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
           await sendInteractive(client, m, `╭─❏ 「 PRESENCE」
-│ Status: ${settings.presence ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}presence online\n│ ${prefix}presence offline\n│ ${prefix}presence recording\n│ ${prefix}presence typing\n╰───────────────\n> 🌐 hosting.toxicx.tech`);
+│ Status: ${settings.presence ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}presence online\n│ ${prefix}presence offline\n│ ${prefix}presence recording\n│ ${prefix}presence typing\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(
             m.chat,

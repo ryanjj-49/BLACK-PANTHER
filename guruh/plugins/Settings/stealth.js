@@ -42,7 +42,7 @@ export default async (context) => {
             if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
           await sendInteractive(client, m, `╭─❏ 「 STEALTH」
-│ Status: ${settings.stealth ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}stealth on\n│ ${prefix}stealth off\n╰───────────────\n> 🌐 hosting.toxicx.tech`);
+│ Status: ${settings.stealth ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}stealth on\n│ ${prefix}stealth off\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _stealthMsg = generateWAMessageFromContent(
                     m.chat,

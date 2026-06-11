@@ -43,7 +43,7 @@ export default async (context) => {
       if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
           await sendInteractive(client, m, `╭─❏ 「 AUTOLIKE」
-│ Status: ${settings.autolike ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}autolike on\n│ ${prefix}autolike off\n╰───────────────\n> 🌐 hosting.toxicx.tech`);
+│ Status: ${settings.autolike ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}autolike on\n│ ${prefix}autolike off\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(
             m.chat,

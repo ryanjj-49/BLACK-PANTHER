@@ -43,7 +43,7 @@ export default async (context) => {
       if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
           await sendInteractive(client, m, `╭─❏ 「 REACTION」
-│ Status: ${settings.reaction ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}reaction random\n│ ${prefix}reaction ❤️\n│ ${prefix}reaction 🔥\n│ ${prefix}reaction 😂\n╰───────────────\n> 🌐 hosting.toxicx.tech`);
+│ Status: ${settings.reaction ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}reaction random\n│ ${prefix}reaction ❤️\n│ ${prefix}reaction 🔥\n│ ${prefix}reaction 😂\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(
             m.chat,

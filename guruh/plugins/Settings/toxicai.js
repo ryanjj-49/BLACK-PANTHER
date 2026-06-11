@@ -6,9 +6,9 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
 const DEV_NUMBER = '254114885159';
 
 export default {
-    name: 'toxicai',
-    aliases: ['devai', 'toxicagent'],
-    description: 'Toggle ToxicAgent GitHub AI (dev only)',
+    name: 'aiassist',
+    aliases: ['devai', 'aiassist'],
+    description: 'Toggle AI Assistant GitHub AI (dev only)',
     run: async (context) => {
         const { client, m, args, prefix } = context;
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -24,7 +24,7 @@ ${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞�
         if (senderNum !== DEV_NUMBER) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
             return client.sendMessage(m.chat, {
-                text: fmt('TOXICAGENT', ['Access denied.', 'Dev-only feature. Not your toy.'])
+                text: fmt('AI ASSIST', ['Access denied.', 'Dev-only feature. Not your toy.'])
             });
         }
 
@@ -34,27 +34,27 @@ ${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞�
 
             if (value === 'on' || value === 'off') {
                 const newState = value === 'on';
-                await updateSetting('toxicagent', newState);
+                await updateSetting('aiassist', newState);
                 await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
                 return client.sendMessage(m.chat, {
-                    text: fmt('TOXICAGENT', newState
+                    text: fmt('AI ASSIST', newState
                         ? ['Status: ✅ ON', 'GitHub AI agent active. Just text me GitHub tasks.']
                         : ['Status: ❌ OFF', 'GitHub AI disabled.'])
                 });
             }
 
-            const isOn = settings.toxicagent === true || settings.toxicagent === 'true';
+            const isOn = settings.aiassist === true || settings.aiassist === 'true';
 
                         const _devMode = await getDeviceMode();
             if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭─❏ 「 TOXICAI」
-│ Status: ${settings.toxicai ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}toxicai on\n│ ${prefix}toxicai off\n╰───────────────\n> 🌐 hosting.toxicx.tech`);
+          await sendInteractive(client, m, `╭─❏ 「 AI ASSIST」
+│ Status: ${settings.aiassist ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}aiassist on\n│ ${prefix}aiassist off\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(m.chat, {
                     interactiveMessage: {
                         body: {
-                            text: fmt('TOXICAGENT', [
+                            text: fmt('AI ASSIST', [
                                 `Status: ${isOn ? '✅ ON' : '❌ OFF'}`,
                                 'Handles: create/delete/rename repos, upload files,',
                                 '         list branches, create issues, star repos',
@@ -67,11 +67,11 @@ ${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞�
                             buttons: [{
                                 name: 'single_select',
                                 buttonParamsJson: JSON.stringify({
-                                    title: 'Toggle ToxicAgent',
+                                    title: 'Toggle AI Assistant',
                                     sections: [{
                                         rows: [
-                                            { title: 'ON ✅', description: 'Enable GitHub AI agent', id: `${prefix}toxicai on` },
-                                            { title: 'OFF ❌', description: 'Disable GitHub AI agent', id: `${prefix}toxicai off` }
+                                            { title: 'ON ✅', description: 'Enable GitHub AI agent', id: `${prefix}aiassist on` },
+                                            { title: 'OFF ❌', description: 'Disable GitHub AI agent', id: `${prefix}aiassist off` }
                                         ]
                                     }]
                                 })
@@ -84,7 +84,7 @@ ${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞�
                 }
             }
         } catch {
-            client.sendMessage(m.chat, { text: fmt('TOXICAGENT', 'something broke. try again.') });
+            client.sendMessage(m.chat, { text: fmt('AI ASSIST', 'something broke. try again.') });
         }
     }
 };
