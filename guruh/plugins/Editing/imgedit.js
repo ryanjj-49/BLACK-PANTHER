@@ -1,6 +1,6 @@
 import { getSettings } from '../../database/config.js';
   import { uploadToUrl } from '../../lib/toUrl.js';
-  import { makePhotoEdit } from '../../lib/toxicApi.js';
+  import { makePhotoEdit } from '../../lib/api.js';
 import { sendInteractive } from '../../lib/sendInteractive.js';
   
   export default {

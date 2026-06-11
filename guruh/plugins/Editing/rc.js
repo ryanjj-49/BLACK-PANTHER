@@ -1,5 +1,5 @@
 import { uploadToUrl } from '../../lib/toUrl.js';
-  import { makeRC } from '../../lib/toxicApi.js';
+  import { makeRC } from '../../lib/api.js';
     import { getSettings } from '../../database/config.js';
 import { sendInteractive } from '../../lib/sendInteractive.js';
 
