@@ -10,7 +10,7 @@
     "panther-md"
   ],
   "success_url": "/",
-  "stack": "heroku-22",
+  "stack": "heroku-24",
   "env": {
     "SESSION_ID": {
       "description": "Your bot session ID (format: GURU~xxxxxxxxxxxxxxxx...). Get it from the pairing web UI.",
@@ -24,7 +24,7 @@
     "OWNER_NAME": {
       "description": "Owner name",
       "required": false,
-      "value": "GURU-SL"
+      "value": "GuruTech"
     },
     "OWNER_NUMBER": {
       "description": "Your WhatsApp number with country code (e.g., 254712345678)",
