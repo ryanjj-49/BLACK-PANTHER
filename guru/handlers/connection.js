@@ -34,15 +34,11 @@ const { handleMessage }              = require('./message');
 const { handleGroupUpdate, handleGroupSettingsUpdate } = require('./group');
 const { autoUpdate }                 = require('../utils/autoUpdate');
 
-let handleViewOnceReaction = null;
-try { ({ handleViewOnceReaction } = require('../../guruh/plugins/viewonce_cmd')); } catch {}
-
 const {
     PantherAntiCall,
     PantherAutoBio,
     PantherAntiDelete,
     PantherAntiEdit,
-    PantherAntiViewOnce,
     storeMessage,
     getStoredMessage,
     sendWithChannel,
@@ -363,19 +359,6 @@ async function startBot() {
                 continue;
             }
 
-            // ── Anti-ViewOnce: deep unwrap + forward to owner ─────
-            if (config.ANTI_VV && !msg?.key?.fromMe) {
-                PantherAntiViewOnce(sock, msg).catch(() => {});
-            }
-        }
-
-        // ── Reaction-based view-once save ─────────────────────────
-        if (handleViewOnceReaction) {
-            for (const msg of upsert.messages) {
-                if (msg?.message?.reactionMessage) {
-                    handleViewOnceReaction(sock, msg).catch(() => {});
-                }
-            }
         }
 
         handleMessage(upsert, sock);
