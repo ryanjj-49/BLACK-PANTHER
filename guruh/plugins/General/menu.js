@@ -2,8 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { createRequire } from 'module';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
+const { setMenuState } = require('../../lib/menuState.js');
 import { sendInteractive } from '../../lib/sendInteractive.js';
 
 export default {
@@ -16,44 +19,38 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '🤖', key: m.reactKey } });
 
         const menuText =
-`✦ ──『 𝐁ᴏᴛ Iɴꜰᴏ 』── ⚝
-▢ 𝐔𝐬𝐞𝐫    : @${m.sender.split('@')[0].split(':')[0]}
-▢ 𝐁𝐨𝐭     : ${botname || 'BLACK-PANTHER-MD'}
-▢ 𝐏𝐫𝐞𝐟𝐢𝐱  : ${prefix}
-▢ 𝐌𝐨𝐝𝐞    : ${mode}
+`✦ ──『 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ᴹᴰ 』── ⚝
+▢ 👤 𝐔𝐬𝐞𝐫    : @${m.sender.split('@')[0].split(':')[0]}
+▢ 🤖 𝐁𝐨𝐭     : ${botname || 'BLACK-PANTHER-MD'}
+▢ 📌 𝐏𝐫𝐞𝐟𝐢𝐱  : ${prefix}
+▢ 🌐 𝐌𝐨𝐝𝐞    : ${mode}
 └──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──
 
-✦ ──『 Cᴏʀᴇ Cᴏᴍᴍᴀɴᴅs 』── ⚝
-▢ ${prefix}fullmenu  — All commands list
-▢ ${prefix}ping      — Check bot speed
-▢ ${prefix}settings  — Bot settings
-▢ ${prefix}uptime    — Bot uptime
-▢ ${prefix}dev       — Developer contact
-▢ ${prefix}report    — Report a bug
+✦ ──『 Sᴇʟᴇᴄᴛ Cᴀᴛᴇɢᴏʀʏ 』── ⚝
+▢ 1  〢 📜 General
+▢ 2  〢 🛠️ Settings
+▢ 3  〢 👑 Owner
+▢ 4  〢 👥 Group
+▢ 5  〢 🧠 AI
+▢ 6  〢 🎬 Downloads
+▢ 7  〢 ✂️ Editing
+▢ 8  〢 🎨 Effects
+▢ 9  〢 🔧 Utils
+▢ 10 〢 🔒 Privacy
 └──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──
 
-✦ ──『 Cᴀᴛᴇɢᴏʀʏ Mᴇɴᴜs 』── ⚝
-▢ ${prefix}generalmenu   — General
-▢ ${prefix}settingsmenu  — Settings
-▢ ${prefix}ownermenu     — Owner only
-▢ ${prefix}groupmenu     — Group mgmt
-▢ ${prefix}aimenu        — AI & chat
-▢ ${prefix}downloadmenu  — Downloads
-▢ ${prefix}editingmenu   — Editing
-▢ ${prefix}effectsmenu   — Text effects
-▢ ${prefix}utilsmenu     — Utilities
-▢ ${prefix}privacymenu   — Privacy
-└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
+> *Reply with a number to view that category*`;
 
+        let sentMsg;
         if (pict && Buffer.isBuffer(pict)) {
-            await client.sendMessage(m.chat, {
+            sentMsg = await client.sendMessage(m.chat, {
                 image: pict,
                 caption: menuText,
                 mentions: [m.sender],
                 contextInfo: {
                     externalAdReply: {
                         title: `${botname || 'BLACK PANTHER MD'}`,
-                        body: `Yo, ${m.pushName}! Ready to fuck shit up?`,
+                        body: `Yo, ${m.pushName}! Pick a category.`,
                         mediaType: 1,
                         thumbnail: pict,
                         mediaUrl: '',
@@ -62,15 +59,17 @@ export default {
                         renderLargerThumbnail: true
                     }
                 }
-            }).catch(() => sendInteractive(client, m, menuText));
-        } else {
-            await client.sendMessage(m.chat, {
+            }).catch(() => null);
+        }
+
+        if (!sentMsg) {
+            sentMsg = await client.sendMessage(m.chat, {
                 text: menuText,
                 mentions: [m.sender],
                 contextInfo: {
                     externalAdReply: {
                         title: `${botname || 'BLACK PANTHER MD'}`,
-                        body: `Yo, ${m.pushName}! Ready to fuck shit up?`,
+                        body: `Yo, ${m.pushName}! Pick a category.`,
                         mediaType: 1,
                         thumbnail: null,
                         mediaUrl: '',
@@ -81,6 +80,10 @@ export default {
                 }
             }).catch(() => sendInteractive(client, m, menuText));
         }
+
+        // Store the menu message so the trigger can identify replies to it
+        const menuMsgId = sentMsg?.key?.id;
+        setMenuState(m.chat, menuMsgId || null);
 
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
 
