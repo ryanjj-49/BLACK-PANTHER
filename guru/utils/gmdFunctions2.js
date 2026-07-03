@@ -367,6 +367,77 @@ async function PantherChatBot(sock, msg, settings) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+//  🤖  ANTI BOT — kick non-admins who send bot commands
+// ═══════════════════════════════════════════════════════════════
+
+// Returns true if enforcement was triggered (violator kicked), false otherwise.
+// Callers should return early when this returns true so the command does not execute.
+async function PantherAntiBot(sock, msg) {
+    try {
+        const { from, sender, isGroup, isAdmin, isOwner, fromMe, isCmd } = msg;
+        // Only run in groups, only on command messages, never on bot's own messages
+        if (!isGroup || !isCmd || isAdmin || isOwner || fromMe) return false;
+
+        const settings = getGroupSettings(from);
+        // SQLite stores integers — truthy check covers 1 / true / 'on'
+        if (!settings?.antibot) return false;
+
+        // Fetch fresh group metadata (needed for admin check + LID resolution)
+        const groupMetadata = await sock.groupMetadata(from).catch(() => null);
+        if (!groupMetadata) return false;
+
+        const _pNum = (p) => {
+            const phone = p.phoneNumber || p.phone_number || '';
+            if (phone) return String(phone).split('@')[0].split(':')[0].replace(/\D/g, '');
+            const base = p.id || p.jid || '';
+            if (base && !base.endsWith('@lid')) return base.split('@')[0].split(':')[0].replace(/\D/g, '');
+            return '';
+        };
+
+        const botId = sock.decodeJid ? sock.decodeJid(sock.user.id) : (sock.user?.id || '');
+        const botNum = botId.split('@')[0].split(':')[0].replace(/\D/g, '');
+
+        const isBotAdmin = groupMetadata.participants.some(
+            p => _pNum(p) === botNum && (p.admin === 'admin' || p.admin === 'superadmin')
+        );
+        if (!isBotAdmin) return false; // Can't act without admin rights — stay silent
+
+        // Resolve the actual participant JID (handles @lid JIDs correctly)
+        const senderNum = sender.split('@')[0].split(':')[0].replace(/\D/g, '');
+        const resolvedParticipant = groupMetadata.participants.find(p => _pNum(p) === senderNum);
+        const targetJid = resolvedParticipant
+            ? (resolvedParticipant.id || resolvedParticipant.jid || sender)
+            : sender;
+
+        // Delete the offending command message first
+        try {
+            await sock.sendMessage(from, {
+                delete: {
+                    remoteJid: from,
+                    fromMe: false,
+                    id: msg.m?.key?.id || msg.key?.id,
+                    participant: msg.m?.key?.participant || sender,
+                },
+            });
+        } catch (_) {}
+
+        const kickText = gmdBanner('🤖 ANTIBOT — Bot Command Detected', [
+            `👤 User   : @${senderNum}`,
+            `📋 Reason : Used a bot command (non-admin)`,
+            `🔨 Action : KICKED`,
+        ], config.BOT_NAME);
+
+        await sock.groupParticipantsUpdate(from, [targetJid], 'remove').catch(() => {});
+        await sendWithChannel(sock, from, { text: kickText, mentions: [targetJid] });
+
+        return true; // Enforcement triggered — caller should skip command execution
+    } catch (err) {
+        logger.error('ANTI_BOT', err.message);
+        return false;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════
 //  👥  ANTI GROUP MENTION
 // ═══════════════════════════════════════════════════════════════
 
@@ -530,6 +601,7 @@ module.exports = {
     PantherStatusHandler,
     PantherChatBot,
     PantherAntiGroupMention,
+    PantherAntiBot,
     sendCopyButton,
     sendButtons,
 };

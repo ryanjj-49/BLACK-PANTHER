@@ -26,6 +26,7 @@ export default async (context) => {
         let response = `✦ ──『 GROUP SETTINGS 』── ⚝
 `;
         response += `▢ Antilink: ${on(groupSettings.antilink)}\n`;
+        response += `▢ Antibot: ${on(groupSettings.antibot)}\n`;
         response += `▢ Antidelete: ${on(groupSettings.antidelete)}\n`;
         response += `▢ Events: ${on(groupSettings.events)}\n`;
         response += `▢ Antitag: ${on(groupSettings.antitag)}\n`;

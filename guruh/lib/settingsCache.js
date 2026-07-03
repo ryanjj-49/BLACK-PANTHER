@@ -10,6 +10,7 @@ const _DEFAULTS = {
     antitag:       false,
     antidelete:    true,
     antilink:      'off',
+    antibot:       false,
     chatbotpm:     false,
     packname:      _cfg.BOT_NAME      || 'BLACK PANTHER MD',
     author:        _cfg.OWNER_NAME    || 'GuruTech',
