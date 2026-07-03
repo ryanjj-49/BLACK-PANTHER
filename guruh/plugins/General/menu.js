@@ -85,27 +85,31 @@ export default {
 
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
 
-        // Play a random menu audio if available
-        const xhClintonPaths = [
-            path.join(__dirname, 'GuruTech'),
-            path.join(process.cwd(), 'GuruTech'),
-            path.join(__dirname, '..', 'GuruTech')
-        ];
-        let audioFolder = null;
-        for (const folderPath of xhClintonPaths) {
-            if (fs.existsSync(folderPath)) { audioFolder = folderPath; break; }
-        }
-        if (!audioFolder) return;
-        const menuFiles = ['menu1.mp3', 'menu2.mp3', 'menu3.mp3', 'menu4.mp3'];
-        const possibleFiles = menuFiles.map(f => path.join(audioFolder, f)).filter(f => fs.existsSync(f));
-        if (possibleFiles.length === 0) return;
-        const randomFile = possibleFiles[Math.floor(Math.random() * possibleFiles.length)];
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // Play a random menu audio if available — optional, never fails the command
         try {
-            const audioBuffer = fs.readFileSync(randomFile);
-            await client.sendMessage(m.chat, { audio: audioBuffer, ptt: true, mimetype: 'audio/mpeg', fileName: 'panther-menu.m4a' });
-        } catch {
-            await client.sendMessage(m.chat, { audio: { url: randomFile }, ptt: true, mimetype: 'audio/mpeg', fileName: 'panther-menu.m4a' });
-        }
+            const xhClintonPaths = [
+                path.join(__dirname, 'GuruTech'),
+                path.join(process.cwd(), 'GuruTech'),
+                path.join(__dirname, '..', 'GuruTech')
+            ];
+            let audioFolder = null;
+            for (const folderPath of xhClintonPaths) {
+                if (fs.existsSync(folderPath)) { audioFolder = folderPath; break; }
+            }
+            if (audioFolder) {
+                const menuFiles = ['menu1.mp3', 'menu2.mp3', 'menu3.mp3', 'menu4.mp3'];
+                const possibleFiles = menuFiles.map(f => path.join(audioFolder, f)).filter(f => fs.existsSync(f));
+                if (possibleFiles.length > 0) {
+                    const randomFile = possibleFiles[Math.floor(Math.random() * possibleFiles.length)];
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    try {
+                        const audioBuffer = fs.readFileSync(randomFile);
+                        await client.sendMessage(m.chat, { audio: audioBuffer, ptt: true, mimetype: 'audio/mpeg', fileName: 'panther-menu.m4a' });
+                    } catch {
+                        await client.sendMessage(m.chat, { audio: { url: randomFile }, ptt: true, mimetype: 'audio/mpeg', fileName: 'panther-menu.m4a' }).catch(() => {});
+                    }
+                }
+            }
+        } catch { /* audio is optional — ignore all failures */ }
     }
 };
