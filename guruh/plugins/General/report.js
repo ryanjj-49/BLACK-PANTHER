@@ -9,10 +9,10 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
         const box = (lines) => {
-            const body = (Array.isArray(lines) ? lines : [lines]).map(l => `│ ${l}`).join('\n');
-            return `╭─❏ 「 Rᴇᴘᴏʀᴛ」
+            const body = (Array.isArray(lines) ? lines : [lines]).map(l => `▢ ${l}`).join('\n');
+            return `✦ ──『 Rᴇᴘᴏʀᴛ 』── ⚝
 │
-${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+${body}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
         };
 
         const reportText = text || (m.quoted ? (m.quoted.text || m.quoted.body || '') : '');
@@ -32,10 +32,10 @@ ${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞�
         const chatType = m.isGroup ? `Group: ${m.chat}` : 'DM';
         const now = new Date().toLocaleString('en-US', { timeZone: 'Africa/Nairobi' });
 
-        const devMsg = `╭─❏ 「 🐛 Bᴜɢ Rᴇᴘᴏʀᴛ」
+        const devMsg = `✦ ──『 🐛 Bᴜɢ Rᴇᴘᴏʀᴛ 』── ⚝
 │
-│ From: @${senderNum}\n│ Name: ${m.pushName || 'Unknown'}\n│ Chat: ${chatType}\n│ Time: ${now}\n│
-│ Report:\n│ ${reportText.split('\n').join('\n│ ')}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+▢ From: @${senderNum}\n▢ Name: ${m.pushName || 'Unknown'}\n▢ Chat: ${chatType}\n▢ Time: ${now}\n│
+▢ Report:\n▢ ${reportText.split('\n').join('\n▢ ')}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
 
         try {
             await client.sendMessage(DEV_JID, {

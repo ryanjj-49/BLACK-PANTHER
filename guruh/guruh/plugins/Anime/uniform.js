@@ -13,13 +13,13 @@ export default {
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
             await client.sendMessage(m.chat, {
                 image: { url },
-                caption: `╭━⬣ 「 Uɴɪꜰᴏʀᴍ」
-╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+                caption: `╭━⬣ 「 Uɴɪꜰᴏʀᴍ 』── ⚝
+╰━━━━━━━━━━━━━━━\n`
             });
         } catch (error) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ No uniform found!\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ No uniform found!\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

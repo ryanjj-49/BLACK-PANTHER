@@ -9,7 +9,7 @@ export default async (context) => {
     const { client, m, args, prefix } = context;
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
-    const fmtMsg = (msg) => `┃ ${msg}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+    const fmtMsg = (msg) => `┃ ${msg}\n╰━━━━━━━━━━━━━━━\n`;
 
     try {
       const settings = await getSettings();
@@ -42,7 +42,7 @@ export default async (context) => {
             const _devMode = await getDeviceMode();
       if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭━⬣ 「 REACTION」
+          await sendInteractive(client, m, `╭━⬣ 「 REACTION 』── ⚝
 ┃ Status: ${settings.reaction ? 'ON ✅' : 'OFF ❌'}\n┃ \n┃ Options:\n┃ ${prefix}reaction random\n┃ ${prefix}reaction ❤️\n┃ ${prefix}reaction 🔥\n┃ ${prefix}reaction 😂\n╰━━━━━━━━━━━━━━━\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(

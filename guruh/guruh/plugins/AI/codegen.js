@@ -7,16 +7,16 @@ export default async (context) => {
 
     if (!text) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, `╭━⬣ 「 Cᴏᴅᴇɢᴇɴ」
-┃ Example usage:\n┃ .codegen Function to calculate triangle area|Python\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        return sendInteractive(client, m, `╭━⬣ 「 Cᴏᴅᴇɢᴇɴ 』── ⚝
+┃ Example usage:\n┃ .codegen Function to calculate triangle area|Python\n╰━━━━━━━━━━━━━━━\n`);
     }
 
     let [prompt, language] = text.split("|").map(v => v.trim());
 
     if (!prompt || !language) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ Invalid format!\n┃ Use the format: .codegen <prompt>|<language>\n┃ Example: .codegen Check for prime number|JavaScript\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ Invalid format!\n┃ Use the format: .codegen <prompt>|<language>\n┃ Example: .codegen Check for prime number|JavaScript\n╰━━━━━━━━━━━━━━━\n`);
     }
 
     await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -30,18 +30,18 @@ export default async (context) => {
 
         if (!data || typeof data !== "string") {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ Failed to retrieve code from API.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ Failed to retrieve code from API.\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
-        sendInteractive(client, m, `╭━⬣ 「 Cᴏᴅᴇɢᴇɴ (${language})」
-` + "```" + language.toLowerCase() + "\n" + data.trim() + "\n```" + `\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        sendInteractive(client, m, `╭━⬣ 「 Cᴏᴅᴇɢᴇɴ (${language}) 』── ⚝
+` + "```" + language.toLowerCase() + "\n" + data.trim() + "\n```" + `\n╰━━━━━━━━━━━━━━━\n`);
 
     } catch (error) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
         console.error(error);
-        sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ An error occurred while processing your request.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ An error occurred while processing your request.\n╰━━━━━━━━━━━━━━━\n`);
     }
 };

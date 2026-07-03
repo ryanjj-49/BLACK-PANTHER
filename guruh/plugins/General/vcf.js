@@ -7,8 +7,8 @@ export default async (context) => {
     if (!m.isGroup) {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, `╭─❏ 「 Eʀʀᴏʀ」
-│ Command meant for groups.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        return sendInteractive(client, m, `✦ ──『 Eʀʀᴏʀ 』── ⚝
+▢ Command meant for groups.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
     }
 
     try {
@@ -22,12 +22,12 @@ export default async (context) => {
 
         const cont = './contacts.vcf';
 
-        await sendInteractive(client, m, `╭─❏ 「 VCF」
-│ A moment, BLACK-PANTHER-MD is compiling\n│ ${gcdata.participants.length} contacts into a VCF...\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `✦ ──『 VCF 』── ⚝
+▢ A moment, BLACK-PANTHER-MD is compiling\n▢ ${gcdata.participants.length} contacts into a VCF...\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
 
         await fs.promises.writeFile(cont, vcard);
-        await sendInteractive(client, m, `╭─❏ 「 VCF」
-│ Import this VCF in a separate\n│ email account to avoid messing\n│ with your contacts...\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `✦ ──『 VCF 』── ⚝
+▢ Import this VCF in a separate\n▢ email account to avoid messing\n▢ with your contacts...\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
 
         await client.sendMessage(
             m.chat,
@@ -35,8 +35,8 @@ export default async (context) => {
                 document: fs.readFileSync(cont),
                 mimetype: 'text/vcard',
                 fileName: 'Group contacts.vcf',
-                caption: `╭─❏ 「 VCF」
-│ VCF for ${gcdata.subject}\n│ ${gcdata.participants.length} contacts\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+                caption: `✦ ──『 VCF 』── ⚝
+▢ VCF for ${gcdata.subject}\n▢ ${gcdata.participants.length} contacts\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`
             },
             { ephemeralExpiration: 86400 }
         );
@@ -45,7 +45,7 @@ export default async (context) => {
     } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
         console.error(`VCF error: ${error.message}`);
-        await sendInteractive(client, m, `╭─❏ 「 Eʀʀᴏʀ」
-│ Failed to generate VCF.\n│ Try again later.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `✦ ──『 Eʀʀᴏʀ 』── ⚝
+▢ Failed to generate VCF.\n▢ Try again later.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
     }
 };

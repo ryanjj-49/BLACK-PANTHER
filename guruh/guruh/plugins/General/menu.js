@@ -23,13 +23,13 @@ export default {
 
         if (cleanText !== '' && !['menu', 'commands', 'list', 'cmds', 'm', 'help', 'cmd', 'commandlist', 'allcmds'].includes(firstWord)) {
             const commandName = cleanText.split(' ')[0];
-            return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ Yo ${m.pushName}, what's with the\n┃ extra bullshit after "${commandName}"?\n┃ Just type *${prefix}menu* properly, moron.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ Yo ${m.pushName}, what's with the\n┃ extra bullshit after "${commandName}"?\n┃ Just type *${prefix}menu* properly, moron.\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         const menuText =
             `` +
-            `╭━⬣ 「 Mᴇɴᴜ」
+            `╭━⬣ 「 Mᴇɴᴜ 』── ⚝
 ` +
             `┃ \n` +
             `Hoi  @${m.sender.split('@')[0].split(':')[0]}\n` +
@@ -40,7 +40,7 @@ export default {
             `┃ \n` +
             `┃ Select a category below.\n` +
             `╰━━━━━━━━━━━━━━━\n` +
-            `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+            ``;
 
         const sections = [
             {
@@ -82,7 +82,7 @@ export default {
         if (device === 'ios') {
             const iosMenuText =
                 `` +
-                `╭━⬣ 「 Mᴇɴᴜ」
+                `╭━⬣ 「 Mᴇɴᴜ 』── ⚝
 ` +
                 `┃ \n` +
                 `Hoi  @${m.sender.split('@')[0].split(':')[0]}\n` +

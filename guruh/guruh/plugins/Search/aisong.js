@@ -16,7 +16,7 @@ export default {
         const prompt = (m.text || '').replace(/^\S+\s*/, '').trim();
 
         if (!prompt) {
-            return sendInteractive(client, m, `╭━⬣ 「 Eʀʀoʀ」
+            return sendInteractive(client, m, `╭━⬣ 「 Eʀʀoʀ 』── ⚝
 ┃ Give me something to work with.\n┃ Example: ${prefix}aisong a sad love song about rain\n╰━━━━━━━━━━━━━━━\n> ©𝒯𝓎𝓌𝓂𝓃𝓁 𝒱𝒵 𝓽𝓵_𝓬𝓵𝓲𝓷𝓼𝓸𝓷`);
         }
 
@@ -36,16 +36,16 @@ export default {
                     ptt: false,
                     fileName: 'song.mp3'
                 });
-                await sendInteractive(client, m, `╭━⬣ 「 AI Sᴏɴɢ」
+                await sendInteractive(client, m, `╭━⬣ 「 AI Sᴏɴɢ 』── ⚝
 ┃ Prompt: ${prompt}\n┃ Generated successfully.\n╰━━━━━━━━━━━━━━━\n> ©𝒯𝓎𝓌𝓂𝓃𝓁 𝒱𝒵 𝓽𝓵_𝓬𝓵𝓲𝓷𝓼𝓸𝓷`);
             } else {
                 const display = typeof result === 'string' ? result : JSON.stringify(result);
-                await sendInteractive(client, m, `╭━⬣ 「 AI Sᴏɴɢ」
+                await sendInteractive(client, m, `╭━⬣ 「 AI Sᴏɴɢ 』── ⚝
 ┃ Prompt: ${prompt}\n┃ \n┃ ${display}\n╰━━━━━━━━━━━━━━━\n> ©𝒯𝓎𝓌𝓂𝓃𝓁 𝒱𝒵 𝓽𝓵_𝓬𝓵𝓲𝓷𝓼𝓸𝓷`);
             }
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ」
+            await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ 』── ⚝
 ┃ Song generation failed. Try again.\n╰━━━━━━━━━━━━━━━\n> ©𝒯𝓎𝓌𝓂𝓃𝓁 𝒱𝒵 𝓽𝓵_𝓬𝓵𝓲𝓷𝓼𝓸𝓷`);
         }
     }

@@ -7,9 +7,9 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
       if (!text) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-          return sendInteractive(client, m, `┃ Example: ${prefix}bilibili https://www.bilibili.com/video/BVxxxxxx\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+          return sendInteractive(client, m, `┃ Example: ${prefix}bilibili https://www.bilibili.com/video/BVxxxxxx\n╰━━━━━━━━━━━━━━━\n`);
       }
-      if (!text.includes('bilibili.com') && !text.includes('b23.tv')) return sendInteractive(client, m, '┃ That\'s not a Bilibili link.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇');
+      if (!text.includes('bilibili.com') && !text.includes('b23.tv')) return sendInteractive(client, m, '┃ That\'s not a Bilibili link.\n╰━━━━━━━━━━━━━━━\n');
       await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
       try {
           const r = await fetch(NEXRAY + encodeURIComponent(text.trim()), { headers: { 'User-Agent': 'Mozilla/5.0' }, timeout: 25000 });
@@ -21,13 +21,13 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
           await client.sendMessage(m.chat, {
               video: { url: videoUrl },
               mimetype: 'video/mp4',
-              caption: `╭━⬣ 「 Bilibili DL」
-┃ 🎬 ${res.title || 'Bilibili Video'}\n┃ 👤 ${res.author || res.owner || 'N/A'}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+              caption: `╭━⬣ 「 Bilibili DL 』── ⚝
+┃ 🎬 ${res.title || 'Bilibili Video'}\n┃ 👤 ${res.author || res.owner || 'N/A'}\n╰━━━━━━━━━━━━━━━\n`
           });
           await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
       } catch (e) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-          sendInteractive(client, m, `┃ Failed: ${e.message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+          sendInteractive(client, m, `┃ Failed: ${e.message}\n╰━━━━━━━━━━━━━━━\n`);
       }
   };
   

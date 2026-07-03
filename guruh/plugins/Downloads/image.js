@@ -15,7 +15,7 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
           const query = m.body.replace(new RegExp(`^${prefix}(image|img|pic|searchimage)\\s*`, 'i'), '').trim();
           if (!query) {
               await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-              return sendInteractive(client, m, `│ Give me something to search, genius.\n│ Example: ${prefix}img cats\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+              return sendInteractive(client, m, `▢ Give me something to search, genius.\n▢ Example: ${prefix}img cats\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
           }
 
           try {
@@ -26,7 +26,7 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
 
               if (!data.items || data.items.length === 0) {
                   await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-                  return sendInteractive(client, m, `│ No images found for "${query}".\n│ Your search is terrible.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+                  return sendInteractive(client, m, `▢ No images found for "${query}".\n▢ Your search is terrible.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
               }
 
               await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
@@ -36,8 +36,8 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
                   try {
                       await client.sendMessage(m.chat, {
                           image: { url: item.link },
-                          caption: `╭─❏ 「 IMAGE ${i + 1}/${data.items.length}」
-│ ${(item.title || query).slice(0, 80)}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+                          caption: `✦ ──『 IMAGE ${i + 1}/${data.items.length} 』── ⚝
+▢ ${(item.title || query).slice(0, 80)}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`
                       });
                       if (i < data.items.length - 1) await new Promise(r => setTimeout(r, 1200));
                   } catch (imgErr) {
@@ -49,7 +49,7 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
           } catch (error) {
               console.error('Image search error:', error.message);
               await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-              await sendInteractive(client, m, `│ Image search failed. Try again later.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+              await sendInteractive(client, m, `▢ Image search failed. Try again later.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
           }
       }
   };

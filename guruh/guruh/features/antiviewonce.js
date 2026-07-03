@@ -92,14 +92,14 @@ export default async (client, m) => {
         const ts = new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' });
         const mentions = m.sender ? [m.sender] : [];
 
-        const caption = `╭─❏ 「 VIEW ONCE RETRIEVED 👁」\n│ Sender: @${senderNum}\n│ Chat: ${chatType}\n│ Time: ${ts}\n│ \n│ Nothing slips past me. 😈\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`;
+        const caption = `✦ ──『 VIEW ONCE RETRIEVED 👁 』── ⚝\n▢ Sender: @${senderNum}\n▢ Chat: ${chatType}\n▢ Time: ${ts}\n▢ \n▢ Nothing slips past me. 😈\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
 
         if (imageMsg) {
             const buf = await tryDownload(client, imageMsg, 'image');
             if (buf?.length > 0) {
                 await client.sendMessage(dest, { image: buf, caption, mentions });
                 if (chatId !== dest) {
-                    await client.sendMessage(chatId, { image: buf, caption: `╭─❏ 「 ANTIVIEWONCE」\n│ View-once saved and forwarded. 😈\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`, mentions }).catch(() => {});
+                    await client.sendMessage(chatId, { image: buf, caption: `✦ ──『 ANTIVIEWONCE 』── ⚝\n▢ View-once saved and forwarded. 😈\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`, mentions }).catch(() => {});
                 }
             }
         } else if (videoMsg) {
@@ -107,7 +107,7 @@ export default async (client, m) => {
             if (buf?.length > 0) {
                 await client.sendMessage(dest, { video: buf, caption, mentions });
                 if (chatId !== dest) {
-                    await client.sendMessage(chatId, { text: `╭─❏ 「 ANTIVIEWONCE」\n│ View-once video saved and forwarded. 😈\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`, mentions }).catch(() => {});
+                    await client.sendMessage(chatId, { text: `✦ ──『 ANTIVIEWONCE 』── ⚝\n▢ View-once video saved and forwarded. 😈\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`, mentions }).catch(() => {});
                 }
             }
         } else if (audioMsg) {

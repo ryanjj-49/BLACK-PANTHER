@@ -2,7 +2,7 @@
 // ╭─────────────────────────────────────────╮
 //   BLACK PANTHER MD  ·  autostatus.js
 //   Owner control for the Status Manager
-// ╰─────────────────────────────────────────╯
+// └──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪────────────────────────────╯
 
 const { addCmd }                    = require('../../guru/handlers/loader');
 const { getAutoStatusSettings }     = require('../statusManager');

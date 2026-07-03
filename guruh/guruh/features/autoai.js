@@ -39,16 +39,16 @@ function boxWrap(text) {
         if (!t) { processed.push('├'); continue; }
         if (/https?:\/\/\S+/.test(t)) {
             processed.push('├');
-            processed.push(`│ ${t}`);
+            processed.push(`▢ ${t}`);
             processed.push('├');
         } else {
-            processed.push(`│ ${line}`);
+            processed.push(`▢ ${line}`);
         }
     }
     const body = processed.join('\n');
-    return `╭─❏ 「 BLACK PANTHER AI」
+    return `✦ ──『 BLACK PANTHER AI 』── ⚝
 │
-${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`;
+${body}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
 }
 
 function extractCmds(text) {

@@ -27,18 +27,18 @@ export default {
         .join('');
     };
 
-    let menuText = `╭─❏ 「 DOWNLOAD MENU」
-│ Prefix: ${effectivePrefix || 'None'}\n│ \n`;
+    let menuText = `✦ ──『 DOWNLOAD MENU 』── ⚝
+▢ Prefix: ${effectivePrefix || 'None'}\n▢ \n`;
 
     let commandFiles = fs.readdirSync('./plugins/Downloads').filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
       const commandName = file.replace('.js', '');
       const fancyCommandName = toFancyFont(commandName);
-      menuText += `│ *${fancyCommandName}*\n`;
+      menuText += `▢ *${fancyCommandName}*\n`;
     }
 
-    menuText += `╰───────────────\n`;
-    menuText += `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+    menuText += `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n`;
+    menuText += ``;
 
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         await client.sendMessage(m.chat, { text: menuText });

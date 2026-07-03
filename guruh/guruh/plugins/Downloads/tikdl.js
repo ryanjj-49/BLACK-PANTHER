@@ -7,9 +7,9 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
       if (!text) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-          return sendInteractive(client, m, `┃ Example: ${prefix}tiktok https://vt.tiktok.com/xxx\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+          return sendInteractive(client, m, `┃ Example: ${prefix}tiktok https://vt.tiktok.com/xxx\n╰━━━━━━━━━━━━━━━\n`);
       }
-      if (!text.includes('tiktok.com')) return sendInteractive(client, m, '┃ That\'s not a TikTok link.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇');
+      if (!text.includes('tiktok.com')) return sendInteractive(client, m, '┃ That\'s not a TikTok link.\n╰━━━━━━━━━━━━━━━\n');
       await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
       try {
           const r = await fetch(NEXRAY + encodeURIComponent(text.trim()), { headers: { 'User-Agent': 'Mozilla/5.0' }, timeout: 20000 });
@@ -23,12 +23,12 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
           await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
           const views = stats?.views || 'N/A';
           const likes = stats?.likes || 'N/A';
-          const cap = `╭━⬣ 「 TikTok DL」
-┃ ${title || 'TikTok Video'}\n┃ 👤 ${author?.nickname || 'Unknown'}\n┃ ⏱ ${duration || 'N/A'}\n┃ 👁 ${views} views | ❤️ ${likes} likes\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+          const cap = `╭━⬣ 「 TikTok DL 』── ⚝
+┃ ${title || 'TikTok Video'}\n┃ 👤 ${author?.nickname || 'Unknown'}\n┃ ⏱ ${duration || 'N/A'}\n┃ 👁 ${views} views | ❤️ ${likes} likes\n╰━━━━━━━━━━━━━━━\n`;
           await client.sendMessage(m.chat, { video: buf, caption: cap, mimetype: 'video/mp4', gifPlayback: false });
       } catch (e) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-          sendInteractive(client, m, `┃ TikTok download failed.\n┃ The video might be private or the\n┃ service is down. Try again later.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+          sendInteractive(client, m, `┃ TikTok download failed.\n┃ The video might be private or the\n┃ service is down. Try again later.\n╰━━━━━━━━━━━━━━━\n`);
       }
   };
   

@@ -6,7 +6,7 @@ export default async (context) => {
     const { client, m, args, isAdmin, isBotAdmin, prefix } = context;
     await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
-    const fmt = (msg) => `╭━⬣ 「 ANTILINK」\n┃ ${msg}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+    const fmt = (msg) => `╭━⬣ 「 ANTILINK 』── ⚝\n┃ ${msg}\n╰━━━━━━━━━━━━━━━\n`;
 
     if (!m.isGroup) {
         await client.sendMessage(m.chat, { react: { text: '', key: m.reactKey } }).catch(() => {});

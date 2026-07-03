@@ -22,7 +22,7 @@ export default {
       return text.toLowerCase().split('').map(c => fonts[c] || c).join('');
     };
 
-    let menuText = `╭━⬣ 「 REACTIONS MENU」
+    let menuText = `╭━⬣ 「 REACTIONS MENU 』── ⚝
 ┃ Prefix: ${effectivePrefix || 'None'}\n┃ \n`;
 
     const commandFiles = fs.readdirSync('./plugins/Reactions').filter(f => f.endsWith('.js') && f !== 'links.js');

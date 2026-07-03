@@ -7,7 +7,7 @@ export default async (context) => {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
   if (!text) {
-    return sendInteractive(client, m, '│ Tell me a song name you dumbass!\n│ Example: .lyrics Alone ft ava max\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇');
+    return sendInteractive(client, m, '▢ Tell me a song name you dumbass!\n▢ Example: .lyrics Alone ft ava max\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──');
   }
 
   try {
@@ -18,19 +18,19 @@ export default async (context) => {
     const data = await response.json();
 
     if (!data.status || !data.result || data.result.length === 0) {
-      return sendInteractive(client, m, `│ No lyrics found for "${text}". Maybe the song sucks.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+      return sendInteractive(client, m, `▢ No lyrics found for "${text}". Maybe the song sucks.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
     }
 
     const song = data.result[0];
     if (!song.plainLyrics) {
-      return sendInteractive(client, m, '│ No plain lyrics for this one. Try another song, loser.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇');
+      return sendInteractive(client, m, '▢ No plain lyrics for this one. Try another song, loser.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──');
     }
 
     const cleanLyrics = song.plainLyrics;
     const songTitle = song.trackName || song.name || 'Unknown';
     const artistName = song.artistName || 'Unknown Artist';
-    const bodyText = `╭─❏ 「 LYRICS」
-│ ${songTitle} - ${artistName}\n│ \n${cleanLyrics}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+    const bodyText = `✦ ──『 LYRICS 』── ⚝
+▢ ${songTitle} - ${artistName}\n▢ \n${cleanLyrics}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
     const copyCode = `${songTitle} - ${artistName}\n\n${cleanLyrics}`.slice(0, 4096);
 
     try {
@@ -61,7 +61,7 @@ export default async (context) => {
     }
   } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-    await sendInteractive(client, m, `╭─❏ 「 LYRICS ERROR」
-│ Can't get lyrics for "${text}". Shit broke.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    await sendInteractive(client, m, `✦ ──『 LYRICS ERROR 』── ⚝
+▢ Can't get lyrics for "${text}". Shit broke.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
   }
 };

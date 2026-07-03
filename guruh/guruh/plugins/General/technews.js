@@ -17,14 +17,14 @@ export default {
             ).join(`\n┃
 `);
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴄʜ Nᴇᴡs」
+            return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴄʜ Nᴇᴡs 』── ⚝
 ┃
-${headlines}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+${headlines}\n╰━━━━━━━━━━━━━━━\n`);
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴄʜ Nᴇᴡs」
+            return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴄʜ Nᴇᴡs 』── ⚝
 ┃
-┃ Tech world went offline. How ironic.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ Tech world went offline. How ironic.\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

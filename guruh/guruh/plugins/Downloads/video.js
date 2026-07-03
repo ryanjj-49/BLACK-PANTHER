@@ -8,11 +8,11 @@ export default async (context) => {
 
     if (!text) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, "╭━⬣ 「 VIDEO」\n┃ Give me a video name, it's not rocket science.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+        return sendInteractive(client, m, "╭━⬣ 「 VIDEO 』── ⚝\n┃ Give me a video name, it's not rocket science.\n╰━━━━━━━━━━━━━━━\n");
     }
     if (text.length > 100) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, "╭━⬣ 「 VIDEO」\n┃ Title longer than your attention span. Under 100 chars!\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+        return sendInteractive(client, m, "╭━⬣ 「 VIDEO 』── ⚝\n┃ Title longer than your attention span. Under 100 chars!\n╰━━━━━━━━━━━━━━━\n");
     }
 
     try {
@@ -22,7 +22,7 @@ export default async (context) => {
         const video = searchResult.videos[0];
         if (!video) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `┃ Nothing found for "${text}". Your taste doesn't exist.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `┃ Nothing found for "${text}". Your taste doesn't exist.\n╰━━━━━━━━━━━━━━━\n`);
         }
         const encodedUrl = encodeURIComponent(video.url);
         const response = await fetch(`https://api.ootaizumi.web.id/downloader/youtube?url=${encodedUrl}&format=720`, { headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36", "Accept": "application/json" } });
@@ -49,7 +49,7 @@ export default async (context) => {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
         let userMessage = 'Download failed. The universe despises your video choice.';
         if (error.message.includes('API returned')) userMessage = 'The video service rejected the request.';
-        await sendInteractive(client, m, `╭━⬣ 「 VIDEO ERROR」
-┃ ${userMessage}\n┃ ${error.message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `╭━⬣ 「 VIDEO ERROR 』── ⚝
+┃ ${userMessage}\n┃ ${error.message}\n╰━━━━━━━━━━━━━━━\n`);
     }
 };

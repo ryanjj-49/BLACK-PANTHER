@@ -13,13 +13,13 @@ export default {
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
             await client.sendMessage(m.chat, {
                 image: { url },
-                caption: `╭━⬣ 「 Mᴀɪᴅ」
-╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+                caption: `╭━⬣ 「 Mᴀɪᴅ 』── ⚝
+╰━━━━━━━━━━━━━━━\n`
             });
         } catch (error) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ Maid is busy!\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ Maid is busy!\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

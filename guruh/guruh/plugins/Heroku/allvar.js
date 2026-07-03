@@ -18,7 +18,7 @@ export default async (context) => {
 
         if (!herokuAppName || !herokuApiKey) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS」\n┃ HEROKU_APP_NAME or HEROKU_API_KEY not set.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+            return await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS 』── ⚝\n┃ HEROKU_APP_NAME or HEROKU_API_KEY not set.\n╰━━━━━━━━━━━━━━━\n");
         }
 
         try {
@@ -29,26 +29,26 @@ export default async (context) => {
             const configVars = response.data;
             if (!configVars || Object.keys(configVars).length === 0) {
                 await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-                return await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS」\n┃ No config vars found.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+                return await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS 』── ⚝\n┃ No config vars found.\n╰━━━━━━━━━━━━━━━\n");
             }
 
-            let msg = `╭━⬣ 「 HEROKU VARS」
+            let msg = `╭━⬣ 「 HEROKU VARS 』── ⚝
 `;
             for (const [key, value] of Object.entries(configVars)) {
                 msg += `┃ ${key}: ${isSensitive(key) ? '**REDACTED**' : value}\n`;
             }
-            msg += "╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇";
+            msg += "╰━━━━━━━━━━━━━━━\n";
 
             const dmJid = typeof m.sender === 'string' && m.sender.endsWith('@s.whatsapp.net') ? m.sender : null;
             if (dmJid) {
                 await client.sendMessage(dmJid, { text: msg });
-                await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS」\n┃ Vars sent to your DM only. 🔒\n┃ Sensitive keys are always redacted.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+                await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS 』── ⚝\n┃ Vars sent to your DM only. 🔒\n┃ Sensitive keys are always redacted.\n╰━━━━━━━━━━━━━━━\n");
             } else {
-                await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS」\n┃ Couldn't resolve your JID for DM.\n┃ Use this command from DM only.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+                await sendInteractive(client, m, "╭━⬣ 「 HEROKU VARS 』── ⚝\n┃ Couldn't resolve your JID for DM.\n┃ Use this command from DM only.\n╰━━━━━━━━━━━━━━━\n");
             }
         } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            await sendInteractive(client, m, `╭━⬣ 「 HEROKU VARS」\n┃ Failed to fetch config vars.\n┃ ${error.response?.data || error.message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 HEROKU VARS 』── ⚝\n┃ Failed to fetch config vars.\n┃ ${error.response?.data || error.message}\n╰━━━━━━━━━━━━━━━\n`);
         }
     });
 };

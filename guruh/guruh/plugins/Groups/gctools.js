@@ -2,9 +2,9 @@ import { generateWAMessageFromContent } from '@whiskeysockets/baileys';
 import middleware from '../../utils/botUtil/middleware.js';
 import { getDeviceMode } from '../../lib/deviceMode.js';
 
-const H = (title) => `╭━⬣ 「 ${title}」
+const H = (title) => `╭━⬣ 「 ${title} 』── ⚝
 ┃`;
-const F = `╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+const F = `╰━━━━━━━━━━━━━━━\n`;
 const box = (title, lines) => `${H(title)}\n${lines.map(l => `┃ ${l}`).join('\n')}\n┃
 ${F}`;
 

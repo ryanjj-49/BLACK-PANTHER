@@ -32,14 +32,14 @@ export default {
         } catch (e) {}
 
         const dt = DateTime.now();
-        let menuText = `╭─❏ 「 EFFECTS & LOGO MENU」
-│ Prefix: ${effectivePrefix || 'None'}\n│ Total: ${effectCommands.length} effects\n│ Time: ${dt.toFormat('HH:mm')}\n│ \n`;
+        let menuText = `✦ ──『 EFFECTS & LOGO MENU 』── ⚝
+▢ Prefix: ${effectivePrefix || 'None'}\n▢ Total: ${effectCommands.length} effects\n▢ Time: ${dt.toFormat('HH:mm')}\n▢ \n`;
 
         for (const name of effectCommands) {
-            menuText += `│ *${toFancyFont(name)}*\n`;
+            menuText += `▢ *${toFancyFont(name)}*\n`;
         }
 
-        menuText += `╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        menuText += `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
 
         await client.sendMessage(m.chat, { text: menuText });
     }

@@ -20,15 +20,15 @@ export default {
 
         if (!input) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            return sendInteractive(client, m, `╭─❏ 「 Bᴀsᴇ64 Eɴᴄᴏᴅᴇ」
-│ You gave me nothing. Brilliant.\n│ Usage: .base64 Hello World\n│        .tobase64 [reply to text]\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `✦ ──『 Bᴀsᴇ64 Eɴᴄᴏᴅᴇ 』── ⚝
+▢ You gave me nothing. Brilliant.\n▢ Usage: .base64 Hello World\n▢        .tobase64 [reply to text]\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
 
         const encoded = Buffer.from(input, 'utf8').toString('base64');
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
 
-        const resultText = `╭─❏ 「 Bᴀsᴇ64 Eɴᴄᴏᴅᴇ」
-│ 📥 Input:\n│ ${input.slice(0, 80)}${input.length > 80 ? '...' : ''}\n│ \n│ 📤 Encoded:\n│ \n${encoded}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        const resultText = `✦ ──『 Bᴀsᴇ64 Eɴᴄᴏᴅᴇ 』── ⚝
+▢ 📥 Input:\n▢ ${input.slice(0, 80)}${input.length > 80 ? '...' : ''}\n▢ \n▢ 📤 Encoded:\n▢ \n${encoded}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
 
         try {
             const msg = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({

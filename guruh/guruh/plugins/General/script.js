@@ -30,7 +30,7 @@ export default {
       const createdDate = new Date(repoInfo.createdAt).toLocaleDateString('en-GB');
       const lastUpdateDate = new Date(repoInfo.lastUpdate).toLocaleDateString('en-GB');
 
-      const replyText = `╭━⬣ 「 Repository」
+      const replyText = `╭━⬣ 「 Repository 』── ⚝
 ┃ 🔗 GitHub:\n┃ https://github.com/koyoteh/BLACK-PANTHER\n┃ \n┃ 🌐 Hosting:\n┃ https://wa.me/254105521300\n┃ \n┃ ⭐ Stars : ${repoInfo.stars}\n┃ 🍴 Forks : ${repoInfo.forks}\n┃ 📅 Created : ${createdDate}\n┃ 🔄 Last Update : ${lastUpdateDate}\n┃ 👤 Owner : ${repoInfo.owner}\n╰━━━━━━━━━━━━━━━\n> 🌐 Hosted by GuruTech Hosting\n> 🔗 hosting.wa.me/254105521300`;
 
       await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
@@ -93,7 +93,7 @@ export default {
 
     } catch (error) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
+      await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
 ┃ Couldn't fetch repo data\n┃ ${error.message}\n╰━━━━━━━━━━━━━━━\n> 🌐 hosting.wa.me/254105521300`);
     }
   }

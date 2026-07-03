@@ -13,7 +13,7 @@ export default async (context) => {
 
       const bodyText =
         `` +
-        `╭━⬣ 「 Gʀᴏᴜᴘ Lɪɴᴋ」
+        `╭━⬣ 「 Gʀᴏᴜᴘ Lɪɴᴋ 』── ⚝
 ` +
         `┃ \n` +
         `┃ ${link}\n` +
@@ -21,7 +21,7 @@ export default async (context) => {
         `┃ Here's your precious link.\n` +
         `┃ Copy it and stop bugging me.\n` +
         `╰━━━━━━━━━━━━━━━\n` +
-        `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        ``;
 
       try {
         const msg = generateWAMessageFromContent(
@@ -54,7 +54,7 @@ export default async (context) => {
       await client.sendMessage(m.chat, { react: { text: '', key: m.reactKey } });
     } catch {
       await client.sendMessage(m.chat, { react: { text: '', key: m.reactKey } });
-      await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
+      await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
 ┃ Couldn't fetch the link.\n┃ Either make me admin or quit.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫᠊ᴇᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`);
     }
   });

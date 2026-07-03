@@ -12,8 +12,8 @@ export default {
         const total = rolls.reduce((a, b) => a + b, 0);
         const diceDisplay = rolls.map(r => ['⚀','⚁','⚂','⚃','⚄','⚅'][r-1]).join(' ');
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
-        return sendInteractive(client, m, `╭━⬣ 「 Dɪᴄᴇ Rᴏʟʟ」
+        return sendInteractive(client, m, `╭━⬣ 「 Dɪᴄᴇ Rᴏʟʟ 』── ⚝
 ┃
-┃ 🎲 ${diceDisplay}\n┃ 🔢 Rolls: [${rolls.join(', ')}]\n┃ ➕ Total: ${total}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ 🎲 ${diceDisplay}\n┃ 🔢 Rolls: [${rolls.join(', ')}]\n┃ ➕ Total: ${total}\n╰━━━━━━━━━━━━━━━\n`);
     }
 };

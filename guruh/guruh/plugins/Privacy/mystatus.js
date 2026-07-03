@@ -8,8 +8,8 @@ export default async (context) => {
         const { client, m, args, prefix } = context;
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
-        const fmt = (msg) => `╭━⬣ 「 STATUS PRIVACY」
-┃ ${msg}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        const fmt = (msg) => `╭━⬣ 「 STATUS PRIVACY 』── ⚝
+┃ ${msg}\n╰━━━━━━━━━━━━━━━\n`;
         const options = ['all', 'contacts', 'contact_blacklist', 'none'];
         const value = (args[0] || '').toLowerCase();
 
@@ -28,7 +28,7 @@ export default async (context) => {
                 const _devMode = await getDeviceMode();
         if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭━⬣ 「 MYSTATUS」
+          await sendInteractive(client, m, `╭━⬣ 「 MYSTATUS 』── ⚝
 ┃ Status: ${isEnabled !== undefined ? (isEnabled ? 'ON ✅' : 'OFF ❌') : settings.mystatus !== undefined ? (settings.mystatus ? 'ON ✅' : 'OFF ❌') : 'See settings'}\n┃ \n┃ Options:\n┃ ${prefix}mystatus all\n┃ ${prefix}mystatus contacts\n┃ ${prefix}mystatus contact_blacklist\n┃ ${prefix}mystatus none\n╰━━━━━━━━━━━━━━━\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(m.chat, {

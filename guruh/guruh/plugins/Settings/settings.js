@@ -26,13 +26,13 @@ export default {
 
       const message =
         `*${bName} Settings*\n\n` +
-        `╭━⬣ 「 Bot Info」\n` +
+        `╭━⬣ 「 Bot Info 』── ⚝\n` +
         `┃ Bot Name: ${bName}\n` +
         `┃ Sudo Users: ${sudoUsers.length}\n` +
         `┃ Banned Users: ${bannedUsers.length}\n` +
         `┃ Total Groups: ${groupCount}\n` +
         `┃\n` +
-        `╭━⬣ 「 All Settings」\n┃\n` +
+        `╭━⬣ 「 All Settings 』── ⚝\n┃\n` +
         fmt(
           'Auto-Like Status',
           'Automatically reacts to contacts status updates with an emoji.',
@@ -166,10 +166,10 @@ export default {
           `${prefix}device android/ios/default`,
           `${prefix}device ios`
         ) +
-        `╭━⬣ 「 Tips」\n` +
+        `╭━⬣ 「 Tips 』── ⚝\n` +
         `┃ Only owner/sudo can change settings.\n` +
         `┃ Settings save instantly to database.\n` +
-        `╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        `╰━━━━━━━━━━━━━━━\n`;
 
       await sendInteractive(client, m, message);
     });

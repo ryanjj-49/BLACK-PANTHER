@@ -27,7 +27,7 @@ export default {
         .join('');
     };
 
-    let menuText = `╭━⬣ 「 AI MENU」
+    let menuText = `╭━⬣ 「 AI MENU 』── ⚝
 ┃ Prefix: ${effectivePrefix || 'None'}\n┃ \n`;
 
     let commandFiles = fs.readdirSync('./plugins/AI').filter(file => file.endsWith('.js'));

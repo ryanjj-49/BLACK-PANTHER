@@ -358,18 +358,18 @@ addCmd({
             if (args.length === 0) {
                 const s = autoReactManager.getStats();
                 let text = `╭─⌈ 🐺 *AUTOREACTSTATUS* ⌋\n│\n`;
-                text += `├─⊷ *${prefix}sr on / off*\n│  └⊷ Enable or disable\n`;
-                text += `├─⊷ *${prefix}sr exclude <number>*\n│  └⊷ Skip a contact\n`;
-                text += `├─⊷ *${prefix}sr include <number>*\n│  └⊷ Remove from skip list\n`;
-                text += `├─⊷ *${prefix}sr excluded*\n│  └⊷ Show skip list\n`;
-                text += `├─⊷ *${prefix}sr ownerreply*\n│  └⊷ Toggle: react only when you reply (current: ${autoReactManager.config.onlyOnOwnerReply ? 'ON ✅' : 'OFF ❌'})\n`;
-                text += `├─⊷ *${prefix}sr view+react*\n│  └⊷ View then react\n`;
-                text += `├─⊷ *${prefix}sr react-only*\n│  └⊷ React without viewing\n`;
-                text += `├─⊷ *${prefix}sr random*\n│  └⊷ Random emoji mode\n`;
-                text += `├─⊷ *${prefix}sr cycle*\n│  └⊷ Sequential emoji mode (1→2→3→loop)\n`;
-                text += `├─⊷ *${prefix}sr setrandom 😂,🫡,🔥*\n│  └⊷ Set cycle pool (comma-separated)\n`;
-                text += `├─⊷ *${prefix}sr emoji <emoji>*\n│  └⊷ Set fixed emoji\n`;
-                text += `├─⊷ *${prefix}sr stats*\n│  └⊷ Statistics\n`;
+                text += `├─⊷ *${prefix}sr on / off*\n▢  └⊷ Enable or disable\n`;
+                text += `├─⊷ *${prefix}sr exclude <number>*\n▢  └⊷ Skip a contact\n`;
+                text += `├─⊷ *${prefix}sr include <number>*\n▢  └⊷ Remove from skip list\n`;
+                text += `├─⊷ *${prefix}sr excluded*\n▢  └⊷ Show skip list\n`;
+                text += `├─⊷ *${prefix}sr ownerreply*\n▢  └⊷ Toggle: react only when you reply (current: ${autoReactManager.config.onlyOnOwnerReply ? 'ON ✅' : 'OFF ❌'})\n`;
+                text += `├─⊷ *${prefix}sr view+react*\n▢  └⊷ View then react\n`;
+                text += `├─⊷ *${prefix}sr react-only*\n▢  └⊷ React without viewing\n`;
+                text += `├─⊷ *${prefix}sr random*\n▢  └⊷ Random emoji mode\n`;
+                text += `├─⊷ *${prefix}sr cycle*\n▢  └⊷ Sequential emoji mode (1→2→3→loop)\n`;
+                text += `├─⊷ *${prefix}sr setrandom 😂,🫡,🔥*\n▢  └⊷ Set cycle pool (comma-separated)\n`;
+                text += `├─⊷ *${prefix}sr emoji <emoji>*\n▢  └⊷ Set fixed emoji\n`;
+                text += `├─⊷ *${prefix}sr stats*\n▢  └⊷ Statistics\n`;
                 text += `╰⊷ *Powered by ${getBotName().toUpperCase()}*`;
                 await reply(text);
                 return;
@@ -445,9 +445,9 @@ addCmd({
                         await reply(
                             `╭─⌈ 🎲 *SETRANDOM* ⌋\n│\n` +
                             `├─⊷ Sets the full random emoji pool\n│\n` +
-                            `├─⊷ *Usage:*\n│  └⊷ ${prefix}sr setrandom 🐺,❤️,🔥,💯,🎉\n│\n` +
+                            `├─⊷ *Usage:*\n▢  └⊷ ${prefix}sr setrandom 🐺,❤️,🔥,💯,🎉\n│\n` +
                             `├─⊷ *Current pool (${autoReactManager.reactions.length}):*\n` +
-                            `│  └⊷ ${autoReactManager.reactions.join(' ')}\n│\n` +
+                            `▢  └⊷ ${autoReactManager.reactions.join(' ')}\n│\n` +
                             `╰⊷ Separate each emoji with a comma`
                         );
                         return;

@@ -18,8 +18,8 @@ const Myself = await client.decodeJid(client.user.id);
                 calladd
         } = await client.fetchPrivacySettings(true);
         
-        const fnn = `╭━⬣ 「 PRIVACY SETTINGS」
-┃ Name: ${client.user.name}\n┃ Online: ${online}\n┃ Profile Picture: ${profile}\n┃ Last Seen: ${last}\n┃ Read Receipt: ${readreceipts}\n┃ Group Add: ${groupadd}\n┃ Status: ${status}\n┃ Call Add: ${calladd}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        const fnn = `╭━⬣ 「 PRIVACY SETTINGS 』── ⚝
+┃ Name: ${client.user.name}\n┃ Online: ${online}\n┃ Profile Picture: ${profile}\n┃ Last Seen: ${last}\n┃ Read Receipt: ${readreceipts}\n┃ Group Add: ${groupadd}\n┃ Status: ${status}\n┃ Call Add: ${calladd}\n╰━━━━━━━━━━━━━━━\n`;
 
 
 const avatar = await client.profilePictureUrl(Myself, 'image').catch(_ => 'https://telegra.ph/file/b34645ca1e3a34f1b3978.jpg');

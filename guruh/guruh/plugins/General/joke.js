@@ -15,15 +15,15 @@ export default {
             const delivery = j.delivery || '';
             if (!setup) throw new Error('no joke');
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 Jᴏᴋᴇ」
+            return sendInteractive(client, m, `╭━⬣ 「 Jᴏᴋᴇ 』── ⚝
 ┃
 ┃ 😐 ${setup}\n┃
-┃ 😂 ${delivery}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ 😂 ${delivery}\n╰━━━━━━━━━━━━━━━\n`);
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 Jᴏᴋᴇ」
+            return sendInteractive(client, m, `╭━⬣ 「 Jᴏᴋᴇ 』── ⚝
 ┃
-┃ Your life is the joke, I'm too tired to think of another one.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ Your life is the joke, I'm too tired to think of another one.\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

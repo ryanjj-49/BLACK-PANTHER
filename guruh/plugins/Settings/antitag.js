@@ -12,8 +12,8 @@ export default async (context) => {
         const jid = m.chat;
 
         const formatStylishReply = (title, message) => {
-            return `╭─❏ 「 ${title}」
-│ ${message}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+            return `✦ ──『 ${title} 』── ⚝
+▢ ${message}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
         };
 
         if (!jid.endsWith('@g.us')) {
@@ -40,25 +40,25 @@ export default async (context) => {
 
             if (isEnabled === action) {
                 await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-                return await client.sendMessage(m.chat, { text: formatStylishReply("ANTITAG", `Antitag is already ${value.toUpperCase()}, genius!\n│ \n│ 📌 Usage: ${prefix}antitag on | ${prefix}antitag off`) });
+                return await client.sendMessage(m.chat, { text: formatStylishReply("ANTITAG", `Antitag is already ${value.toUpperCase()}, genius!\n▢ \n▢ 📌 Usage: ${prefix}antitag on | ${prefix}antitag off`) });
             }
 
             await updateGroupSetting(jid, 'antitag', action);
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
-            return await client.sendMessage(m.chat, { text: formatStylishReply("ANTITAG", `Antitag has been turned ${value.toUpperCase()} for this group.\n│ \n│ 📌 Usage: ${prefix}antitag on | ${prefix}antitag off`) });
+            return await client.sendMessage(m.chat, { text: formatStylishReply("ANTITAG", `Antitag has been turned ${value.toUpperCase()} for this group.\n▢ \n▢ 📌 Usage: ${prefix}antitag on | ${prefix}antitag off`) });
         }
 
                 const _devMode = await getDeviceMode();
         if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭─❏ 「 ANTITAG」
-│ Status: ${settings.antitag ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}antitag on\n│ ${prefix}antitag off\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
+          await sendInteractive(client, m, `✦ ──『 ANTITAG 』── ⚝
+▢ Status: ${settings.antitag ? 'ON ✅' : 'OFF ❌'}\n▢ \n▢ Options:\n▢ ${prefix}antitag on\n▢ ${prefix}antitag off\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(
             m.chat,
             {
                 interactiveMessage: {
-                    body: { text: formatStylishReply("ANTITAG", `Antitag's ${isEnabled ? 'ON' : 'OFF'} right now. Pick one, peasant!\n│ \n│ 📌 Usage: ${prefix}antitag on | ${prefix}antitag off`) },
+                    body: { text: formatStylishReply("ANTITAG", `Antitag's ${isEnabled ? 'ON' : 'OFF'} right now. Pick one, peasant!\n▢ \n▢ 📌 Usage: ${prefix}antitag on | ${prefix}antitag off`) },
                     footer: { text: '' },
                     nativeFlowMessage: {
                         buttons: [

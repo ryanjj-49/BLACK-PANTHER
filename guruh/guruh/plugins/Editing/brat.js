@@ -20,8 +20,8 @@ export default {
 
         if (!text) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 BRAT」
-┃ What am i, a mind reader?\n┃ @` + m.sender.split('@')[0] + '! you forgot the text, genius.\n┃ Example: ' + prefix + 'brat i\'m a dumbass\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇', { mentions: [m.sender] });
+            return sendInteractive(client, m, `╭━⬣ 「 BRAT 』── ⚝
+┃ What am i, a mind reader?\n┃ @` + m.sender.split('@')[0] + '! you forgot the text, genius.\n┃ Example: ' + prefix + 'brat i\'m a dumbass\n╰━━━━━━━━━━━━━━━\n', { mentions: [m.sender] });
         }
 
         try {
@@ -80,8 +80,8 @@ export default {
                 errorMessage = 'Failed to process. Try again later.';
             }
 
-            await sendInteractive(client, m, `╭━⬣ 「 FAILED」
-┃ Brat text generation failed.\n┃ ${errorMessage}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 FAILED 』── ⚝
+┃ Brat text generation failed.\n┃ ${errorMessage}\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

@@ -6,8 +6,8 @@ export default async (context) => {
         const { client, m, body } = context;
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
-        const fmt = (msg) => `╭━⬣ 「 SET WARN LIMIT」
-┃ ${msg}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        const fmt = (msg) => `╭━⬣ 「 SET WARN LIMIT 』── ⚝
+┃ ${msg}\n╰━━━━━━━━━━━━━━━\n`;
 
         const current = await getWarnLimit(m.chat);
 

@@ -12,8 +12,8 @@ export default async (context) => {
     const jid = m.chat;
 
     const formatStylishReply = (title, message) => {
-      return `╭─❏ 「 ${title}」
-│ ${message}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+      return `✦ ──『 ${title} 』── ⚝
+▢ ${message}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
     };
 
     if (!jid.endsWith('@g.us')) {
@@ -52,25 +52,25 @@ export default async (context) => {
 
         if (isEnabled === action) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-          return await client.sendMessage(m.chat, { text: formatStylishReply("ANTIFOREIGN", `Antiforeign's already ${value.toUpperCase()}, genius. Stop wasting my time.\n│ \n│ 📌 Usage: ${prefix}antiforeign on | ${prefix}antiforeign off`) });
+          return await client.sendMessage(m.chat, { text: formatStylishReply("ANTIFOREIGN", `Antiforeign's already ${value.toUpperCase()}, genius. Stop wasting my time.\n▢ \n▢ 📌 Usage: ${prefix}antiforeign on | ${prefix}antiforeign off`) });
         }
 
         await updateGroupSetting(jid, 'antiforeign', action);
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
-        return await client.sendMessage(m.chat, { text: formatStylishReply("ANTIFOREIGN", `Antiforeign's now ${value.toUpperCase()}. Foreigners better watch out or get yeeted!\n│ \n│ 📌 Usage: ${prefix}antiforeign on | ${prefix}antiforeign off`) });
+        return await client.sendMessage(m.chat, { text: formatStylishReply("ANTIFOREIGN", `Antiforeign's now ${value.toUpperCase()}. Foreigners better watch out or get yeeted!\n▢ \n▢ 📌 Usage: ${prefix}antiforeign on | ${prefix}antiforeign off`) });
       }
 
             const _devMode = await getDeviceMode();
       if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭─❏ 「 ANTIFOREIGN」
-│ Status: ${settings.antiforeign ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}antiforeign on\n│ ${prefix}antiforeign off\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
+          await sendInteractive(client, m, `✦ ──『 ANTIFOREIGN 』── ⚝
+▢ Status: ${settings.antiforeign ? 'ON ✅' : 'OFF ❌'}\n▢ \n▢ Options:\n▢ ${prefix}antiforeign on\n▢ ${prefix}antiforeign off\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(
             m.chat,
             {
                 interactiveMessage: {
-                    body: { text: formatStylishReply("ANTIFOREIGN", `Antiforeign's ${isEnabled ? 'ON' : 'OFF'} in this group, dipshit. Pick a vibe!\n│ \n│ 📌 Usage: ${prefix}antiforeign on | ${prefix}antiforeign off`) },
+                    body: { text: formatStylishReply("ANTIFOREIGN", `Antiforeign's ${isEnabled ? 'ON' : 'OFF'} in this group, dipshit. Pick a vibe!\n▢ \n▢ 📌 Usage: ${prefix}antiforeign on | ${prefix}antiforeign off`) },
                     footer: { text: '' },
                     nativeFlowMessage: {
                         buttons: [

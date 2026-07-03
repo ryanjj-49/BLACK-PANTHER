@@ -12,8 +12,8 @@ export default {
         const prompt = m.body.replace(new RegExp(`^${prefix}(sora|soraai|genvideo|aifilm)\\s*`, 'i'), '').trim();
 
         if (!prompt) {
-            return sendInteractive(client, m, `╭━⬣ 「 Sᴏʀᴀ AI」
-┃ Describe a scene to generate.\n┃ Example: ${prefix}sora a dragon flying over Tokyo\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 Sᴏʀᴀ AI 』── ⚝
+┃ Describe a scene to generate.\n┃ Example: ${prefix}sora a dragon flying over Tokyo\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         try {
@@ -30,14 +30,14 @@ export default {
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
             await client.sendMessage(m.chat, {
                 image: buffer,
-                caption: `╭━⬣ 「 Sᴏʀᴀ AI Sᴄᴇɴᴇ」
-┃ Prompt: ${prompt}\n┃ Resolution: 1280×720\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+                caption: `╭━⬣ 「 Sᴏʀᴀ AI Sᴄᴇɴᴇ 』── ⚝
+┃ Prompt: ${prompt}\n┃ Resolution: 1280×720\n╰━━━━━━━━━━━━━━━\n`
             });
 
         } catch (error) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ」
-┃ Could not generate scene.\n┃ Try a different prompt.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ 』── ⚝
+┃ Could not generate scene.\n┃ Try a different prompt.\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

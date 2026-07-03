@@ -11,11 +11,11 @@ import { generateWAMessageFromContent, proto } from '@whiskeysockets/baileys';
           const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
           let pass = '';
           for (let i = 0; i < len; i++) pass += chars[Math.floor(Math.random() * chars.length)];
-          const resultText = `╭─❏ 「 Pᴀssᴡᴏʀᴅ Gᴇɴ」
+          const resultText = `✦ ──『 Pᴀssᴡᴏʀᴅ Gᴇɴ 』── ⚝
 │
-│ 🔐 Length: ${len} chars\n│
-│ ${pass}\n│
-│ Save it. I won't regenerate it for you.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+▢ 🔐 Length: ${len} chars\n│
+▢ ${pass}\n│
+▢ Save it. I won't regenerate it for you.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
           try {
               const msg = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                   interactiveMessage: {

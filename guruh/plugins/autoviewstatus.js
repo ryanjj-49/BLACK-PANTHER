@@ -226,11 +226,11 @@ addCmd({
 
             if (args.length === 0) {
                 let text = `╭─⌈ 👁️ *AUTOVIEWSTATUS* ⌋\n│\n`;
-                text += `├─⊷ *${prefix}autoviewstatus on/off*\n│  └⊷ Enable / disable\n`;
-                text += `├─⊷ *${prefix}autoviewstatus exclude <number>*\n│  └⊷ Skip a contact\n`;
-                text += `├─⊷ *${prefix}autoviewstatus include <number>*\n│  └⊷ Remove from skip list\n`;
-                text += `├─⊷ *${prefix}autoviewstatus excluded*\n│  └⊷ Show skip list\n`;
-                text += `├─⊷ *${prefix}autoviewstatus stats*\n│  └⊷ Statistics\n`;
+                text += `├─⊷ *${prefix}autoviewstatus on/off*\n▢  └⊷ Enable / disable\n`;
+                text += `├─⊷ *${prefix}autoviewstatus exclude <number>*\n▢  └⊷ Skip a contact\n`;
+                text += `├─⊷ *${prefix}autoviewstatus include <number>*\n▢  └⊷ Remove from skip list\n`;
+                text += `├─⊷ *${prefix}autoviewstatus excluded*\n▢  └⊷ Show skip list\n`;
+                text += `├─⊷ *${prefix}autoviewstatus stats*\n▢  └⊷ Statistics\n`;
                 text += `╰⊷ *Powered by ${getBotName().toUpperCase()}*`;
                 await reply(text);
                 return;

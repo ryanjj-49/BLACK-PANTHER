@@ -25,12 +25,12 @@ export default {
             return text.toLowerCase().split('').map(c => fonts[c] || c).join('');
         };
 
-        let menuText = `╭━⬣ 「 EFFECTSMENU」
+        let menuText = `╭━⬣ 「 EFFECTSMENU 』── ⚝
 ┃ Use: ${prefix}<effect> YourText\n┃ \n`;
         for (const cmd of EFFECT_CMDS) {
             menuText += `┃ *${toFancyFont(cmd)}*\n`;
         }
-        menuText += `╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        menuText += `╰━━━━━━━━━━━━━━━\n`;
 
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         await client.sendMessage(m.chat, {

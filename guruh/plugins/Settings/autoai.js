@@ -14,10 +14,10 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
       const fmt = (title, lines) => {
-        const body = (Array.isArray(lines) ? lines : [lines]).map(l => `│ ${l}`).join('\n');
-        return `╭─❏ 「 ${title}」
+        const body = (Array.isArray(lines) ? lines : [lines]).map(l => `▢ ${l}`).join('\n');
+        return `✦ ──『 ${title} 』── ⚝
 │
-${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+${body}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
       };
 
       try {
@@ -44,8 +44,8 @@ ${body}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞�
                 const _devMode = await getDeviceMode();
         if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭─❏ 「 AUTOAI」
-│ Status: ${settings.autoai ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}autoai on\n│ ${prefix}autoai off\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
+          await sendInteractive(client, m, `✦ ──『 AUTOAI 』── ⚝
+▢ Status: ${settings.autoai ? 'ON ✅' : 'OFF ❌'}\n▢ \n▢ Options:\n▢ ${prefix}autoai on\n▢ ${prefix}autoai off\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(
               m.chat,

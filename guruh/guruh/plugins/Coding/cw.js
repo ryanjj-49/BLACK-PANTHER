@@ -7,8 +7,8 @@ export default async (context) => {
 
     if (!text) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, `╭━⬣ 「 Wᴇʙ2Zɪᴩ」
-┃ Downloads entire websites as ZIP files\n┃ Example: ${prefix}web2zip https://example.com\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        return sendInteractive(client, m, `╭━⬣ 「 Wᴇʙ2Zɪᴩ 』── ⚝
+┃ Downloads entire websites as ZIP files\n┃ Example: ${prefix}web2zip https://example.com\n╰━━━━━━━━━━━━━━━\n`);
     }
 
     try {
@@ -41,9 +41,9 @@ export default async (context) => {
 
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
 
-        const caption = `╭━⬣ 「 Wᴇʙsɪᴛᴇ Zɪᴩ」
+        const caption = `╭━⬣ 「 Wᴇʙsɪᴛᴇ Zɪᴩ 』── ⚝
 ┃ *URL:* ${result.url}\n┃ *Files Copied:* ${result.copiedFilesAmount}\n┃ *Download Link:*\n┃ ${result.downloadUrl}\n┃
-┃ Click the link above to download the ZIP\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+┃ Click the link above to download the ZIP\n╰━━━━━━━━━━━━━━━\n`;
 
         await client.sendMessage(m.chat, { text: caption });
 
@@ -66,7 +66,7 @@ export default async (context) => {
             errorMessage = "Can't reach the website. Is it even real?";
         }
 
-        await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ」
-┃ ${errorMessage}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ 』── ⚝
+┃ ${errorMessage}\n╰━━━━━━━━━━━━━━━\n`);
     }
 };

@@ -10,8 +10,8 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         if (!text) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 QR CODE」
-┃ Usage: ${prefix}qr <text or link>\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 QR CODE 』── ⚝
+┃ Usage: ${prefix}qr <text or link>\n╰━━━━━━━━━━━━━━━\n`);
         }
         try {
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -21,8 +21,8 @@ export default {
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
             await client.sendMessage(m.chat, {
                 image: imgBuffer,
-                caption: `╭━⬣ 「 QR CODE」
-┃ Scan with any QR reader.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+                caption: `╭━⬣ 「 QR CODE 』── ⚝
+┃ Scan with any QR reader.\n╰━━━━━━━━━━━━━━━\n`
             });
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });

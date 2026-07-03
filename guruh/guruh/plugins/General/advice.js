@@ -12,14 +12,14 @@ export default {
             const res = await axios.get('https://api.adviceslip.com/advice', { timeout: 8000 });
             const advice = res.data?.slip?.advice || 'Stop asking for advice and figure it out.';
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 Aᴅᴠɪᴄᴇ」
+            return sendInteractive(client, m, `╭━⬣ 「 Aᴅᴠɪᴄᴇ 』── ⚝
 ┃
-┃ 💡 ${advice}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ 💡 ${advice}\n╰━━━━━━━━━━━━━━━\n`);
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 Aᴅᴠɪᴄᴇ」
+            return sendInteractive(client, m, `╭━⬣ 「 Aᴅᴠɪᴄᴇ 』── ⚝
 ┃
-┃ My advice? Try again later.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ My advice? Try again later.\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

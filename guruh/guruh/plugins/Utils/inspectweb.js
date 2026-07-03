@@ -8,12 +8,12 @@ export default async (context) => {
 
     if (!text) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, "┃ Provide a valid web link to inspect, dimwit.\n┃ Bot will crawl HTML, CSS, JS, and media.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+        return sendInteractive(client, m, "┃ Provide a valid web link to inspect, dimwit.\n┃ Bot will crawl HTML, CSS, JS, and media.\n╰━━━━━━━━━━━━━━━\n");
     }
 
     if (!/^https?:\/\//i.test(text)) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, "┃ URL must start with http:// or https://, genius.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+        return sendInteractive(client, m, "┃ URL must start with http:// or https://, genius.\n╰━━━━━━━━━━━━━━━\n");
     }
 
     try {
@@ -46,41 +46,41 @@ export default async (context) => {
             }
         });
 
-        await sendInteractive(client, m, `╭━⬣ 「 HTML CONTENT」
-${html}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `╭━⬣ 「 HTML CONTENT 』── ⚝
+${html}\n╰━━━━━━━━━━━━━━━\n`);
 
         if (cssFiles.length > 0) {
             for (const cssFile of cssFiles) {
                 const cssResponse = await fetch(new URL(cssFile, text));
                 const cssContent = await cssResponse.text();
-                await sendInteractive(client, m, `╭━⬣ 「 CSS FILE」
-${cssContent}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+                await sendInteractive(client, m, `╭━⬣ 「 CSS FILE 』── ⚝
+${cssContent}\n╰━━━━━━━━━━━━━━━\n`);
             }
         } else {
-            await sendInteractive(client, m, "┃ No external CSS files found.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+            await sendInteractive(client, m, "┃ No external CSS files found.\n╰━━━━━━━━━━━━━━━\n");
         }
 
         if (jsFiles.length > 0) {
             for (const jsFile of jsFiles) {
                 const jsResponse = await fetch(new URL(jsFile, text));
                 const jsContent = await jsResponse.text();
-                await sendInteractive(client, m, `╭━⬣ 「 JS FILE」
-${jsContent}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+                await sendInteractive(client, m, `╭━⬣ 「 JS FILE 』── ⚝
+${jsContent}\n╰━━━━━━━━━━━━━━━\n`);
             }
         } else {
-            await sendInteractive(client, m, "┃ No external JavaScript files found.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+            await sendInteractive(client, m, "┃ No external JavaScript files found.\n╰━━━━━━━━━━━━━━━\n");
         }
 
         if (mediaFiles.length > 0) {
-            await sendInteractive(client, m, `╭━⬣ 「 MEDIA FILES」
-${mediaFiles.map(f => `┃ ${f}`).join('\n')}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 MEDIA FILES 』── ⚝
+${mediaFiles.map(f => `┃ ${f}`).join('\n')}\n╰━━━━━━━━━━━━━━━\n`);
         } else {
-            await sendInteractive(client, m, "┃ No media files found. Empty site, empty soul.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+            await sendInteractive(client, m, "┃ No media files found. Empty site, empty soul.\n╰━━━━━━━━━━━━━━━\n");
         }
 
     } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
         console.error(error);
-        return sendInteractive(client, m, "┃ Error fetching website content. Site's probably trash.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇");
+        return sendInteractive(client, m, "┃ Error fetching website content. Site's probably trash.\n╰━━━━━━━━━━━━━━━\n");
     }
 };

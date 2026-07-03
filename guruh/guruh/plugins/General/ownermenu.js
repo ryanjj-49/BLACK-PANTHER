@@ -27,7 +27,7 @@ export default {
         .join('');
     };
 
-    let menuText = `╭━⬣ 「 OWNER MENU」
+    let menuText = `╭━⬣ 「 OWNER MENU 』── ⚝
 ┃ Prefix: ${effectivePrefix || 'None'}\n┃ \n`;
 
     let commandFiles = fs.readdirSync('./plugins/Owner').filter(file => file.endsWith('.js'));

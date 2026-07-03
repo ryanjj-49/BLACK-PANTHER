@@ -14,17 +14,17 @@ export default async (context) => {
 
         if (!cmd) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 EXEC 」\n┃ No command provided. Provide a\n┃ valid shell command, fool.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 EXEC  』── ⚝\n┃ No command provided. Provide a\n┃ valid shell command, fool.\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         try {
             const { stdout, stderr } = await execAsync(cmd, { timeout: 30000 });
             const output = stdout || stderr || '(no output)';
             await client.sendMessage(m.chat, { react: { text: stderr && !stdout ? '❌' : '✅', key: m.reactKey } });
-            await sendInteractive(client, m, `╭━⬣ 「 SHELL OUTPUT」\n${output.split('\n').map(l => `┃ ${l}`).join('\n')}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 SHELL OUTPUT 』── ⚝\n${output.split('\n').map(l => `┃ ${l}`).join('\n')}\n╰━━━━━━━━━━━━━━━\n`);
         } catch (error) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            await sendInteractive(client, m, `╭━⬣ 「 SHELL ERROR」\n┃ ${error.message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 SHELL ERROR 』── ⚝\n┃ ${error.message}\n╰━━━━━━━━━━━━━━━\n`);
         }
     });
 };

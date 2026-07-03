@@ -13,7 +13,7 @@ export default async (context) => {
           .slice(0)
           .map((entry) => entry[1]);
       let anaa = groupzs.map((v) => v.id);
-      let jackhuh = `╭━⬣ 「 BOT GROUPS」
+      let jackhuh = `╭━⬣ 「 BOT GROUPS 』── ⚝
 `
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
       const promises = anaa.map((i) => {
@@ -29,14 +29,14 @@ export default async (context) => {
         })
       })
       await Promise.all(promises)
-      jackhuh += `╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+      jackhuh += `╰━━━━━━━━━━━━━━━\n`
       await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
       sendInteractive(client, m, jackhuh);
 
   } catch (e) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-    sendInteractive(client, m, `╭━⬣ 「 ERROR」
-┃ Error occured while accessing\n┃ bot groups.\n┃ ${e}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`)
+    sendInteractive(client, m, `╭━⬣ 「 ERROR 』── ⚝
+┃ Error occured while accessing\n┃ bot groups.\n┃ ${e}\n╰━━━━━━━━━━━━━━━\n`)
   }
 
   });

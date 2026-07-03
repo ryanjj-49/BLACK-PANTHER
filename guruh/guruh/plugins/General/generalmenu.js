@@ -27,7 +27,7 @@ export default {
         .join('');
     };
 
-    let menuText = `╭━⬣ 「 GENERAL MENU」
+    let menuText = `╭━⬣ 「 GENERAL MENU 』── ⚝
 ┃ Prefix: ${effectivePrefix || 'None'}\n┃ \n`;
 
     let commandFiles = fs.readdirSync('./plugins/General').filter(file => file.endsWith('.js'));

@@ -13,15 +13,15 @@ export default {
             const q = res.data?.[0];
             if (!q) throw new Error('empty');
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 Qᴜᴏᴛᴇ」
+            return sendInteractive(client, m, `╭━⬣ 「 Qᴜᴏᴛᴇ 』── ⚝
 ┃
 ┃ ❝ ${q.q} ❞\n┃
-┃ — ${q.a}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ — ${q.a}\n╰━━━━━━━━━━━━━━━\n`);
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 Qᴜᴏᴛᴇ」
+            return sendInteractive(client, m, `╭━⬣ 「 Qᴜᴏᴛᴇ 』── ⚝
 ┃
-┃ No quotes today. Universe is offline.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ No quotes today. Universe is offline.\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

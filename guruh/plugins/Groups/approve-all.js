@@ -5,28 +5,28 @@ export default async (context) => {
 
   if (!m.isGroup) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-    return sendInteractive(client, m, `╭─❏ 「 ERROR」
-│ Yo, dumbass, this command's\n│ for groups only.\n│ Stop screwing around.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    return sendInteractive(client, m, `✦ ──『 ERROR 』── ⚝
+▢ Yo, dumbass, this command's\n▢ for groups only.\n▢ Stop screwing around.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
   }
 
   if (!isAdmin) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-    return sendInteractive(client, m, `╭─❏ 「 ERROR」
-│ Nice try, loser. You need\n│ admin powers to pull this off.\n│ Get lost.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    return sendInteractive(client, m, `✦ ──『 ERROR 』── ⚝
+▢ Nice try, loser. You need\n▢ admin powers to pull this off.\n▢ Get lost.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
   }
 
   if (!isBotAdmin) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-    return sendInteractive(client, m, `╭─❏ 「 ERROR」
-│ I ain't got admin rights, moron.\n│ Make me admin or quit\n│ wasting my time.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    return sendInteractive(client, m, `✦ ──『 ERROR 』── ⚝
+▢ I ain't got admin rights, moron.\n▢ Make me admin or quit\n▢ wasting my time.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
   }
 
   const responseList = await client.groupRequestParticipantsList(m.chat);
 
   if (responseList.length === 0) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-    return sendInteractive(client, m, `╭─❏ 「 NO REQUESTS」
-│ What a surprise, no one's\n│ begging to join this dumpster fire.\n│ No pending requests, idiot.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    return sendInteractive(client, m, `✦ ──『 NO REQUESTS 』── ⚝
+▢ What a surprise, no one's\n▢ begging to join this dumpster fire.\n▢ No pending requests, idiot.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
   }
 
   await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
@@ -42,11 +42,11 @@ export default async (context) => {
     } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
       console.error('Error approving participant:', error);
-      return sendInteractive(client, m, `╭─❏ 「 ERROR」
-│ Shit hit the fan, couldn't approve\n│ @${participant.jid.split('@')[0]}.\n│ Fix your group, dumbass.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`, { mentions: [participant.jid] });
+      return sendInteractive(client, m, `✦ ──『 ERROR 』── ⚝
+▢ Shit hit the fan, couldn't approve\n▢ @${participant.jid.split('@')[0]}.\n▢ Fix your group, dumbass.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`, { mentions: [participant.jid] });
     }
   }
 
-  sendInteractive(client, m, `╭─❏ 「 APPROVED」
-│ Ugh, fine, all the desperate\n│ wannabes got approved.\n│ Happy now, you pest?\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+  sendInteractive(client, m, `✦ ──『 APPROVED 』── ⚝
+▢ Ugh, fine, all the desperate\n▢ wannabes got approved.\n▢ Happy now, you pest?\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
 };

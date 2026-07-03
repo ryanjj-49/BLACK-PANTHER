@@ -23,24 +23,24 @@ export default {
 
         if (cleanText !== '' && !['menu', 'commands', 'list', 'cmds', 'm', 'help', 'cmd', 'commandlist', 'allcmds'].includes(firstWord)) {
             const commandName = cleanText.split(' ')[0];
-            return sendInteractive(client, m, `╭─❏ 「 Eʀʀᴏʀ」
-│ Yo ${m.pushName}, what's with the\n│ extra bullshit after "${commandName}"?\n│ Just type *${prefix}menu* properly, moron.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `✦ ──『 Eʀʀᴏʀ 』── ⚝
+▢ Yo ${m.pushName}, what's with the\n▢ extra bullshit after "${commandName}"?\n▢ Just type *${prefix}menu* properly, moron.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
 
         const menuText =
             `` +
-            `╭─❏ 「 Mᴇɴᴜ」
+            `✦ ──『 Mᴇɴᴜ 』── ⚝
 ` +
-            `│ \n` +
+            `▢ \n` +
             `Hoi  @${m.sender.split('@')[0].split(':')[0]}\n` +
-            `│ \n` +
-            `│ Bot: BLACK-PANTHER-MD\n` +
-            `│ Prefix: ${prefix}\n` +
-            `│ Mode: ${mode}\n` +
-            `│ \n` +
-            `│ Select a category below.\n` +
-            `╰───────────────\n` +
-            `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+            `▢ \n` +
+            `▢ Bot: BLACK-PANTHER-MD\n` +
+            `▢ Prefix: ${prefix}\n` +
+            `▢ Mode: ${mode}\n` +
+            `▢ \n` +
+            `▢ Select a category below.\n` +
+            `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n` +
+            ``;
 
         const sections = [
             {
@@ -82,38 +82,38 @@ export default {
         if (device === 'ios') {
             const iosMenuText =
                 `` +
-                `╭─❏ 「 Mᴇɴᴜ」
+                `✦ ──『 Mᴇɴᴜ 』── ⚝
 ` +
-                `│ \n` +
+                `▢ \n` +
                 `Hoi  @${m.sender.split('@')[0].split(':')[0]}\n` +
-                `│ \n` +
-                `│ Bot: BLACK-PANTHER-MD\n` +
-                `│ Prefix: ${prefix}\n` +
-                `│ Mode: ${mode}\n` +
-                `│ \n` +
-                `│ ⌜ 𝘾𝙤𝙧𝙚 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨 ⌟\n` +
-                `│ ${prefix}fullmenu — Display all commands\n` +
-                `│ ${prefix}dev — Send developer contact\n` +
-                `│ ${prefix}report — Report a bug to dev\n` +
-                `│ \n` +
-                `│ 𝙄𝙣𝙛𝙤 𝘽𝙤𝙩\n` +
-                `│ ${prefix}ping — Check bot speed\n` +
-                `│ ${prefix}settings — Show bot settings\n` +
-                `│ ${prefix}mode — Toggle bot mode\n` +
-                `│ ${prefix}uptime — Check bot uptime\n` +
-                `│ \n` +
-                `│ 𝘾𝙖𝙩𝙚𝙜𝙤𝙧𝙮 𝙈𝙚𝙣𝙪𝙨\n` +
-                `│ ${prefix}generalmenu — General commands\n` +
-                `│ ${prefix}settingsmenu — Bot settings commands\n` +
-                `│ ${prefix}ownermenu — Owner only commands\n` +
-                `│ ${prefix}groupmenu — Group management\n` +
-                `│ ${prefix}aimenu — AI & chat commands\n` +
-                `│ ${prefix}downloadmenu — Media downloaders\n` +
-                `│ ${prefix}editingmenu — Media editing tools\n` +
-                `│ ${prefix}effectsmenu — Text effect commands\n` +
-                `│ ${prefix}utilsmenu — Utility commands\n` +
-                `│ ${prefix}privacymenu — Privacy commands\n` +
-                `╰───────────────\n` +
+                `▢ \n` +
+                `▢ Bot: BLACK-PANTHER-MD\n` +
+                `▢ Prefix: ${prefix}\n` +
+                `▢ Mode: ${mode}\n` +
+                `▢ \n` +
+                `▢ ⌜ 𝘾𝙤𝙧𝙚 𝘾𝙤𝙢𝙢𝙖𝙣𝙙𝙨 ⌟\n` +
+                `▢ ${prefix}fullmenu — Display all commands\n` +
+                `▢ ${prefix}dev — Send developer contact\n` +
+                `▢ ${prefix}report — Report a bug to dev\n` +
+                `▢ \n` +
+                `▢ 𝙄𝙣𝙛𝙤 𝘽𝙤𝙩\n` +
+                `▢ ${prefix}ping — Check bot speed\n` +
+                `▢ ${prefix}settings — Show bot settings\n` +
+                `▢ ${prefix}mode — Toggle bot mode\n` +
+                `▢ ${prefix}uptime — Check bot uptime\n` +
+                `▢ \n` +
+                `▢ 𝘾𝙖𝙩𝙚𝙜𝙤𝙧𝙮 𝙈𝙚𝙣𝙪𝙨\n` +
+                `▢ ${prefix}generalmenu — General commands\n` +
+                `▢ ${prefix}settingsmenu — Bot settings commands\n` +
+                `▢ ${prefix}ownermenu — Owner only commands\n` +
+                `▢ ${prefix}groupmenu — Group management\n` +
+                `▢ ${prefix}aimenu — AI & chat commands\n` +
+                `▢ ${prefix}downloadmenu — Media downloaders\n` +
+                `▢ ${prefix}editingmenu — Media editing tools\n` +
+                `▢ ${prefix}effectsmenu — Text effect commands\n` +
+                `▢ ${prefix}utilsmenu — Utility commands\n` +
+                `▢ ${prefix}privacymenu — Privacy commands\n` +
+                `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n` +
                 `> 🌐 Hosted by GuruTech Hosting\n` +
                 `> 🔗 hosting.wa.me/254105521300`;
             await client.sendMessage(m.chat, {

@@ -27,7 +27,7 @@ export default {
         .join('');
     };
 
-    let menuText = `╭━⬣ 「 DOWNLOAD MENU」
+    let menuText = `╭━⬣ 「 DOWNLOAD MENU 』── ⚝
 ┃ Prefix: ${effectivePrefix || 'None'}\n┃ \n`;
 
     let commandFiles = fs.readdirSync('./plugins/Downloads').filter(file => file.endsWith('.js'));
@@ -38,7 +38,7 @@ export default {
     }
 
     menuText += `╰━━━━━━━━━━━━━━━\n`;
-    menuText += `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+    menuText += ``;
 
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         await client.sendMessage(m.chat, { text: menuText });

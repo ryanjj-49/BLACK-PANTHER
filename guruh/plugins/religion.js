@@ -2,7 +2,7 @@
 // ╭─────────────────────────────────────────╮
 //   BLACK PANTHER MD  ·  religion.js
 //   Bible & Quran lookups (ported from Vesper)
-// ╰─────────────────────────────────────────╯
+// └──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪────────────────────────────╯
 
 const axios      = require('axios');
 const { addCmd } = require('../../guru/handlers/loader');

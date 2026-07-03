@@ -40,8 +40,8 @@ addCmd({
         let text = `╭─❖ 📊 *TOP ${rows.length} COMMANDS* ❖─╮\n│\n`;
         rows.forEach((r, i) => {
             const medal = MEDALS[i] || `${i + 1}.`;
-            text += `│ ${medal} *${p}${r.command}*\n`;
-            text += `│    ${bar(r.uses, maxUse)} ${fmtNum(r.uses)} uses\n`;
+            text += `▢ ${medal} *${p}${r.command}*\n`;
+            text += `▢    ${bar(r.uses, maxUse)} ${fmtNum(r.uses)} uses\n`;
         });
         text += `│\n├─❖ Total uses: *${fmtNum(total)}*\n`;
         text += `╰─❖ Powered by ${config.OWNER_NAME} ❖─╯`;

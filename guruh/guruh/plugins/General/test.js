@@ -15,8 +15,8 @@ export default {
 
     if (text) {
       await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
-      return client.sendMessage(m.chat, { text: `╭━⬣ 「 Eʀʀᴏʀ」
-┃ Yo, @${m.sender.split('@')[0].split(':')[0]}, what's this extra\n┃ garbage? Just say .test, you clown.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇` }, { mentions: [m.sender] });
+      return client.sendMessage(m.chat, { text: `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ Yo, @${m.sender.split('@')[0].split(':')[0]}, what's this extra\n┃ garbage? Just say .test, you clown.\n╰━━━━━━━━━━━━━━━\n` }, { mentions: [m.sender] });
     }
 
     try {
@@ -44,14 +44,14 @@ export default {
         });
       } else {
         console.error('❌ Audio file not found at any of the following paths:', possibleAudioPaths);
-        await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ」
-┃ Shit, couldn't find test.mp3 in\n┃ GuruTech/. Fix your files, you slacker.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ 』── ⚝
+┃ Shit, couldn't find test.mp3 in\n┃ GuruTech/. Fix your files, you slacker.\n╰━━━━━━━━━━━━━━━\n`);
       }
     } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
       console.error('Error in test command:', error);
-      await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ Yo, something fucked up the test\n┃ audio. Try again later, dumbass.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+      await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ Yo, something fucked up the test\n┃ audio. Try again later, dumbass.\n╰━━━━━━━━━━━━━━━\n`);
     }
   }
 };

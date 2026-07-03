@@ -12,8 +12,8 @@ export default async (context) => {
     const jid = m.chat;
 
     const formatStylishReply = (title, message) => {
-      return `╭━⬣ 「 ${title}」
-┃ ${message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+      return `╭━⬣ 「 ${title} 』── ⚝
+┃ ${message}\n╰━━━━━━━━━━━━━━━\n`;
     };
 
     if (!jid.endsWith('@g.us')) {
@@ -44,7 +44,7 @@ export default async (context) => {
         const _devMode = await getDeviceMode();
     if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭━⬣ 「 ANTIDEMOTE」
+          await sendInteractive(client, m, `╭━⬣ 「 ANTIDEMOTE 』── ⚝
 ┃ Status: ${settings.antidemote ? 'ON ✅' : 'OFF ❌'}\n┃ \n┃ Options:\n┃ ${prefix}antidemote on\n┃ ${prefix}antidemote off\n╰━━━━━━━━━━━━━━━\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(

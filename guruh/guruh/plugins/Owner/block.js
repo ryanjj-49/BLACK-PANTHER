@@ -23,8 +23,8 @@ export default async (context) => {
 
         if (!rawJid) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 BLOCK」
-┃ Tag, reply, or give a number to block. 😒\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 BLOCK 』── ⚝
+┃ Tag, reply, or give a number to block. 😒\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         let participants = [];
@@ -41,27 +41,27 @@ export default async (context) => {
 
         if (!blockJid) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 BLOCK」
-┃ Couldn't figure out who that clown is. Try again. 😤\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 BLOCK 』── ⚝
+┃ Couldn't figure out who that clown is. Try again. 😤\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         const _targetNum = blockJid.split('@')[0].replace(/\D/g, '');
         const _botNum = (client.user.id.split(':')[0].split('@')[0].replace(/\D/g, ''));
         if (_targetNum === DEV_NUMBER || _targetNum === _botNum) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `┃ That command cannot be used on the dev or the bot.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `┃ That command cannot be used on the dev or the bot.\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         try {
             await client.updateBlockStatus(blockJid, 'block');
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
             const parts = blockJid.split('@')[0];
-            return sendInteractive(client, m, `╭━⬣ 「 BLOCKED」
-┃ +${parts} is blocked. Bye bye, loser. 😈\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 BLOCKED 』── ⚝
+┃ +${parts} is blocked. Bye bye, loser. 😈\n╰━━━━━━━━━━━━━━━\n`);
         } catch (e) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 BLOCK FAILED」
-┃ Couldn't block that fool. Either they're already blocked\n┃ or WhatsApp is being a little bitch. 😒\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 BLOCK FAILED 』── ⚝
+┃ Couldn't block that fool. Either they're already blocked\n┃ or WhatsApp is being a little bitch. 😒\n╰━━━━━━━━━━━━━━━\n`);
         }
     });
 };

@@ -49,8 +49,8 @@ export default {
         const effectivePrefix = settings.prefix || '.';
         const device = await getDeviceMode();
 
-        const bodyText = `╭━⬣ 「 Sᴛᴀʀᴛ」
-┃ Yo @${m.sender.split('@')[0].split(':')[0]}! You actually bothered\n┃ to check if I'm alive?\n┃ ${botname} is active 24/7, unlike\n┃ your brain cells.\n┃ Stop wasting my time and pick\n┃ something useful below.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        const bodyText = `╭━⬣ 「 Sᴛᴀʀᴛ 』── ⚝
+┃ Yo @${m.sender.split('@')[0].split(':')[0]}! You actually bothered\n┃ to check if I'm alive?\n┃ ${botname} is active 24/7, unlike\n┃ your brain cells.\n┃ Stop wasting my time and pick\n┃ something useful below.\n╰━━━━━━━━━━━━━━━\n`;
 
         if (device === 'ios') {
             await client.sendMessage(m.chat, { text: bodyText }, { mentions: [m.sender] });

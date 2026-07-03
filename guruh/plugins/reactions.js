@@ -2,7 +2,7 @@
 // ╭─────────────────────────────────────────╮
 //   BLACK PANTHER MD  ·  reactions.js
 //   Anime reaction stickers (waifu.pics)
-// ╰─────────────────────────────────────────╯
+// └──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪────────────────────────────╯
 
 const axios   = require('axios');
 const { Sticker, StickerTypes } = require('wa-sticker-formatter');

@@ -35,7 +35,7 @@ export default {
                 }
             }
         }
-        await sendInteractive(client, m, `╭━⬣ 「 TMP CLEANED」
-┃ ✅ Deleted: ${deleted} file(s)\n┃ ⏩ Skipped: ${skipped} item(s)\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `╭━⬣ 「 TMP CLEANED 』── ⚝
+┃ ✅ Deleted: ${deleted} file(s)\n┃ ⏩ Skipped: ${skipped} item(s)\n╰━━━━━━━━━━━━━━━\n`);
     }
 };

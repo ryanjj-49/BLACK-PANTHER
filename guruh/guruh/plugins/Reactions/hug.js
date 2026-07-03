@@ -37,7 +37,7 @@ export default {
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
             if (!target) {
                 await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-                return sendInteractive(client, m, `┃ Tag or quote someone to hug.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+                return sendInteractive(client, m, `┃ Tag or quote someone to hug.\n╰━━━━━━━━━━━━━━━\n`);
             }
             const resolvedTarget = resolveDisplayJid(target);
             const tNum = resolvedTarget.split('@')[0];
@@ -56,11 +56,11 @@ export default {
                 `@${sNum} hugged @${tNum}. Finally some peace in this group. 🤗`,
             ];
             await client.sendMessage(m.chat, {
-                text: `┃ ${lines[Math.floor(Math.random() * lines.length)]}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`,
+                text: `┃ ${lines[Math.floor(Math.random() * lines.length)]}\n╰━━━━━━━━━━━━━━━\n`,
                 mentions: [m.sender, resolvedTarget]
             });
         } catch {
-            await sendInteractive(client, m, `┃ Hug failed. Try again.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `┃ Hug failed. Try again.\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

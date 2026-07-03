@@ -2,7 +2,7 @@
 // ╭─────────────────────────────────────────╮
 //   BLACK PANTHER MD  ·  audiofx.js
 //   FFmpeg audio effects (ported from Vesper)
-// ╰─────────────────────────────────────────╯
+// └──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪────────────────────────────╯
 
 const { addCmd }               = require('../../guru/handlers/loader');
 const { downloadMediaMessage } = require('@whiskeysockets/baileys');

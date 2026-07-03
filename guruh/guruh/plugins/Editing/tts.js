@@ -8,8 +8,8 @@ export default async (context) => {
 
   if (!text) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      return sendInteractive(client, m, `╭━⬣ 「 TTS」
-┃ Where is the text for conversion?\n┃ Can't you read instructions?\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+      return sendInteractive(client, m, `╭━⬣ 「 TTS 』── ⚝
+┃ Where is the text for conversion?\n┃ Can't you read instructions?\n╰━━━━━━━━━━━━━━━\n`);
   }
 
   await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -24,8 +24,8 @@ export default async (context) => {
     await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
   } catch (e) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-    sendInteractive(client, m, `╭━⬣ 「 TTS ERROR」
-┃ TTS failed. Try again.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    sendInteractive(client, m, `╭━⬣ 「 TTS ERROR 』── ⚝
+┃ TTS failed. Try again.\n╰━━━━━━━━━━━━━━━\n`);
   }
 
   }

@@ -27,7 +27,7 @@ export default {
         .join('');
     };
 
-    let menuText = `╭━⬣ 「 GROUPS MENU」
+    let menuText = `╭━⬣ 「 GROUPS MENU 』── ⚝
 ┃ Prefix: ${effectivePrefix || 'None'}\n┃ \n`;
 
     let commandFiles = fs.readdirSync('./plugins/Groups').filter(file => file.endsWith('.js'));

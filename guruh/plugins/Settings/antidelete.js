@@ -10,8 +10,8 @@ export default async (context) => {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
     const formatStylishReply = (title, message) => {
-      return `╭─❏ 「 ${title}」
-│ ${message}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+      return `✦ ──『 ${title} 』── ⚝
+▢ ${message}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
     };
 
     try {
@@ -34,7 +34,7 @@ export default async (context) => {
 
           return await client.sendMessage(
             m.chat,
-            { text: formatStylishReply("ANTIDELETE", `Antidelete's already ${value.toUpperCase()}, you brain-dead fool! Stop wasting my time.\n│ \n│ 📌 Usage: ${prefix}antidelete on | ${prefix}antidelete off`) },
+            { text: formatStylishReply("ANTIDELETE", `Antidelete's already ${value.toUpperCase()}, you brain-dead fool! Stop wasting my time.\n▢ \n▢ 📌 Usage: ${prefix}antidelete on | ${prefix}antidelete off`) },
             { ad: true }
           );
         }
@@ -43,7 +43,7 @@ export default async (context) => {
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
         return await client.sendMessage(
           m.chat,
-          { text: formatStylishReply("ANTIDELETE", `Antidelete ${value.toUpperCase()} activated! ${action ? 'No one\'s erasing shit on my watch, king!' : 'Deletions are free to slide, you\'re not worth catching.'}\n│ \n│ 📌 Usage: ${prefix}antidelete on | ${prefix}antidelete off`) },
+          { text: formatStylishReply("ANTIDELETE", `Antidelete ${value.toUpperCase()} activated! ${action ? 'No one\'s erasing shit on my watch, king!' : 'Deletions are free to slide, you\'re not worth catching.'}\n▢ \n▢ 📌 Usage: ${prefix}antidelete on | ${prefix}antidelete off`) },
           { ad: true }
         );
       }
@@ -51,14 +51,14 @@ export default async (context) => {
             const _devMode = await getDeviceMode();
       if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭─❏ 「 ANTIDELETE」
-│ Status: ${settings.antidelete ? 'ON ✅' : 'OFF ❌'}\n│ \n│ Options:\n│ ${prefix}antidelete on\n│ ${prefix}antidelete off\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
+          await sendInteractive(client, m, `✦ ──『 ANTIDELETE 』── ⚝
+▢ Status: ${settings.antidelete ? 'ON ✅' : 'OFF ❌'}\n▢ \n▢ Options:\n▢ ${prefix}antidelete on\n▢ ${prefix}antidelete off\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(
             m.chat,
             {
                 interactiveMessage: {
-                    body: { text: formatStylishReply("ANTIDELETE", `Antidelete's ${settings.antidelete ? 'ON' : 'OFF'}, dumbass. Pick a vibe, noob!\n│ \n│ 📌 Usage: ${prefix}antidelete on | ${prefix}antidelete off`) },
+                    body: { text: formatStylishReply("ANTIDELETE", `Antidelete's ${settings.antidelete ? 'ON' : 'OFF'}, dumbass. Pick a vibe, noob!\n▢ \n▢ 📌 Usage: ${prefix}antidelete on | ${prefix}antidelete off`) },
                     footer: { text: '' },
                     nativeFlowMessage: {
                         buttons: [

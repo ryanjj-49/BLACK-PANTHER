@@ -16,7 +16,7 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
           const query = (m.text || '').replace(/^\S+\s*/, '').trim();
 
           if (!query) {
-              return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
+              return sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
 ┃ Give me some text to convert.\n┃ Example: ${prefix}pdf Hello world this is my document\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞᠊ʀᴇᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`);
           }
 
@@ -30,12 +30,12 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
                   document: pdfBuf,
                   mimetype: 'application/pdf',
                   fileName: `document_${Date.now()}.pdf`,
-                  caption: `╭━⬣ 「 PDF Cʀᴇᴀᴛᴇᴅ」
+                  caption: `╭━⬣ 「 PDF Cʀᴇᴀᴛᴇᴅ 』── ⚝
 ┃ Here's your document.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞᠊ʀᴇᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`
               });
           } catch {
               await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-              await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
+              await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
 ┃ PDF creation failed. Try again.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞᠊ʀᴇᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`);
           }
       }

@@ -10,9 +10,9 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         const city = (text || '').trim();
         if (!city) {
-            return sendInteractive(client, m, `╭━⬣ 「 Wᴇᴀᴛʜᴇʀ」
+            return sendInteractive(client, m, `╭━⬣ 「 Wᴇᴀᴛʜᴇʀ 』── ⚝
 ┃
-┃ Give me a city name, genius.\n┃ Usage: .weather Nairobi\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ Give me a city name, genius.\n┃ Usage: .weather Nairobi\n╰━━━━━━━━━━━━━━━\n`);
         }
         try {
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -29,14 +29,14 @@ export default {
             const wind = w.windspeedKmph || '?';
             const visibility = w.visibility || '?';
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 Wᴇᴀᴛʜᴇʀ」
+            return sendInteractive(client, m, `╭━⬣ 「 Wᴇᴀᴛʜᴇʀ 』── ⚝
 ┃
-┃ 📍 ${areaName}, ${country}\n┃ ☁️ ${desc}\n┃ 🌡️ Temp: ${tempC}°C (Feels ${feelsC}°C)\n┃ 💧 Humidity: ${humidity}%\n┃ 💨 Wind: ${wind} km/h\n┃ 👁️ Visibility: ${visibility} km\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ 📍 ${areaName}, ${country}\n┃ ☁️ ${desc}\n┃ 🌡️ Temp: ${tempC}°C (Feels ${feelsC}°C)\n┃ 💧 Humidity: ${humidity}%\n┃ 💨 Wind: ${wind} km/h\n┃ 👁️ Visibility: ${visibility} km\n╰━━━━━━━━━━━━━━━\n`);
         } catch (e) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            return sendInteractive(client, m, `╭━⬣ 「 Wᴇᴀᴛʜᴇʀ」
+            return sendInteractive(client, m, `╭━⬣ 「 Wᴇᴀᴛʜᴇʀ 』── ⚝
 ┃
-┃ Weather API is throwing a tantrum. Try again.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+┃ Weather API is throwing a tantrum. Try again.\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

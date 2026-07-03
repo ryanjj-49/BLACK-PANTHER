@@ -6,7 +6,7 @@ export default async (context) => {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
     const formatStylishReply = (message) => {
-        return `┃ ${message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        return `┃ ${message}\n╰━━━━━━━━━━━━━━━\n`;
     };
 
     const fetchWithRetry = async (url, options, retries = 3, delay = 1000) => {

@@ -7,16 +7,16 @@ export default async (context) => {
 
   if (!text) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-    return sendInteractive(client, m, `╭━⬣ 「 LOGO GEN」
-┃ Enter title, idea, and slogan.\n┃ Format: _logogen Title|Idea|Slogan_\n┃ \n┃ Example: _logogen GuruTech|AI-Powered\n┃ Services|Innovation Meets Simplicity_\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    return sendInteractive(client, m, `╭━⬣ 「 LOGO GEN 』── ⚝
+┃ Enter title, idea, and slogan.\n┃ Format: _logogen Title|Idea|Slogan_\n┃ \n┃ Example: _logogen GuruTech|AI-Powered\n┃ Services|Innovation Meets Simplicity_\n╰━━━━━━━━━━━━━━━\n`);
   }
 
   const [title, idea, slogan] = text.split("|");
 
   if (!title || !idea || !slogan) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-    return sendInteractive(client, m, `╭━⬣ 「 LOGO GEN」
-┃ Incorrect format, are you illiterate?\n┃ Use: _logogen Title|Idea|Slogan_\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    return sendInteractive(client, m, `╭━⬣ 「 LOGO GEN 』── ⚝
+┃ Incorrect format, are you illiterate?\n┃ Use: _logogen Title|Idea|Slogan_\n╰━━━━━━━━━━━━━━━\n`);
   }
 
   await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -38,21 +38,21 @@ export default async (context) => {
 
     if (!data.data.logoList || data.data.logoList.length === 0) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      return sendInteractive(client, m, `╭━⬣ 「 FAILED」
-┃ Failed to generate logo.\n┃ Try again, loser.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+      return sendInteractive(client, m, `╭━⬣ 「 FAILED 』── ⚝
+┃ Failed to generate logo.\n┃ Try again, loser.\n╰━━━━━━━━━━━━━━━\n`);
     }
 
     for (const logo of data.data.logoList) {
       await client.sendMessage(m.chat, {
         image: { url: logo.logo_thumb },
-        caption: `╭━⬣ 「 LOGO」
-┃ Generated Logo for "${title}"\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`
+        caption: `╭━⬣ 「 LOGO 』── ⚝
+┃ Generated Logo for "${title}"\n╰━━━━━━━━━━━━━━━\n`
       });
     }
   } catch (err) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
     console.error("Logo generation error:", err);
-    await sendInteractive(client, m, `╭━⬣ 「 ERROR」
-┃ An error occurred while creating\n┃ the logo. Pathetic.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    await sendInteractive(client, m, `╭━⬣ 「 ERROR 』── ⚝
+┃ An error occurred while creating\n┃ the logo. Pathetic.\n╰━━━━━━━━━━━━━━━\n`);
   }
 };

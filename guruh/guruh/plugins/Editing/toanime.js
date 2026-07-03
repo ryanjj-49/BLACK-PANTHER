@@ -42,8 +42,8 @@ export default {
 
         if (!quoted) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 TO ANIME」
-┃ Send or reply to an image!\n┃ Example: Send image → .toanime\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 TO ANIME 』── ⚝
+┃ Send or reply to an image!\n┃ Example: Send image → .toanime\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         let quotedMime = '';
@@ -57,8 +57,8 @@ export default {
 
         if (!quotedMime || !quotedMime.startsWith('image/')) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭━⬣ 「 TO ANIME」
-┃ The replied message is *not an image*!\n┃ Please send or reply to a *photo*.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 TO ANIME 』── ⚝
+┃ The replied message is *not an image*!\n┃ Please send or reply to a *photo*.\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -69,8 +69,8 @@ export default {
 
             if (media.length > 10 * 1024 * 1024) {
                 await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-                return sendInteractive(client, m, `╭━⬣ 「 TO ANIME」
-┃ Image too large! Max 10MB.\n┃ Compress it, you hoarder.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+                return sendInteractive(client, m, `╭━⬣ 「 TO ANIME 』── ⚝
+┃ Image too large! Max 10MB.\n┃ Compress it, you hoarder.\n╰━━━━━━━━━━━━━━━\n`);
             }
 
             const { url: imageUrl } = await uploadImage(media);
@@ -90,8 +90,8 @@ export default {
 
             await client.sendMessage(m.chat, {
                 image: animeBuffer,
-                caption: `╭━⬣ 「 ANIME TRANSFORMATION」
-┃ ANIME TRANSFORMATION COMPLETE!\n┃ Look at this weeb result.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`,
+                caption: `╭━⬣ 「 ANIME TRANSFORMATION 』── ⚝
+┃ ANIME TRANSFORMATION COMPLETE!\n┃ Look at this weeb result.\n╰━━━━━━━━━━━━━━━\n`,
                 mentions: [m.sender]
             });
 
@@ -103,8 +103,8 @@ export default {
                 ? `API Error: ${err.response.status}`
                 : err.message.includes('timeout') ? 'API timed out.' : 'Failed. Try again later.';
 
-            await sendInteractive(client, m, `╭━⬣ 「 ERROR」
-┃ ${errorMsg}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 ERROR 』── ⚝
+┃ ${errorMsg}\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

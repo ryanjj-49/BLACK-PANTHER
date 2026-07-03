@@ -25,8 +25,8 @@ export default {
       const secs = Math.floor(uptime % 60);
       const uptimeStr = `${days}d ${hours}h ${mins}m ${secs}s`;
 
-      const caption = `╭─❏ 「 I'ᴍ Aʟɪᴠᴇ」
-│ @${m.sender.split('@')[0]}, I'm up and running.\n│ Been alive for ${uptimeStr}.\n│ Type *${prefix}menu* if you need\n│ help, which you probably do.\n╰───────────────`;
+      const caption = `✦ ──『 I'ᴍ Aʟɪᴠᴇ 』── ⚝
+▢ @${m.sender.split('@')[0]}, I'm up and running.\n▢ Been alive for ${uptimeStr}.\n▢ Type *${prefix}menu* if you need\n▢ help, which you probably do.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
 
       if (pict && Buffer.isBuffer(pict)) {
         await client.sendMessage(m.chat, {
@@ -63,8 +63,8 @@ export default {
 
     } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      await sendInteractive(client, m, `╭─❏ 「 Cʀᴀsʜᴇᴅ」
-│ Something broke, @${m.sender.split('@')[0].split(':')[0]}.\n│ Error: ${error.message}\n│ Try again when I feel like it.\n╰───────────────`);
+      await sendInteractive(client, m, `✦ ──『 Cʀᴀsʜᴇᴅ 』── ⚝
+▢ Something broke, @${m.sender.split('@')[0].split(':')[0]}.\n▢ Error: ${error.message}\n▢ Try again when I feel like it.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
     }
   }
 };

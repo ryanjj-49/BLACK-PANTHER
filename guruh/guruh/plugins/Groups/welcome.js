@@ -10,7 +10,7 @@ export default async (context) => {
         const jid = m.chat;
 
         const fmt = (msg) =>
-            `┃ ${msg}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+            `┃ ${msg}\n╰━━━━━━━━━━━━━━━\n`;
 
         try {
             if (!jid.endsWith('@g.us')) {

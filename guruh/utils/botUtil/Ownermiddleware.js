@@ -7,7 +7,7 @@ const Ownermiddleware = async (context, next) => {
         const key  = m?.reactKey || m?.key;
         if (chat && context.client) {
             await context.client.sendMessage(chat, {
-                text: `╭─❏ 「 Aᴄᴄᴇss Dᴇɴɪᴇᴅ 」\n│ Owner-only command.\n│ Only *GuruTech* can use this.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`,
+                text: `✦ ──『 Aᴄᴄᴇss Dᴇɴɪᴇᴅ  』── ⚝\n▢ Owner-only command.\n▢ Only *GuruTech* can use this.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`,
             }, { quoted: m }).catch(() => {});
         }
         return;

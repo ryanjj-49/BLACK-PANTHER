@@ -11,7 +11,7 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
 
       if (!/image/.test(mime)) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-          return sendInteractive(client, m, `╭━⬣ 「 Mɪssɪɴɢ Iᴍᴀɢᴇ」
+          return sendInteractive(client, m, `╭━⬣ 「 Mɪssɪɴɢ Iᴍᴀɢᴇ 』── ⚝
 ┃ Give me an image you dumbass\n┃ Reply to an image first\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞᠊ʀᴇᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`);
       }
 
@@ -25,12 +25,12 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
           await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
           await client.sendMessage(m.chat, {
               image: { url: resultUrl },
-              caption: `╭━⬣ 「 Eɴʜᴀɴᴄᴇᴅ Iᴍᴀɢᴇ」
+              caption: `╭━⬣ 「 Eɴʜᴀɴᴄᴇᴅ Iᴍᴀɢᴇ 』── ⚝
 ┃ Your shitty image is now HD.\n┃ Still looks like garbage though.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞᠊ʀᴇᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`
           });
       } catch {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-          await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ」
+          await sendInteractive(client, m, `╭━⬣ 「 Fᴀɪʟᴇᴅ 』── ⚝
 ┃ Enhancement failed. Try again.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞᠊ʀᴇᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`);
       }
   };

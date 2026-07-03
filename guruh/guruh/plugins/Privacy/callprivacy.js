@@ -8,7 +8,7 @@ export default async (context) => {
         const { client, m, args, prefix } = context;
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
-        const fmt = (msg) => `╭━⬣ 「 CALL PRIVACY」
+        const fmt = (msg) => `╭━⬣ 「 CALL PRIVACY 』── ⚝
 ┃ ${msg}\n╰━━━━━━━━━━━━━━━\n> ©𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`;
         const options = ['all', 'known', 'none'];
         const value = (args[0] || '').toLowerCase();
@@ -28,7 +28,7 @@ export default async (context) => {
                 const _devMode = await getDeviceMode();
         if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭━⬣ 「 CALLPRIVACY」
+          await sendInteractive(client, m, `╭━⬣ 「 CALLPRIVACY 』── ⚝
 ┃ Status: ${isEnabled !== undefined ? (isEnabled ? 'ON ✅' : 'OFF ❌') : settings.callprivacy !== undefined ? (settings.callprivacy ? 'ON ✅' : 'OFF ❌') : 'See settings'}\n┃ \n┃ Options:\n┃ ${prefix}callprivacy all\n┃ ${prefix}callprivacy known\n┃ ${prefix}callprivacy none\n╰━━━━━━━━━━━━━━━\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(m.chat, {

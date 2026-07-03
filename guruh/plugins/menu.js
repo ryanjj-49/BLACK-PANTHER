@@ -136,14 +136,14 @@ addCmd({
         const displayName = ctx.pushName || 'Unknown';
         const statusBlock =
             `╭──────────────╮\n` +
-            `│  ${config.BOT_NAME}\n` +
+            `▢  ${config.BOT_NAME}\n` +
             `├──────────────╯\n` +
-            `│ ${greeting}, *${displayName}*\n` +
-            `│ ${timeGreet} · ${now('hh:mm A')}\n` +
-            `│ Prefix : ${p}\n` +
-            `│ Uptime : ${uptime}\n` +
-            `│ Mode   : ${config.MODE}\n` +
-            `│ Owner  : ${config.OWNER_NAME}\n` +
+            `▢ ${greeting}, *${displayName}*\n` +
+            `▢ ${timeGreet} · ${now('hh:mm A')}\n` +
+            `▢ Prefix : ${p}\n` +
+            `▢ Uptime : ${uptime}\n` +
+            `▢ Mode   : ${config.MODE}\n` +
+            `▢ Owner  : ${config.OWNER_NAME}\n` +
             `╰──────────────╯`;
 
         const expiryStatusLine = expiry.urgent
@@ -163,16 +163,16 @@ addCmd({
         menu += `${statusBlock}\n\n`;
         menu += `${expiryStatusLine}\n\n`;
         menu += `╭═❖ *${now('DD MMM YYYY')}*  ·  *${now('hh:mm:ss A')}* ❖═╮\n`;
-        menu += `╰──────────────────────────╯\n\n`;
+        menu += `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪─────────────╯\n\n`;
         menu += `╭═❖ *CATEGORIES* ❖═╮\n`;
-        menu += `│ Reply 1-${numbered.length} or use \`${p}menu <name>\`\n`;
+        menu += `▢ Reply 1-${numbered.length} or use \`${p}menu <name>\`\n`;
         menu += `├──────────────────╯\n`;
 
         numbered.forEach((cat, i) => {
             const num = String(i + 1).padStart(2, '0');
-            menu += `│ ${num}  ${cat.icon}  ${cat.label}\n`;
+            menu += `▢ ${num}  ${cat.icon}  ${cat.label}\n`;
         });
-        menu += `╰──────────────────╯\n\n`;
+        menu += `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪─────╯\n\n`;
 
         // Save numbered list as pending so user can reply with the number
         setPending(ctx.from, numbered);
@@ -615,8 +615,8 @@ addCmd({
                 body += `${prefix}◈ \`${p}${c.name}\``;
                 if (c.aliases?.length) body += ` _(${c.aliases.slice(0, 2).join('/')})_`;
                 body += '\n';
-                if (c.desc)  body += `${isLast ? '   ' : '│  '} ↳ _${c.desc}_\n`;
-                if (c.usage) body += `${isLast ? '   ' : '│  '} 📌 \`${p}${c.usage}\`\n`;
+                if (c.desc)  body += `${isLast ? '   ' : '▢  '} ↳ _${c.desc}_\n`;
+                if (c.usage) body += `${isLast ? '   ' : '▢  '} 📌 \`${p}${c.usage}\`\n`;
                 total++;
             });
             body += '\n';

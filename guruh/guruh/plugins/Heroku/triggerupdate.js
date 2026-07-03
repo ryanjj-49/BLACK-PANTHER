@@ -13,7 +13,7 @@ export default async (context) => {
             `` +
             `┃ ${message}\n` +
             `╰━━━━━━━━━━━━━━━
-> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇\n` +
+\n` +
             `xD`
         );
     };

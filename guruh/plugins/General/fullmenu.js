@@ -59,8 +59,8 @@ export default {
         .join('');
     };
 
-    let menuText = `╭─❏ 「 Fᴜʟʟ Mᴇɴᴜ」
-│ Greetings, @${m.sender.split('@')[0].split(':')[0]}\n│ \n│ Bot: ${botname}\n│ Total Commands: ${totalCommands}\n│ Time: ${getCurrentTimeInNairobi()}\n│ Prefix: ${effectivePrefix || 'None'}\n│ Mode: ${mode}\n│ Library: Baileys\n╰───────────────\n\n`;
+    let menuText = `✦ ──『 Fᴜʟʟ Mᴇɴᴜ 』── ⚝
+▢ Greetings, @${m.sender.split('@')[0].split(':')[0]}\n▢ \n▢ Bot: ${botname}\n▢ Total Commands: ${totalCommands}\n▢ Time: ${getCurrentTimeInNairobi()}\n▢ Prefix: ${effectivePrefix || 'None'}\n▢ Mode: ${mode}\n▢ Library: Baileys\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n\n`;
 
     for (const category of categories) {
       let commandFiles;
@@ -70,13 +70,13 @@ export default {
 
       if (commandFiles.length === 0 && category.name !== 'NSFW') continue;
 
-      menuText += `╭─❏ 「 ${category.display}」
+      menuText += `✦ ──『 ${category.display} 』── ⚝
 `;
 
       if (category.name === 'NSFW') {
         const plus18Commands = ['xvideo'];
         for (const cmd of plus18Commands) {
-          menuText += `│ *${toFancyFont(cmd)}*\n`;
+          menuText += `▢ *${toFancyFont(cmd)}*\n`;
         }
       }
 
@@ -89,7 +89,7 @@ export default {
           const mod = modRaw.default !== undefined ? modRaw.default : modRaw;
           if (Array.isArray(mod)) {
             for (const cmd of mod) {
-              if (cmd && cmd.name) menuText += `│ *${toFancyFont(cmd.name)}*\n`;
+              if (cmd && cmd.name) menuText += `▢ *${toFancyFont(cmd.name)}*\n`;
             }
             continue;
           }
@@ -97,13 +97,13 @@ export default {
             displayName = mod.name;
           }
         } catch (e) {}
-        menuText += `│ *${toFancyFont(displayName)}*\n`;
+        menuText += `▢ *${toFancyFont(displayName)}*\n`;
       }
 
-      menuText += `╰───────────────\n\n`;
+      menuText += `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n\n`;
     }
 
-    menuText += `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+    menuText += ``;
 
     await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
     await client.sendMessage(m.chat, {
@@ -124,11 +124,11 @@ export default {
 
     if (device === 'ios') {
       const iosCategoryText = sections.map(s =>
-        `│ ${s.rows[0]?.id || ''} — ${s.rows[0]?.description || s.title}`
+        `▢ ${s.rows[0]?.id || ''} — ${s.rows[0]?.description || s.title}`
       ).join('\n');
       await client.sendMessage(m.chat, {
-        text: `╭─❏ 「 Categories」
-${iosCategoryText}\n╰───────────────\n> 🌐 Hosted by GuruTech Hosting\n> 🔗 hosting.wa.me/254105521300`,
+        text: `✦ ──『 Categories 』── ⚝
+${iosCategoryText}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 Hosted by GuruTech Hosting\n> 🔗 hosting.wa.me/254105521300`,
         contextInfo: { mentionedJid: [m.sender] }
       });
       await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
@@ -139,7 +139,7 @@ ${iosCategoryText}\n╰───────────────\n> 🌐 Hos
       const interactiveMsg = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
         interactiveMessage: {
           body: { text: 'Browse Categories' },
-          footer: { text: '©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇' },
+          footer: { text: '✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪' },
           header: { hasMediaAttachment: false },
           nativeFlowMessage: {
             messageVersion: 1,

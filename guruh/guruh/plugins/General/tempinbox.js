@@ -13,8 +13,8 @@ export default {
         const sessionId = args[1];
 
         if (!sessionId) {
-            return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴍᴘ Iɴʙᴏx」
-┃ Yo, where's the session ID?\n┃ You created the temp mail, right?\n┃ Usage: ${prefix}tempinbox YOUR_SESSION_ID\n┃ Example: ${prefix}tempinbox U2Vzc2lvbjoc5LI1OhFHh4tv21skV965\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴍᴘ Iɴʙᴏx 』── ⚝
+┃ Yo, where's the session ID?\n┃ You created the temp mail, right?\n┃ Usage: ${prefix}tempinbox YOUR_SESSION_ID\n┃ Example: ${prefix}tempinbox U2Vzc2lvbjoc5LI1OhFHh4tv21skV965\n╰━━━━━━━━━━━━━━━\n`);
         }
 
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -33,11 +33,11 @@ export default {
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
 
             if (totalEmails === 0) {
-                return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴍᴘ Iɴʙᴏx」
-┃ Inbox is empty, genius.\n┃ No emails yet.\n┃ Use your temp email somewhere\n┃ and check back.\n┃ Total Emails: 0\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+                return sendInteractive(client, m, `╭━⬣ 「 Tᴇᴍᴘ Iɴʙᴏx 』── ⚝
+┃ Inbox is empty, genius.\n┃ No emails yet.\n┃ Use your temp email somewhere\n┃ and check back.\n┃ Total Emails: 0\n╰━━━━━━━━━━━━━━━\n`);
             }
 
-            let inboxText = `╭━⬣ 「 Tᴇᴍᴘ Iɴʙᴏx」
+            let inboxText = `╭━⬣ 「 Tᴇᴍᴘ Iɴʙᴏx 』── ⚝
 ┃ Inbox: ${totalEmails} email${totalEmails > 1 ? 's' : ''} found\n`;
 
             emails.forEach((email, index) => {
@@ -53,7 +53,7 @@ export default {
                 }
             });
 
-            inboxText += `╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+            inboxText += `╰━━━━━━━━━━━━━━━\n`;
 
             if (inboxText.length > 4000) {
                 const firstPart = inboxText.substring(0, 4000);
@@ -80,7 +80,7 @@ export default {
                 errorMessage += `Error: ${error.message}`;
             }
 
-            await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ ${errorMessage}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ ${errorMessage}\n╰━━━━━━━━━━━━━━━\n`);
         }
     } };

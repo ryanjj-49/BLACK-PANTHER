@@ -3,7 +3,7 @@ export default async (context) => {
   const { client, m } = context;
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
-  const message = `╭━⬣ 「 Sᴜᴘᴘᴏʀᴛ Lɪɴᴋs」
+  const message = `╭━⬣ 「 Sᴜᴘᴘᴏʀᴛ Lɪɴᴋs 』── ⚝
 ┃ *Owner*
 ┃ https:
 ┃ 
@@ -13,7 +13,7 @@ export default async (context) => {
 ┃ *Group*
 ┃ https:
 ╰━━━━━━━━━━━━━━━
-> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+`;
 
   try {
     await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -24,7 +24,7 @@ export default async (context) => {
   } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
     console.error("Support command error:", error);
-    await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ」
-┃ Failed to send support links.\n┃ Try again, you impatient fool.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+    await sendInteractive(client, m, `╭━⬣ 「 Eʀʀᴏʀ 』── ⚝
+┃ Failed to send support links.\n┃ Try again, you impatient fool.\n╰━━━━━━━━━━━━━━━\n`);
   }
 };

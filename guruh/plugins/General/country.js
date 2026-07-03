@@ -10,9 +10,9 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         const query = (text || '').trim();
         if (!query) {
-            return sendInteractive(client, m, `╭─❏ 「 Cᴏᴜɴᴛʀʏ Iɴғᴏ」
+            return sendInteractive(client, m, `✦ ──『 Cᴏᴜɴᴛʀʏ Iɴғᴏ 』── ⚝
 │
-│ Usage: .country Kenya\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+▢ Usage: .country Kenya\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
         try {
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -29,14 +29,14 @@ export default {
             const langs = Object.values(c.languages || {}).join(', ') || '?';
             const flag = c.flag || '';
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
-            return sendInteractive(client, m, `╭─❏ 「 Cᴏᴜɴᴛʀʏ Iɴғᴏ」
+            return sendInteractive(client, m, `✦ ──『 Cᴏᴜɴᴛʀʏ Iɴғᴏ 』── ⚝
 │
-│ ${flag} ${name}\n│ 📋 Official: ${official}\n│ 🏙️ Capital: ${capital}\n│ 🌍 Region: ${region}${sub ? ' / ' + sub : ''}\n│ 👥 Population: ${pop}\n│ 💰 Currency: ${currencies}\n│ 🗣️ Language(s): ${langs}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+▢ ${flag} ${name}\n▢ 📋 Official: ${official}\n▢ 🏙️ Capital: ${capital}\n▢ 🌍 Region: ${region}${sub ? ' / ' + sub : ''}\n▢ 👥 Population: ${pop}\n▢ 💰 Currency: ${currencies}\n▢ 🗣️ Language(s): ${langs}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            return sendInteractive(client, m, `╭─❏ 「 Cᴏᴜɴᴛʀʏ Iɴғᴏ」
+            return sendInteractive(client, m, `✦ ──『 Cᴏᴜɴᴛʀʏ Iɴғᴏ 』── ⚝
 │
-│ Country not found. Did you make it up?\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+▢ Country not found. Did you make it up?\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
     }
 };

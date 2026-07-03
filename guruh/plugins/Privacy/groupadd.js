@@ -8,8 +8,8 @@ export default async (context) => {
         const { client, m, args, prefix } = context;
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
-        const fmt = (msg) => `╭─❏ 「 GROUP ADD」
-│ ${msg}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+        const fmt = (msg) => `✦ ──『 GROUP ADD 』── ⚝
+▢ ${msg}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
         const options = ['all', 'contacts', 'contact_blacklist', 'none'];
         const value = (args[0] || '').toLowerCase();
 
@@ -28,8 +28,8 @@ export default async (context) => {
                 const _devMode = await getDeviceMode();
         if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭─❏ 「 GROUPADD」
-│ Status: ${isEnabled !== undefined ? (isEnabled ? 'ON ✅' : 'OFF ❌') : settings.groupadd !== undefined ? (settings.groupadd ? 'ON ✅' : 'OFF ❌') : 'See settings'}\n│ \n│ Options:\n│ ${prefix}groupadd all\n│ ${prefix}groupadd contacts\n│ ${prefix}groupadd contact_blacklist\n│ ${prefix}groupadd none\n╰───────────────\n> 🌐 hosting.wa.me/254105521300`);
+          await sendInteractive(client, m, `✦ ──『 GROUPADD 』── ⚝
+▢ Status: ${isEnabled !== undefined ? (isEnabled ? 'ON ✅' : 'OFF ❌') : settings.groupadd !== undefined ? (settings.groupadd ? 'ON ✅' : 'OFF ❌') : 'See settings'}\n▢ \n▢ Options:\n▢ ${prefix}groupadd all\n▢ ${prefix}groupadd contacts\n▢ ${prefix}groupadd contact_blacklist\n▢ ${prefix}groupadd none\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(m.chat, {
                 interactiveMessage: {

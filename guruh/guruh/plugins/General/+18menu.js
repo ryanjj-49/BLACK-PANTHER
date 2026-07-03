@@ -27,7 +27,7 @@ export default {
         .join('');
     };
 
-    let menuText = `╭━⬣ 「 +18 MENU」
+    let menuText = `╭━⬣ 「 +18 MENU 』── ⚝
 ┃ Prefix: ${effectivePrefix || 'None'}\n┃ \n`;
 
     let commandFiles = fs.readdirSync('./plugins/NSFW').filter(file => file.endsWith('.js'));
@@ -38,7 +38,7 @@ export default {
     }
 
     menuText += `╰━━━━━━━━━━━━━━━\n`;
-    menuText += `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+    menuText += ``;
 
     await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
     await client.sendMessage(m.chat, {
@@ -47,7 +47,7 @@ export default {
         externalAdReply: {
           showAdAttribution: false,
           title: `BLACK-PANTHER-MD WA bot`,
-          body: `©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`,
+          body: `✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪`,
           thumbnail: pict,
           sourceUrl: `https://github.com/koyoteh/BLACK-PANTHER`,
           mediaType: 1,

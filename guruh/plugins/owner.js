@@ -512,15 +512,15 @@ addCmd({
 
         const ownerCard =
             `╭═❖ *OWNER INFO* ❖═╮\n` +
-            `│ 🐾 *${config.BOT_NAME}*\n` +
+            `▢ 🐾 *${config.BOT_NAME}*\n` +
             `├──────────────────────────\n` +
-            `│ 👑 *Name:*    ${config.OWNER_NAME}\n` +
-            `│ 📞 *Number:*  +${config.OWNER_NUMBER}\n` +
-            `│ 💬 *Chat:*    wa.me/${config.OWNER_NUMBER}\n` +
-            `│ 📡 *Channel:* ${config.CHANNEL_URL}\n` +
+            `▢ 👑 *Name:*    ${config.OWNER_NAME}\n` +
+            `▢ 📞 *Number:*  +${config.OWNER_NUMBER}\n` +
+            `▢ 💬 *Chat:*    wa.me/${config.OWNER_NUMBER}\n` +
+            `▢ 📡 *Channel:* ${config.CHANNEL_URL}\n` +
             `├──────────────────────────\n` +
-            `│ 🔗 *GitHub:*  https://github.com/koyoteh/BLACK-PANTHER\n` +
-            `│ ⭐ Star us if you love the bot!\n` +
+            `▢ 🔗 *GitHub:*  https://github.com/koyoteh/BLACK-PANTHER\n` +
+            `▢ ⭐ Star us if you love the bot!\n` +
             `╰═❖ _${config.BOT_NAME}_ ❖═╯`;
 
         if (ppUrl) {

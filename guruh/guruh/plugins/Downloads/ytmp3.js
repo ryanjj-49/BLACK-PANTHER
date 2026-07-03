@@ -12,13 +12,13 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
       if (!text) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-          return sendInteractive(client, m, `╭━⬣ 「 YTMP3」\n┃ Example: ${prefix}ytmp3 https://youtu.be/xxxx\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+          return sendInteractive(client, m, `╭━⬣ 「 YTMP3 』── ⚝\n┃ Example: ${prefix}ytmp3 https://youtu.be/xxxx\n╰━━━━━━━━━━━━━━━\n`);
       }
       const ytUrl = text.trim();
       const id = extractYtId(ytUrl);
       if (!id) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-          return sendInteractive(client, m, '╭━⬣ 「 YTMP3」\n┃ Invalid YouTube link.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇');
+          return sendInteractive(client, m, '╭━⬣ 「 YTMP3 』── ⚝\n┃ Invalid YouTube link.\n╰━━━━━━━━━━━━━━━\n');
       }
       await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
       try {
@@ -37,11 +37,11 @@ import { sendInteractive } from '../../lib/sendInteractive.js';
               ptt: false,
               fileName: `${title || 'youtube-audio'}.mp3`
           });
-          await sendInteractive(client, m, `╭━⬣ 「 YouTube MP3」
-┃ 🎵 ${title || 'Unknown'}\n┃ 🔊 Quality: ${quality || '320'}kbps\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+          await sendInteractive(client, m, `╭━⬣ 「 YouTube MP3 』── ⚝
+┃ 🎵 ${title || 'Unknown'}\n┃ 🔊 Quality: ${quality || '320'}kbps\n╰━━━━━━━━━━━━━━━\n`);
       } catch (e) {
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-          sendInteractive(client, m, `┃ Failed: ${e.message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+          sendInteractive(client, m, `┃ Failed: ${e.message}\n╰━━━━━━━━━━━━━━━\n`);
       }
   };
   

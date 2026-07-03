@@ -13,8 +13,8 @@ export default {
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
             const fmt = (msg) =>
-                `╭━⬣ 「 DEVICE MODE」
-┃ ${msg}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+                `╭━⬣ 「 DEVICE MODE 』── ⚝
+┃ ${msg}\n╰━━━━━━━━━━━━━━━\n`;
 
             const value = (args[0] || '').toLowerCase().trim();
 

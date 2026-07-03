@@ -4,7 +4,7 @@ import ownerMiddleware from '../../utils/botUtil/Ownermiddleware.js';
 import { getDeviceMode } from '../../lib/deviceMode.js';
 import { sendInteractive } from '../../lib/sendInteractive.js';
 
-const fmt = (message) => `┃ ${message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+const fmt = (message) => `┃ ${message}\n╰━━━━━━━━━━━━━━━\n`;
 
 export default async (context) => {
     await ownerMiddleware(context, async () => {
@@ -45,7 +45,7 @@ export default async (context) => {
                 const _devMode = await getDeviceMode();
         if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
-          await sendInteractive(client, m, `╭━⬣ 「 GCPRESENCE」
+          await sendInteractive(client, m, `╭━⬣ 「 GCPRESENCE 』── ⚝
 ┃ Status: ${settings.gcpresence ? 'ON ✅' : 'OFF ❌'}\n┃ \n┃ Options:\n┃ ${prefix}gcpresence on\n┃ ${prefix}gcpresence off\n╰━━━━━━━━━━━━━━━\n> 🌐 hosting.wa.me/254105521300`);
       } else {
     const _msg = generateWAMessageFromContent(

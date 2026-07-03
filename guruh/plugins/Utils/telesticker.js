@@ -11,8 +11,8 @@ export default async (context) => {
     try {
         if (!text) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭─❏ 「 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ」
-│ Give me a Telegram sticker pack name or link!\n│ \n│ Example: ${prefix}ts itzel39\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `✦ ──『 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ 』── ⚝
+▢ Give me a Telegram sticker pack name or link!\n▢ \n▢ Example: ${prefix}ts itzel39\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
 
         let packName = text.trim();
@@ -36,8 +36,8 @@ export default async (context) => {
 
         if (!data?.status || !data?.result?.sticker || data.result.sticker.length === 0) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            return sendInteractive(client, m, `╭─❏ 「 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ」
-│ That sticker pack doesn't exist or\n│ your internet is worse than your face.\n│ \n│ Pack: ${packName}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            return sendInteractive(client, m, `✦ ──『 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ 』── ⚝
+▢ That sticker pack doesn't exist or\n▢ your internet is worse than your face.\n▢ \n▢ Pack: ${packName}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
 
         const stickers = data.result.sticker;
@@ -46,8 +46,8 @@ export default async (context) => {
         const stickerAuthor = author || '𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧';
 
         await client.sendMessage(m.chat, { react: { text: '🔃', key: m.reactKey } });
-        await sendInteractive(client, m, `╭─❏ 「 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ」
-│ Pack: ${packTitle}\n│ Total: ${stickers.length} stickers\n│ Converting to WhatsApp stickers...\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        await sendInteractive(client, m, `✦ ──『 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ 』── ⚝
+▢ Pack: ${packTitle}\n▢ Total: ${stickers.length} stickers\n▢ Converting to WhatsApp stickers...\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
 
         let sentCount = 0;
         let failedCount = 0;
@@ -92,13 +92,13 @@ export default async (context) => {
 
         await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
 
-        const extraNote = tgsSkipped > 0 ? `\n│ Skipped ${tgsSkipped} .tgs (Lottie, unsupported)` : '';
-        await sendInteractive(client, m, `╭─❏ 「 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ」
-│ Success: ${sentCount} stickers\n│ Failed: ${failedCount} stickers${extraNote}\n│ Pack: ${packTitle}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        const extraNote = tgsSkipped > 0 ? `\n▢ Skipped ${tgsSkipped} .tgs (Lottie, unsupported)` : '';
+        await sendInteractive(client, m, `✦ ──『 Tᴇʟᴇɢʀᴀᴍ Sᴛɪᴄᴋᴇʀ 』── ⚝
+▢ Success: ${sentCount} stickers\n▢ Failed: ${failedCount} stickers${extraNote}\n▢ Pack: ${packTitle}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
 
     } catch (error) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        await sendInteractive(client, m, `╭─❏ 「 Eʀʀᴏʀ」
-│ Something broke!\n│ Either the API is dead or\n│ your sticker pack name is trash.\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞ᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`);
+        await sendInteractive(client, m, `✦ ──『 Eʀʀᴏʀ 』── ⚝
+▢ Something broke!\n▢ Either the API is dead or\n▢ your sticker pack name is trash.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> ©𝐏𝐨𝐰𝐞𝐫𝐞ᴅ 𝐁𝐲 𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧`);
     }
 };

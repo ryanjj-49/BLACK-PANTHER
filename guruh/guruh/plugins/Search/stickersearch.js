@@ -11,12 +11,12 @@ export default {
 
     if (!botname) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      return sendInteractive(client, m, `┃ \n┃ Bot name not set. Check config.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+      return sendInteractive(client, m, `┃ \n┃ Bot name not set. Check config.\n╰━━━━━━━━━━━━━━━\n`);
     }
 
     if (!text) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      return sendInteractive(client, m, `┃ \n┃ Give me a search term.\n┃ Example: .s dancing cat\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+      return sendInteractive(client, m, `┃ \n┃ Give me a search term.\n┃ Example: .s dancing cat\n╰━━━━━━━━━━━━━━━\n`);
     }
 
     await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -30,7 +30,7 @@ export default {
       const results = gifResponse.data.results;
       if (!results || results.length === 0) {
         await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-        return sendInteractive(client, m, `┃ \n┃ No stickers found for "${text}".\n┃ Try a different search term.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+        return sendInteractive(client, m, `┃ \n┃ No stickers found for "${text}".\n┃ Try a different search term.\n╰━━━━━━━━━━━━━━━\n`);
       }
 
       for (let i = 0; i < Math.min(8, results.length); i++) {
@@ -53,7 +53,7 @@ export default {
     } catch (error) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
       console.error(`Stickersearch error: ${error.message}`);
-      await sendInteractive(client, m, `┃ \n┃ Failed to fetch stickers.\n┃ Service might be down. Try again.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+      await sendInteractive(client, m, `┃ \n┃ Failed to fetch stickers.\n┃ Service might be down. Try again.\n╰━━━━━━━━━━━━━━━\n`);
     }
   }
 };

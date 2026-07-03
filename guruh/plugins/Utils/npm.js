@@ -10,9 +10,9 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
         const pkg = (text || '').trim();
         if (!pkg) {
-            return sendInteractive(client, m, `╭─❏ 「 NPM」
+            return sendInteractive(client, m, `✦ ──『 NPM 』── ⚝
 │
-│ Usage: .npm express\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+▢ Usage: .npm express\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
         try {
             await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
@@ -26,14 +26,14 @@ export default {
             const weekly = d.downloads?.weekly || '?';
             const created = d.time?.created ? new Date(d.time.created).toLocaleDateString() : '?';
             await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
-            return sendInteractive(client, m, `╭─❏ 「 NPM: ${d.name}」
+            return sendInteractive(client, m, `✦ ──『 NPM: ${d.name} 』── ⚝
 │
-│ 📦 Version: ${latest}\n│ 📝 Desc: ${desc}\n│ 👤 Author: ${author}\n│ 📄 License: ${license}\n│ 📅 Created: ${created}\n│ 🔗 ${homepage}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+▢ 📦 Version: ${latest}\n▢ 📝 Desc: ${desc}\n▢ 👤 Author: ${author}\n▢ 📄 License: ${license}\n▢ 📅 Created: ${created}\n▢ 🔗 ${homepage}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         } catch {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-            return sendInteractive(client, m, `╭─❏ 「 NPM」
+            return sendInteractive(client, m, `✦ ──『 NPM 』── ⚝
 │
-│ Package "${pkg}" not found. Made it up?\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+▢ Package "${pkg}" not found. Made it up?\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
     }
 };

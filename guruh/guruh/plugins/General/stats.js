@@ -55,7 +55,7 @@ export default {
 
             const text =
                 `` +
-                `╭━⬣ 「 BOT STATS」
+                `╭━⬣ 「 BOT STATS 』── ⚝
 ` +
                 `┃
 ` +
@@ -64,7 +64,7 @@ export default {
                 `┃ ⏱ *Uptime:* ${uptime}\n` +
                 `┃
 ` +
-                `╭━⬣ 「 System」
+                `╭━⬣ 「 System 』── ⚝
 ` +
                 `┃
 ` +
@@ -74,7 +74,7 @@ export default {
                 `┃ 🟢 *Node.js:* ${process.version}\n` +
                 `┃
 ` +
-                `╭━⬣ 「 Bot Data」
+                `╭━⬣ 「 Bot Data 』── ⚝
 ` +
                 `┃
 ` +
@@ -85,14 +85,14 @@ export default {
                 `┃
 ` +
                 `╰━━━━━━━━━━━━━━━\n` +
-                `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+                ``;
 
             await client.sendMessage(m.chat, { react: { text: '📊', key: m.reactKey } });
             await client.sendMessage(m.chat, { text });
         } catch (e) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            await sendInteractive(client, m, `╭━⬣ 「 STATS ERROR」
-┃ Something broke fetching stats.\n┃ Error: ${e.message}\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `╭━⬣ 「 STATS ERROR 』── ⚝
+┃ Something broke fetching stats.\n┃ Error: ${e.message}\n╰━━━━━━━━━━━━━━━\n`);
         }
     }
 };

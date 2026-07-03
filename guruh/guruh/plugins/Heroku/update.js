@@ -16,7 +16,7 @@ export default async (context) => {
             `` +
             `┃ ${message}\n` +
             `╰━━━━━━━━━━━━━━━
-> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇\n` +
+\n` +
             `Pσɯҽɾҽԃ Ⴆყ Tσxιƈ-ɱԃȥ 😈`
         );
     };
@@ -60,7 +60,7 @@ export default async (context) => {
                                 const _devMode = await getDeviceMode();
                 if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } }).catch(()=>{});
-          await sendInteractive(client, m, `╭━⬣ 「 UPDATE」
+          await sendInteractive(client, m, `╭━⬣ 「 UPDATE 』── ⚝
 ┃ Options:\n┃ ${prefix}menu\n┃ ${prefix}settings\n┃ ${prefix}triggerupdate\n┃ ${prefix}menu\n╰━━━━━━━━━━━━━━━\n> 🌐 hosting.wa.me/254105521300`);
           return;
       } else {

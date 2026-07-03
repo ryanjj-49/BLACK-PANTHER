@@ -25,7 +25,7 @@ export default {
       const secs = Math.floor(uptime % 60);
       const uptimeStr = `${days}d ${hours}h ${mins}m ${secs}s`;
 
-      const caption = `╭━⬣ 「 I'ᴍ Aʟɪᴠᴇ」
+      const caption = `╭━⬣ 「 I'ᴍ Aʟɪᴠᴇ 』── ⚝
 ┃ @${m.sender.split('@')[0]}, I'm up and running.\n┃ Been alive for ${uptimeStr}.\n┃ Type *${prefix}menu* if you need\n┃ help, which you probably do.\n╰━━━━━━━━━━━━━━━`;
 
       if (pict && Buffer.isBuffer(pict)) {
@@ -63,7 +63,7 @@ export default {
 
     } catch (error) {
     await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      await sendInteractive(client, m, `╭━⬣ 「 Cʀᴀsʜᴇᴅ」
+      await sendInteractive(client, m, `╭━⬣ 「 Cʀᴀsʜᴇᴅ 』── ⚝
 ┃ Something broke, @${m.sender.split('@')[0].split(':')[0]}.\n┃ Error: ${error.message}\n┃ Try again when I feel like it.\n╰━━━━━━━━━━━━━━━`);
     }
   }

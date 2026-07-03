@@ -6,9 +6,9 @@ export default async (context) => {
 
   if (!text) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-      return sendInteractive(client, m, `┃ Where's the link, you forgetful moron?\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`)
+      return sendInteractive(client, m, `┃ Where's the link, you forgetful moron?\n╰━━━━━━━━━━━━━━━\n`)
   }
-  if (!text.includes('github.com')) return sendInteractive(client, m, `┃ Is that even a GitHub repo link?! Think again.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`)
+  if (!text.includes('github.com')) return sendInteractive(client, m, `┃ Is that even a GitHub repo link?! Think again.\n╰━━━━━━━━━━━━━━━\n`)
 
   await client.sendMessage(m.chat, { react: { text: '⌛', key: m.reactKey } });
 
@@ -22,7 +22,7 @@ export default async (context) => {
       await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });
   } catch (err) {
       await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } });
-      sendInteractive(client, m, "┃ Git clone failed. Skill issue.\n╰━━━━━━━━━━━━━━━\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇")
+      sendInteractive(client, m, "┃ Git clone failed. Skill issue.\n╰━━━━━━━━━━━━━━━\n")
   }
 
   }

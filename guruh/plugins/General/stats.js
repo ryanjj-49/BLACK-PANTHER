@@ -55,44 +55,44 @@ export default {
 
             const text =
                 `` +
-                `╭─❏ 「 BOT STATS」
+                `✦ ──『 BOT STATS 』── ⚝
 ` +
                 `│
 ` +
-                `│ 🤖 *Bot Name:* ${bName}\n` +
-                `│ 📱 *Bot Number:* +${botNum}\n` +
-                `│ ⏱ *Uptime:* ${uptime}\n` +
+                `▢ 🤖 *Bot Name:* ${bName}\n` +
+                `▢ 📱 *Bot Number:* +${botNum}\n` +
+                `▢ ⏱ *Uptime:* ${uptime}\n` +
                 `│
 ` +
-                `╭─❏ 「 System」
-` +
-                `│
-` +
-                `│ 🧠 *RAM:* ${usedMB} MB used\n` +
-                `│ 💾 *Heap:* ${heapMB}/${totalHeapMB} MB\n` +
-                `│ 🖥️ *Platform:* ${platform}\n` +
-                `│ 🟢 *Node.js:* ${process.version}\n` +
-                `│
-` +
-                `╭─❏ 「 Bot Data」
+                `✦ ──『 System 』── ⚝
 ` +
                 `│
 ` +
-                `│ 📋 *Commands:* ${cmdCount}\n` +
-                `│ 👥 *Groups:* ${groupCount}\n` +
-                `│ 🛡️ *Sudo Users:* ${sudoUsers.length}\n` +
-                `│ 🚫 *Banned Users:* ${bannedUsers.length}\n` +
+                `▢ 🧠 *RAM:* ${usedMB} MB used\n` +
+                `▢ 💾 *Heap:* ${heapMB}/${totalHeapMB} MB\n` +
+                `▢ 🖥️ *Platform:* ${platform}\n` +
+                `▢ 🟢 *Node.js:* ${process.version}\n` +
                 `│
 ` +
-                `╰───────────────\n` +
-                `> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`;
+                `✦ ──『 Bot Data 』── ⚝
+` +
+                `│
+` +
+                `▢ 📋 *Commands:* ${cmdCount}\n` +
+                `▢ 👥 *Groups:* ${groupCount}\n` +
+                `▢ 🛡️ *Sudo Users:* ${sudoUsers.length}\n` +
+                `▢ 🚫 *Banned Users:* ${bannedUsers.length}\n` +
+                `│
+` +
+                `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n` +
+                ``;
 
             await client.sendMessage(m.chat, { react: { text: '📊', key: m.reactKey } });
             await client.sendMessage(m.chat, { text });
         } catch (e) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
-            await sendInteractive(client, m, `╭─❏ 「 STATS ERROR」
-│ Something broke fetching stats.\n│ Error: ${e.message}\n╰───────────────\n> ©𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐆𝐔𝐑𝐔𝐓𝐄𝐂𝐇`);
+            await sendInteractive(client, m, `✦ ──『 STATS ERROR 』── ⚝
+▢ Something broke fetching stats.\n▢ Error: ${e.message}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
     }
 };
