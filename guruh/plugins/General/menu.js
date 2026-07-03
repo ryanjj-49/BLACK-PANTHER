@@ -16,35 +16,34 @@ export default {
         await client.sendMessage(m.chat, { react: { text: '🤖', key: m.reactKey } });
 
         const menuText =
-`╔══════════════════════════════════╗
-║  ✦ ──『 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ᴹᴰ 』── ⚝
-╠══════════════════════════════════╣
-║  👤 User   : @${m.sender.split('@')[0].split(':')[0]}
-║  🤖 Bot    : ${botname || 'BLACK-PANTHER-MD'}
-║  📌 Prefix : ${prefix}
-║  🌐 Mode   : ${mode}
-╠══════════════════════════════════╣
-║  ⚙️ Core Commands
-║  ▸ ${prefix}fullmenu  — All commands list
-║  ▸ ${prefix}ping      — Check bot speed
-║  ▸ ${prefix}settings  — Bot settings
-║  ▸ ${prefix}uptime    — Bot uptime
-║  ▸ ${prefix}dev       — Developer contact
-║  ▸ ${prefix}report    — Report a bug
-╠══════════════════════════════════╣
-║  📂 Category Menus
-║  ▸ ${prefix}generalmenu   — General
-║  ▸ ${prefix}settingsmenu  — Settings
-║  ▸ ${prefix}ownermenu     — Owner only
-║  ▸ ${prefix}groupmenu     — Group mgmt
-║  ▸ ${prefix}aimenu        — AI & chat
-║  ▸ ${prefix}downloadmenu  — Downloads
-║  ▸ ${prefix}editingmenu   — Editing
-║  ▸ ${prefix}effectsmenu   — Text effects
-║  ▸ ${prefix}utilsmenu     — Utilities
-║  ▸ ${prefix}privacymenu   — Privacy
-╚══════════════════════════════════╝
-> ✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪`;
+`✦ ──『 𝐁ᴏᴛ Iɴꜰᴏ 』── ⚝
+▢ 𝐔𝐬𝐞𝐫    : @${m.sender.split('@')[0].split(':')[0]}
+▢ 𝐁𝐨𝐭     : ${botname || 'BLACK-PANTHER-MD'}
+▢ 𝐏𝐫𝐞𝐟𝐢𝐱  : ${prefix}
+▢ 𝐌𝐨𝐝𝐞    : ${mode}
+└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──
+
+✦ ──『 Cᴏʀᴇ Cᴏᴍᴍᴀɴᴅs 』── ⚝
+▢ ${prefix}fullmenu  — All commands list
+▢ ${prefix}ping      — Check bot speed
+▢ ${prefix}settings  — Bot settings
+▢ ${prefix}uptime    — Bot uptime
+▢ ${prefix}dev       — Developer contact
+▢ ${prefix}report    — Report a bug
+└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──
+
+✦ ──『 Cᴀᴛᴇɢᴏʀʏ Mᴇɴᴜs 』── ⚝
+▢ ${prefix}generalmenu   — General
+▢ ${prefix}settingsmenu  — Settings
+▢ ${prefix}ownermenu     — Owner only
+▢ ${prefix}groupmenu     — Group mgmt
+▢ ${prefix}aimenu        — AI & chat
+▢ ${prefix}downloadmenu  — Downloads
+▢ ${prefix}editingmenu   — Editing
+▢ ${prefix}effectsmenu   — Text effects
+▢ ${prefix}utilsmenu     — Utilities
+▢ ${prefix}privacymenu   — Privacy
+└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
 
         if (pict && Buffer.isBuffer(pict)) {
             await client.sendMessage(m.chat, {
