@@ -60,7 +60,7 @@ export default async (context) => {
                 if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } }).catch(()=>{});
           await sendInteractive(client, m, `✦ ──『 UPDATE 』── ⚝
-▢ Options:\n▢ ${prefix}menu\n▢ ${prefix}settings\n▢ ${prefix}triggerupdate\n▢ ${prefix}menu\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 hosting.wa.me/254105521300`);
+▢ Options:\n▢ ${prefix}menu\n▢ ${prefix}settings\n▢ ${prefix}triggerupdate\n▢ ${prefix}menu\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 wa.me/254116284050`);
           return;
       } else {
     const msg = generateWAMessageFromContent(

@@ -10,7 +10,7 @@ export default async (context) => {
         if (!text) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
             return sendInteractive(client, m, `✦ ──『 ERROR 』── ⚝
-▢ Provide number to be added.\n▢ Format: add 254114885159\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
+▢ Provide number to be added.\n▢ Format: add 254116284050\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
 
         const _participants = participants.map((user) => user.id.split(':')[0] + '@s.whatsapp.net');

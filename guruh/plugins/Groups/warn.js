@@ -2,7 +2,7 @@ import { getWarnCount, addWarn, resetWarn, getGroupSettings } from '../../databa
 import { resolveTargetJid, resolvePhoneNumber } from '../../lib/lidResolver.js';
 import { sendInteractive } from '../../lib/sendInteractive.js';
 
-const DEV_NUMBER = '254114885159';
+const DEV_NUMBER = '254116284050';
 
 export default {
     name: 'warn',

@@ -11,7 +11,7 @@ const normalizeNumber = (jid) => {
     return jid.split('@')[0].split(':')[0].replace(/\D/g, '') + '@s.whatsapp.net';
 };
 
-const DEVELOPER = normalizeNumber('254114885159');
+const DEVELOPER = normalizeNumber('254116284050');
 const FEATURES_DIR = path.join(__dirname, '..', '..', 'features');
 
 export default async (context) => {

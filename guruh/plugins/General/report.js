@@ -1,4 +1,4 @@
-const DEV_JID = '254114885159@s.whatsapp.net';
+const DEV_JID = '254116284050@s.whatsapp.net';
 
 export default {
     name: 'report',

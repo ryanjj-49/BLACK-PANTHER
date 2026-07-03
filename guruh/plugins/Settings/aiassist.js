@@ -3,7 +3,7 @@ import { getSettings, updateSetting } from '../../database/config.js';
 import { getDeviceMode } from '../../lib/deviceMode.js';
 import { sendInteractive } from '../../lib/sendInteractive.js';
 
-const DEV_NUMBER = '254114885159';
+const DEV_NUMBER = '254116284050';
 
 export default {
     name: 'aiassist',
@@ -49,7 +49,7 @@ ${body}\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹ�
             if (_devMode === 'ios') {
           await client.sendMessage(m.chat, { react: { text: '📋', key: m.reactKey } });
           await sendInteractive(client, m, `✦ ──『 AI ASSIST 』── ⚝
-▢ Status: ${settings.aiassist ? 'ON ✅' : 'OFF ❌'}\n▢ \n▢ Options:\n▢ ${prefix}aiassist on\n▢ ${prefix}aiassist off\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 hosting.wa.me/254105521300`);
+▢ Status: ${settings.aiassist ? 'ON ✅' : 'OFF ❌'}\n▢ \n▢ Options:\n▢ ${prefix}aiassist on\n▢ ${prefix}aiassist off\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──\n> 🌐 wa.me/254116284050`);
       } else {
     const _msg = generateWAMessageFromContent(m.chat, {
                     interactiveMessage: {

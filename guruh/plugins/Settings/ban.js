@@ -51,7 +51,7 @@ export default async (context) => {
 ▢ Couldn't resolve that user's phone number (LID address).\n▢ Ask them to send a message first so the bot can map them.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`);
         }
 
-        const _devNum = '254114885159';
+        const _devNum = '254116284050';
         const _botNum = (context.client?.user?.id || '').split(':')[0].split('@')[0].replace(/\D/g, '');
         if (numberToBan === _devNum || (_botNum && numberToBan === _botNum)) {
             await client.sendMessage(m.chat, { react: { text: '❌', key: m.reactKey } }).catch(() => {});
