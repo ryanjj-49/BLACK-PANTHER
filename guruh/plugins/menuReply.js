@@ -2,13 +2,12 @@
 // ─────────────────────────────────────────────────────────────────
 //  MENU REPLY TRIGGER
 //  Fires when a user sends a digit (1-10) within 90s of .menu
-//  Builds the category listing inline from getAllCmds() — no
-//  delegation to individual *menu plugins (which crash on bad paths).
+//  Builds the category listing inline from getAllCmds().
+//  Sends multiple messages if a category has many commands.
 // ─────────────────────────────────────────────────────────────────
 const { addTrigger, getAllCmds } = require('../../guru/handlers/loader');
 const { getMenuState, clearMenuState } = require('../lib/menuState.cjs');
 
-// Maps digit → { label, emoji, category (matches loader dir.toLowerCase()) }
 const CATEGORIES = {
     1:  { label: 'General',   emoji: '📜', category: 'general'   },
     2:  { label: 'Settings',  emoji: '🛠️',  category: 'settings'  },
@@ -22,24 +21,56 @@ const CATEGORIES = {
     10: { label: 'Privacy',   emoji: '🔒', category: 'privacy'   },
 };
 
-function buildCategoryText(num, prefix) {
+// Max chars per WhatsApp message (stay well under 65 536 hard limit)
+const CHUNK_SIZE = 3500;
+
+/**
+ * Build an array of text chunks for a category.
+ * Each chunk is a self-contained message that fits within CHUNK_SIZE chars.
+ */
+function buildChunks(num, prefix) {
     const { label, emoji, category } = CATEGORIES[num];
+
+    // Deduplicate: getAllCmds() already returns one entry per unique name,
+    // but filter to this category only.
     const cmds = getAllCmds().filter(c => c.category === category);
 
+    const header = `✦ ──『 ${emoji} ${label} Menu 』── ⚝\n▢ Total: ${cmds.length} commands\n`;
+    const footer = `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
+
     if (!cmds.length) {
-        return `✦ ──『 ${emoji} ${label} 』── ⚝\n▢ No commands found in this category yet.\n└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`;
+        return [`${header}▢ No commands found in this category yet.\n${footer}`];
     }
 
-    const lines = cmds.map(c => {
-        const desc = c.desc ? ` — ${c.desc}` : '';
-        return `▢ *${prefix}${c.name}*${desc}`;
+    // Build one line per command
+    const lines = cmds.map((c, i) => {
+        const aliasStr = c.aliases && c.aliases.length
+            ? ` _(${c.aliases.map(a => prefix + a).join(', ')})_`
+            : '';
+        const descStr = c.desc ? `\n   └ ${c.desc}` : '';
+        return `▢ *${prefix}${c.name}*${aliasStr}${descStr}`;
     });
 
-    return [
-        `✦ ──『 ${emoji} ${label} Menu 』── ⚝`,
-        ...lines,
-        `└──✪ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✪──`,
-    ].join('\n');
+    // Split lines into chunks that each fit within CHUNK_SIZE chars
+    const chunks = [];
+    let current = header;
+    let isFirst = true;
+
+    for (const line of lines) {
+        const candidate = current + line + '\n';
+        if (!isFirst && candidate.length + footer.length > CHUNK_SIZE) {
+            // Close current chunk and start a new one
+            chunks.push(current + footer);
+            current = `✦ ──『 ${emoji} ${label} (cont.) 』── ⚝\n`;
+        }
+        current += line + '\n';
+        isFirst = false;
+    }
+
+    // Push the last chunk
+    chunks.push(current + footer);
+
+    return chunks;
 }
 
 addTrigger({
@@ -54,8 +85,7 @@ addTrigger({
             const state = getMenuState(from);
             if (!state) return;
 
-            // Accept if quoting the exact menu message, OR within 90-second window
-            const quotedId     = m.quotedKey?.id;
+            const quotedId      = m.quotedKey?.id;
             const isQuotingMenu = quotedId && state.messageId && quotedId === state.messageId;
             const isWithinWindow = (Date.now() - state.timestamp) < 90_000;
 
@@ -64,11 +94,14 @@ addTrigger({
             clearMenuState(from);
 
             const prefix = cfg?.BOT_PREFIX || '.';
-            const text   = buildCategoryText(num, prefix);
+            const chunks = buildChunks(num, prefix);
 
-            await sock.sendMessage(from, { text });
+            // Send each chunk sequentially so they arrive in order
+            for (const text of chunks) {
+                await sock.sendMessage(from, { text });
+            }
         } catch (e) {
-            // Never let the trigger crash the message handler
+            // Never crash the message handler
         }
     },
 });

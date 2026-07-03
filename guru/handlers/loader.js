@@ -179,6 +179,26 @@ async function loadSubdirPlugins() {
                     continue;
                 }
 
+                // Pattern C: export default [ { name, aliases, run, description }, ... ]
+                if (Array.isArray(exported)) {
+                    let anyAdded = false;
+                    for (const item of exported) {
+                        if (typeof item === 'object' && typeof item.run === 'function') {
+                            const name    = (item.name    || cmdName).toLowerCase().trim();
+                            const aliases = (item.aliases || []).map(a => a.toLowerCase().trim());
+                            addCmd({
+                                name,
+                                aliases,
+                                desc:     item.description || item.desc || '',
+                                category: dir.toLowerCase(),
+                                handler:  (ctx) => item.run(buildPluginCtx(ctx)),
+                            });
+                            anyAdded = true;
+                        }
+                    }
+                    if (anyAdded) { loaded++; continue; }
+                }
+
                 skipped++;
             } catch (err) {
                 if (process.env.DEBUG === 'true') {
