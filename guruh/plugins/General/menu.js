@@ -155,22 +155,27 @@ export default {
             if (!msg?.key?.id) throw new Error('null key');
             await client.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
         } catch {
-            await client.sendMessage(m.chat, {
-                image: pict,
-                caption: menuText,
-                mentions: [m.sender],
-                contextInfo: {
-                    externalAdReply: {
-                        title: `${botname}`,
-                        body: `Yo, ${m.pushName}! Ready to fuck shit up?`,
-                        mediaType: 1,
-                        thumbnail: pict,
-                        mediaUrl: '',
-                        sourceUrl: 'https://github.com/koyoteh/BLACK-PANTHER',
-                        showAdAttribution: false,
-                        renderLargerThumbnail: true }
-                }
-            });
+            // If pict is available send with image, otherwise plain text
+            if (pict && Buffer.isBuffer(pict)) {
+                await client.sendMessage(m.chat, {
+                    image: pict,
+                    caption: menuText,
+                    mentions: [m.sender],
+                    contextInfo: {
+                        externalAdReply: {
+                            title: `${botname}`,
+                            body: `Yo, ${m.pushName}! Ready to fuck shit up?`,
+                            mediaType: 1,
+                            thumbnail: pict,
+                            mediaUrl: '',
+                            sourceUrl: 'https://github.com/koyoteh/BLACK-PANTHER',
+                            showAdAttribution: false,
+                            renderLargerThumbnail: true }
+                    }
+                }).catch(() => client.sendMessage(m.chat, { text: menuText, mentions: [m.sender] }));
+            } else {
+                await client.sendMessage(m.chat, { text: menuText, mentions: [m.sender] }).catch(() => {});
+            }
             await client.sendMessage(m.chat, {
                 listMessage: {
                     title: '𝐕𝐈𝐄𝐖 𝐎𝐏𝐓𝐈𝐎𝐍𝐒',
@@ -181,7 +186,8 @@ export default {
                         title: s.title,
                         rows: s.rows.map(r => ({ title: r.title, description: r.description, rowId: r.id }))
                     })),
-                    footer: '' } });
+                    footer: '' }
+            }).catch(() => {});
         }
 
         const xhClintonPaths = [
