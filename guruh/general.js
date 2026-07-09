@@ -84,20 +84,15 @@ gmd(
         const cmdList = cmds.map(c => {
             const desc = c.description ? ` — _${c.description}_` : "";
             const alts = (c.aliases || []).length
-                ? `\n┃   ↳ _${c.aliases.map(a => `${botPrefix}${a}`).join(", ")}_`
+                ? `\n  ↳ _${c.aliases.map(a => `${botPrefix}${a}`).join(", ")}_`
                 : "";
-            return `┃ ◈ *${botPrefix}${c.pattern}*${desc}${alts}`;
+            return `▢ *${botPrefix}${c.pattern}*${desc}${alts}`;
         }).join("\n");
 
         const text =
-`┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃  ${icon}  *${label}*
-┃  _${cmds.length} command${cmds.length !== 1 ? 's' : ''} available_
-┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃
+`⚡ ──「 ${icon} *${label}* 」──
 ${cmdList}
-┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-> ✨ _${botFooter || "Powered by KOYOTEH"}_`;
+└──✦ _${cmds.length} cmd${cmds.length !== 1 ? 's' : ''} • ${botFooter || "BLACK PANTHER ┃ ᴹᴰ"}_ ✦──`;
 
         try {
             await Guru.sendMessage(from, {
@@ -166,12 +161,12 @@ gmd(
 
         const buildMsg = () => {
             const alive = getAliveCount();
-            return `╭─⌈ 🏓 *${botName || "BLACK PANTHER"}* ⌋
-│ Status  : ✅ Online & Ready
-│ Ping    : *${ping}ms*
-│ Alive   : *${alive}*
-│ Prefix  : *${botPrefix || "."}*
-╰⊷ _counting live..._ ⏱️`;
+            return `⚡ ──「 🏓 *PING* 」──
+▢ 🟢 Status  : ✅ Online
+▢ 📶 Ping    : *${ping}ms*
+▢ ⏱️ Alive   : *${alive}*
+▢ 📌 Prefix  : *${botPrefix || "."}*
+└──✦ _${botName || "BLACK PANTHER"} ┃ ᴹᴰ_ ✦──`;
         };
 
         // Send the first message
@@ -192,7 +187,7 @@ gmd(
                 // Final edit — remove the "counting live" footer
                 try {
                     await Guru.sendMessage(from, {
-                        text: buildMsg().replace('_counting live..._ ⏱️', `*${botName || "BLACK PANTHER"}*`),
+                        text: buildMsg().replace(`_${botName || "BLACK PANTHER"} ┃ ᴹᴰ_ ✦──`, `*${botName || "BLACK PANTHER"} ┃ ᴹᴰ* ✦──`),
                         edit: sent.key,
                     });
                 } catch (_) {}
@@ -229,11 +224,11 @@ gmd(
             const s     = total % 60;
             const parts = [d && `${d}d`, h && `${h}h`, m && `${m}m`, `${s}s`].filter(Boolean);
             return (
-`╭─⌈ ⏱️ *${bn}* ⌋
-│ Uptime  : *${parts.join(' : ')}*
-│ Time    : ${time}
-│ Date    : ${date}
-╰⊷ *${bn}* _counting live..._ ⏱️`
+`⚡ ──「 ⏱️ *UPTIME* 」──
+▢ ⏱️ Alive   : *${parts.join(' : ')}*
+▢ 🕐 Time    : ${time}
+▢ 📅 Date    : ${date}
+└──✦ _${bn} ┃ ᴹᴰ_ ✦──`
             );
         };
 
@@ -249,7 +244,7 @@ gmd(
                 clearInterval(timer);
                 try {
                     await Guru.sendMessage(from, {
-                        text: buildMsg().replace("_counting live..._ ⏱️", `*${bn}*`),
+                        text: buildMsg().replace(`_${bn} ┃ ᴹᴰ_ ✦──`, `*${bn} ┃ ᴹᴰ* ✦──`),
                         edit: sent.key,
                     });
                 } catch (_) {}
@@ -281,15 +276,15 @@ gmd(
         const m  = Math.floor((up % 3600) / 60);
 
         await reply(
-`╭─⌈ 🤖 *${botName || "BLACK PANTHER"}* ⌋
-│ Version   : *v${botVersion || "5.0.0"}*
-│ Prefix    : *${botPrefix || "."}*
-│ Mode      : *${(botMode || "public").toUpperCase()}*
-│ Commands  : *${totalCmds}*
-│ Uptime    : *${h}h ${m}m*
-│ Owner     : *${ownerName || "Koyoteh"}*
-│ Library   : Baileys
-╰⊷ *${botName || "BLACK PANTHER"}*`
+`⚡ ──「 🤖 *BOT INFO* 」──
+▢ 🏷️ Version  : *v${botVersion || "5.0.0"}*
+▢ 📌 Prefix   : *${botPrefix || "."}*
+▢ 🌐 Mode     : *${(botMode || "public").toUpperCase()}*
+▢ 📚 Commands : *${totalCmds}*
+▢ ⏱️ Uptime   : *${h}h ${m}m*
+▢ 👑 Owner    : *${ownerName || "Koyoteh"}*
+▢ 📦 Library  : Baileys
+└──✦ _${botName || "BLACK PANTHER"} ┃ ᴹᴰ_ ✦──`
         );
     }
 );
