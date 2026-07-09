@@ -81,18 +81,22 @@ gmd(
         const icon  = CAT_ICONS[cat] || "⚡";
         const label = (cat[0].toUpperCase() + cat.slice(1)).toUpperCase();
 
-        const cmdList = cmds.map(c => {
-            const desc = c.description ? ` — _${c.description}_` : "";
-            const alts = (c.aliases || []).length
-                ? `\n  ↳ _${c.aliases.map(a => `${botPrefix}${a}`).join(", ")}_`
-                : "";
-            return `▢ *${botPrefix}${c.pattern}*${desc}${alts}`;
+        const p = ".";
+        const cmdList = cmds.map((c, i) => {
+            const num  = String(i + 1).padStart(2, ' ');
+            const desc = c.description
+                ? c.description.replace(/\. Usage:.*$/i, '').slice(0, 55)
+                : '';
+            return `▢ ${num}. *${p}${c.pattern}*${desc ? ` — _${desc}_` : ''}`;
         }).join("\n");
 
         const text =
 `⚡ ──「 ${icon} *${label}* 」──
+▢ ${cmds.length} commands available
+
 ${cmdList}
-└──✦ _${cmds.length} cmd${cmds.length !== 1 ? 's' : ''} • ${botFooter || "BLACK PANTHER ┃ ᴹᴰ"}_ ✦──`;
+
+└──✦ _${botFooter || "Powered by GuruTech"}_ ✦──`;
 
         try {
             await Guru.sendMessage(from, {

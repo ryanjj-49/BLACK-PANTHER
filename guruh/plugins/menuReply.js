@@ -35,8 +35,8 @@ function buildChunks(num, prefix) {
     // but filter to this category only.
     const cmds = getAllCmds().filter(c => c.category === category);
 
-    const header = `⚡ ──「 ${emoji} ${label} Menu 」──\n▢ Total: ${cmds.length} commands\n`;
-    const footer = `└──✦ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✦──`;
+    const header = `⚡ ──「 ${emoji} *${label.toUpperCase()}* 」──\n▢ ${cmds.length} commands available\n\n`;
+    const footer = `\n└──✦ _Powered by GuruTech_ ✦──`;
 
     if (!cmds.length) {
         return [`${header}▢ No commands found in this category yet.\n${footer}`];
@@ -44,11 +44,10 @@ function buildChunks(num, prefix) {
 
     // Build one line per command
     const lines = cmds.map((c, i) => {
-        const aliasStr = c.aliases && c.aliases.length
-            ? ` _(${c.aliases.map(a => prefix + a).join(', ')})_`
-            : '';
-        const descStr = c.desc ? `\n   └ ${c.desc}` : '';
-        return `▢ *${prefix}${c.name}*${aliasStr}${descStr}`;
+        const num  = String(i + 1).padStart(2, ' ');
+        const desc = (c.desc || c.description || '')
+            .replace(/\. Usage:.*$/i, '').slice(0, 55);
+        return `▢ ${num}. *${prefix}${c.name}*${desc ? ` — _${desc}_` : ''}`;
     });
 
     // Split lines into chunks that each fit within CHUNK_SIZE chars
@@ -61,7 +60,7 @@ function buildChunks(num, prefix) {
         if (!isFirst && candidate.length + footer.length > CHUNK_SIZE) {
             // Close current chunk and start a new one
             chunks.push(current + footer);
-            current = `⚡ ──「 ${emoji} ${label} (cont.) 」──\n`;
+            current = `⚡ ──「 ${emoji} *${label.toUpperCase()}* (cont.) 」──\n\n`;
         }
         current += line + '\n';
         isFirst = false;
