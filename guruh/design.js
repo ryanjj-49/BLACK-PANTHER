@@ -489,7 +489,7 @@ const THEME_KEYS = Object.keys(THEMES);
 
 // ─── shared send helper ───────────────────────────────────────────────────────
 
-const MENU_IMAGE_URL = "https://files.catbox.moe/6u22lr.jpg";
+const MENU_IMAGE_URL = "https://files.catbox.moe/9dmdu1.jpg";
 
 async function sendMenuMsg(Guru, from, text, conText) {
     const { mek, botName, newsletterJid, sender } = conText;
