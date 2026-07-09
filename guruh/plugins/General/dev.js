@@ -13,7 +13,7 @@ export default {
     try {
       const devContact = {
         phoneNumber: '254114885159',
-        fullName: 'GuruTech | GuruTech',
+        fullName: 'Koyoteh | Koyoteh',
         org: 'BLACK-PANTHER-MD Bot'
       };
 

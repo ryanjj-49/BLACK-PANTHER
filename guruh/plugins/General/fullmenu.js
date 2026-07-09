@@ -126,7 +126,7 @@ export default {
       ).join('\n');
       await client.sendMessage(m.chat, {
         text: `⚡ ──「 Categories 」──
-${iosCategoryText}\n└──✦ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✦──\n> 🌐 Hosted by GuruTech\n> 🔗 wa.me/254116284050`,
+${iosCategoryText}\n└──✦ 𝐁𝐋𝐀𝐂𝐊 𝐏𝐀𝐍𝐓𝐇𝐄𝐑 ┃ ᴹᴰ ✦──\n> 🌐 Hosted by Koyoteh\n> 🔗 wa.me/254116284050`,
         contextInfo: { mentionedJid: [m.sender] }
       });
       await client.sendMessage(m.chat, { react: { text: '✅', key: m.reactKey } });

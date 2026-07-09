@@ -1,7 +1,7 @@
 'use strict';
 // ╔══════════════════════════════════════════════════════════════╗
 //  ⚡  BLACK PANTHER MD  —  gmdFunctions.js  (Core Utilities)
-//  👑  Owner : GuruTech  |  📞 +254105521300
+//  👑  Owner : Koyoteh  |  📞 +254105521300
 //  🔧  Rich formatting · Media tools · Upload helpers
 // ╚══════════════════════════════════════════════════════════════╝
 

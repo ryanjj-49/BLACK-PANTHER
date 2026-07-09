@@ -1,7 +1,7 @@
 'use strict';
 // ╔══════════════════════════════════════════════════════════════╗
 //  ⚡  BLACK PANTHER MD  —  gmdFunctions2.js  (Auto Features)
-//  👑  Owner : GuruTech  |  📞 +254105521300
+//  👑  Owner : Koyoteh  |  📞 +254105521300
 //  🛡️  AntiLink · AntiSpam · AntiCall · AutoBio · AutoReact
 //  💬  ChatBot · Presence · AntiDelete · AntiEdit · AntiViewOnce
 //  📢  Channel forwardedNewsletterMessageInfo tag on every response
@@ -284,10 +284,10 @@ async function PantherPresence(sock, from, type = 'composing') {
 const BIO_TEMPLATES = [
     () => `⚡ ${config.BOT_NAME} | Online 24/7 🌍`,
     () => `⏰ ${new Date().toLocaleTimeString('en-KE',{ timeZone: config.TIME_ZONE })} | 🤖 ${config.BOT_NAME}`,
-    () => `🌐 Powered by GuruTech | ${new Date().toLocaleDateString('en-KE')}`,
+    () => `🌐 Powered by Koyoteh | ${new Date().toLocaleDateString('en-KE')}`,
     () => `🔥 ${config.BOT_NAME} is live! | +${config.OWNER_NUMBER}`,
     () => `⚡ Serving users 24/7`,
-    () => `⚡ ${config.BOT_NAME} | GuruTech 🚀`,
+    () => `⚡ ${config.BOT_NAME} | Koyoteh 🚀`,
 ];
 
 async function PantherAutoBio(sock) {
@@ -343,7 +343,7 @@ async function PantherChatBot(sock, msg, settings) {
         await PantherPresence(sock, from, 'composing');
 
         const systemPrompt =
-            `You are ${config.BOT_NAME}, a helpful WhatsApp assistant by GuruTech (+${config.OWNER_NUMBER}). ` +
+            `You are ${config.BOT_NAME}, a helpful WhatsApp assistant by Koyoteh (+${config.OWNER_NUMBER}). ` +
             `Be friendly, concise and use relevant emojis. Never say you are ChatGPT or any other AI.`;
 
         const response = await axios.get(
