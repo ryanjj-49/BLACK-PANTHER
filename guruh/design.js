@@ -122,6 +122,13 @@ async function buildMenuData(conText) {
         return `> ${num}  ${icon}  ${label}  _(${count})_`;
     }).join("\n");
 
+    const catLinesGuruTech = sortedCats.map(({ cat }, i) => {
+        const icon  = CAT_ICONS[cat] || "🔥";
+        const label = (cat[0].toUpperCase() + cat.slice(1)).toUpperCase();
+        const num   = String(i + 1).padStart(2, ' ');
+        return `▢ ${num}  〢 ${icon} ${label}`;
+    }).join("\n");
+
     return {
         sender,
         pushName:   pushName   || "User",
@@ -129,10 +136,10 @@ async function buildMenuData(conText) {
         botPrefix:  botPrefix  || ".",
         botVersion: botVersion || "5.0.0",
         botMode:    botMode    || "public",
-        botFooter:  botFooter  || "Powered by KOYOTEH",
+        botFooter:  botFooter  || "Powered by GuruTech",
         botCaption: botCaption || "",
         newsletterJid,
-        uptime, totalCmds, catLines,
+        uptime, totalCmds, catLines, catLinesGuruTech,
         expiryLine, expiryDetail,
         memBar, memDetail,
         dateStr, timeStr, timeStr24,
@@ -144,6 +151,33 @@ async function buildMenuData(conText) {
 // ─── THEMES ───────────────────────────────────────────────────────────────────
 
 const THEMES = {
+
+    gurutech: {
+        name: "⚡ GURUTECH",
+        description: "Clean ⚡ panel style — small, smart & sharp",
+        render({ botName, botPrefix, botMode, botFooter,
+                  uptime, totalCmds, catLinesGuruTech, expiryLine,
+                  pushName, sender, numCats }) {
+            const userNum = sender ? sender.split('@')[0].split(':')[0] : pushName;
+            return (
+`⚡ ──「 *${botName} ┃ ᴹᴰ* 」──
+▢ 👤 𝐔𝐬𝐞𝐫    : @${userNum}
+▢ 🤖 𝐁𝐨𝐭     : ${botName}
+▢ 📌 𝐏𝐫𝐞𝐟𝐢𝐱  : ${botPrefix}
+▢ 🌐 𝐌𝐨𝐝𝐞    : ${botMode.toLowerCase()}
+▢ 📚 𝐂𝐦𝐝𝐬    : ${totalCmds}
+▢ ⏱️ 𝐀𝐥𝐢𝐯𝐞   : ${uptime}
+▢ ⏳ 𝐄𝐱𝐩𝐢𝐫𝐲  : ${expiryLine}
+└──✦ *${botName} ┃ ᴹᴰ* ✦──
+
+⚡ ──「 Sᴇʟᴇᴄᴛ Cᴀᴛᴇɢᴏʀʏ 」──
+${catLinesGuruTech}
+└──✦ _${botFooter}_ ✦──
+
+> *Reply with a number to view that category*`
+            );
+        },
+    },
 
     ultra: {
         name: "🔷 ULTRA",
@@ -455,7 +489,7 @@ const THEME_KEYS = Object.keys(THEMES);
 
 // ─── shared send helper ───────────────────────────────────────────────────────
 
-const MENU_IMAGE_URL = "https://res.cloudinary.com/dqxlb29uz/image/upload/v1780267810/bwm_uploads/media-1780267810008.jpg";
+const MENU_IMAGE_URL = "https://files.catbox.moe/6u22lr.jpg";
 
 async function sendMenuMsg(Guru, from, text, conText) {
     const { mek, botName, newsletterJid, sender } = conText;
@@ -915,7 +949,7 @@ gmd(
             await react("⚠️");
             return reply(
                 "⚠️ *Reset Confirmation*\n\n" +
-                "This will reset:\n◈ Menu theme → ultra\n◈ Bot name → default\n◈ Footer, caption, pic → defaults\n\n" +
+                "This will reset:\n◈ Menu theme → gurutech\n◈ Bot name → default\n◈ Footer, caption, pic → defaults\n\n" +
                 "Send *.resetdesign* again within *25 seconds* to confirm."
             );
         }
@@ -938,8 +972,8 @@ gmd(
 // ─── exported for general.js ──────────────────────────────────────────────────
 
 async function buildThemedMenu(conText, Guru) {
-    const themeKey = (await getSetting("MENU_THEME")) || "ultra";
-    const theme    = THEMES[themeKey] || THEMES.ultra;
+    const themeKey = (await getSetting("MENU_THEME")) || "gurutech";
+    const theme    = THEMES[themeKey] || THEMES.gurutech;
     const data     = await buildMenuData(conText);
     return theme.render(data);
 }
