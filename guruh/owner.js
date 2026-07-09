@@ -2129,7 +2129,7 @@ gmd(
         `│\n` +
         `│ Sends your message to every group\n` +
         `│ the bot is currently in.\n` +
-        `╰⊷ _${botFooter || "Powered by KOYOTEH"}_`
+        `╰⊷ _${botFooter || "Powered by GuruTech"}_`
       );
     }
 

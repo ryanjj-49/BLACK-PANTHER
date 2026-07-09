@@ -101,7 +101,7 @@ const createContext = async (userJid, options = {}) => {
             },
             externalAdReply: {
                 title: options.title || botName,
-                body: options.body || "Powered by Koyoteh",
+                body: options.body || "Powered by GuruTech",
                 thumbnailUrl: botPic,
                 mediaType: 1,
                 mediaUrl: options.mediaUrl || botPic,

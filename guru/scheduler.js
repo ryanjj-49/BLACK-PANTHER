@@ -226,7 +226,7 @@ async function sendGreeting(Guru, type) {
         }
 
         const botName = (await getSetting("BOT_NAME")) || "BLACK PANTHER";
-        const botFooter = (await getSetting("FOOTER")) || "Powered by KOYOTEH";
+        const botFooter = (await getSetting("FOOTER")) || "Powered by GuruTech";
 
         const customMsgKey = type === "morning" ? "GREETINGS_GM_MSG" : "GREETINGS_GN_MSG";
         const customMsg = await getSetting(customMsgKey);
@@ -345,7 +345,7 @@ async function sendWellness(Guru) {
 
         const msg      = WELLNESS_MESSAGES[Math.floor(Math.random() * WELLNESS_MESSAGES.length)];
         const botPic   = await getSetting("BOT_PIC").catch(() => null);
-        const footer   = (await getSetting("FOOTER").catch(() => null)) || "Powered by KOYOTEH";
+        const footer   = (await getSetting("FOOTER").catch(() => null)) || "Powered by GuruTech";
         const fullText = `${msg}\n\n> _${footer}_`;
 
         let sent = 0;

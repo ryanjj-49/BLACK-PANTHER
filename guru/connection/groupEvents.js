@@ -174,7 +174,7 @@ const setupGroupEventsListeners = (Guru) => {
                 (await getSetting("TIME_ZONE")) || "Africa/Nairobi";
             const botName = (await getSetting("BOT_NAME")) || "BLACK PANTHER";
             const botFooter =
-                (await getSetting("FOOTER")) || "Powered by Koyoteh";
+                (await getSetting("FOOTER")) || "Powered by GuruTech";
             const newsletterJid = (await getSetting("NEWSLETTER_JID")) || "";
 
             const currentTime = moment().tz(timeZone).format("h:mm A");

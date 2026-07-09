@@ -602,14 +602,14 @@ gmd(
 ┃  *Memory:*
 ┃  .lupus clear — reset history
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-> _Powered by Koyoteh_${footer}`
+> _Powered by GuruTech_${footer}`
             );
         }
 
         if (query.trim().toLowerCase() === 'clear') {
             _lupusClear(sender);
             if (react) await react("🗑️");
-            return reply(`🗑️ *Lupus memory cleared!*\n\nFresh conversation started. Ask me anything!\n\n> _Powered by Koyoteh_${footer}`);
+            return reply(`🗑️ *Lupus memory cleared!*\n\nFresh conversation started. Ask me anything!\n\n> _Powered by GuruTech_${footer}`);
         }
 
         if (isIdentityQuestion(query)) {
@@ -623,12 +623,12 @@ gmd(
             if (react) await react("✅");
             await reply(
 `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃  🐺  *LUPUS* by Koyoteh
+┃  🐺  *LUPUS* by GuruTech
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 ${result}
 
-> _Powered by Koyoteh_${footer}`
+> _Powered by GuruTech_${footer}`
             );
         } catch (err) {
             console.error('Lupus AI error:', err.message);

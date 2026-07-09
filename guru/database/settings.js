@@ -34,7 +34,7 @@ const DEFAULT_SETTINGS = {
     OWNER_NAME: "Koyoteh",
     OWNER_NUMBER: "254105521300",
     BOT_NAME: "BLACK PANTHER",
-    FOOTER: "Powered by Koyoteh",
+    FOOTER: "Powered by GuruTech",
     CAPTION: "⚡ BLACK PANTHER Premium | Ultra Fast | Ultra Secure",
     BOT_PIC: "https://res.cloudinary.com/dqxlb29uz/image/upload/v1780267810/bwm_uploads/media-1780267810008.jpg",
     VERSION: packageJson.version || "2.0.0",
@@ -86,7 +86,7 @@ const DEFAULT_SETTINGS = {
     TAG_PROTECT: "false",
     GLOBAL_SPAM_FILTER: "false",
     BOT_PREFIX: ".",
-    BOT_BIO: "Powered by KOYOTEH 🚀",
+    BOT_BIO: "Powered by GuruTech 🚀",
     BOT_VERSION: packageJson.version || "5.0.0",
     MENU_THEME: "ultra",
     // Anti-viewonce / VV tracker
